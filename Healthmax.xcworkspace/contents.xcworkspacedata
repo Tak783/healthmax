@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Feature Layer"
+      name = "Feature Layer">
+   </Group>
+   <Group
+      location = "group:Presentation"
+      name = "Presentation">
+      <FileRef
+         location = "group:HealthMax/HealthMax.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
