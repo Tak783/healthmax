@@ -5,6 +5,8 @@
 //  Created by Tak Mazarura on 22/05/2025.
 //
 
+import Foundation
+
 public struct QuizUpsellStepContent: StepInfoModellable, Codable, Sendable {
     public var emoji: String
     public var question: String

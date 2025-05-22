@@ -5,7 +5,8 @@
 //  Created by Tak Mazarura on 22/05/2025.
 //
 
-enum PermissionRequestType: Int, Codable {
+public enum PermissionRequestType: Int, Codable, Sendable {
     case notifications
-    case location
+    case appleHealth
+    case appleFitness
 }

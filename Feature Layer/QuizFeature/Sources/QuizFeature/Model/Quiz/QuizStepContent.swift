@@ -5,6 +5,8 @@
 //  Created by Tak Mazarura on 22/05/2025.
 //
 
+import Foundation
+
 public protocol StepInfoModellable {
     var question: String { get }
 }
@@ -12,9 +14,8 @@ public protocol StepInfoModellable {
 public enum QuizStepContent: Codable, StepInfoModellable, Sendable {
     case question(QuizQuestionStepContent)
     case upsell(QuizUpsellStepContent)
-    case scoreCalculation(QuizScoreCalculationStepContent)
-    case score(QuizScoreStepContent)
-    case userProfileForm(QuizUserProfileFormStepContent)
+    case biometric(QuizBiometricRequestContent)
+    case permission(QuizPermissionRequestContent)
     
     public var question: String {
         switch self {
@@ -22,11 +23,9 @@ public enum QuizStepContent: Codable, StepInfoModellable, Sendable {
             return model.question
         case .upsell(let model):
             return model.question
-        case .scoreCalculation(let model):
+        case .biometric(let model):
             return model.question
-        case .score(let model):
-            return model.question
-        case .userProfileForm(let model):
+        case .permission(let model):
             return model.question
         }
     }
@@ -37,11 +36,9 @@ public enum QuizStepContent: Codable, StepInfoModellable, Sendable {
             return model.answerType
         case .upsell(let model):
             return model.answerType
-        case .scoreCalculation(let model):
+        case .biometric(let model):
             return model.answerType
-        case .score(let model):
-            return model.answerType
-        case .userProfileForm(let model):
+        case .permission(let model):
             return model.answerType
         }
     }
@@ -62,15 +59,12 @@ public enum QuizStepContent: Codable, StepInfoModellable, Sendable {
         case .upsell:
             let data = try container.decode(QuizUpsellStepContent.self, forKey: .data)
             self = .upsell(data)
-        case .score:
-            let data = try container.decode(QuizScoreStepContent.self, forKey: .data)
-            self = .score(data)
-        case .scoreCalculation:
-            let data = try container.decode(QuizScoreCalculationStepContent.self, forKey: .data)
-            self = .scoreCalculation(data)
-        case .userProfileForm:
-            let data = try container.decode(QuizUserProfileFormStepContent.self, forKey: .data)
-            self = .userProfileForm(data)
+        case .biometricRequest:
+            let data = try container.decode(QuizBiometricRequestContent.self, forKey: .data)
+            self = .biometric(data)
+        case .permissionRequest:
+            let data = try container.decode(QuizPermissionRequestContent.self, forKey: .data)
+            self = .permission(data)
         }
     }
 
@@ -84,14 +78,11 @@ public enum QuizStepContent: Codable, StepInfoModellable, Sendable {
         case .upsell(let data):
             try container.encode(QuizStep.StepType.upsell, forKey: .type)
             try container.encode(data, forKey: .data)
-        case .score(let data):
-            try container.encode(QuizStep.StepType.score, forKey: .type)
+        case .biometric(let data):
+            try container.encode(QuizStep.StepType.biometricRequest, forKey: .type)
             try container.encode(data, forKey: .data)
-        case .scoreCalculation(let data):
-            try container.encode(QuizStep.StepType.scoreCalculation, forKey: .type)
-            try container.encode(data, forKey: .data)
-        case .userProfileForm(let data):
-            try container.encode(QuizStep.StepType.userProfileForm, forKey: .type)
+        case .permission(let data):
+            try container.encode(QuizStep.StepType.permissionRequest, forKey: .type)
             try container.encode(data, forKey: .data)
         }
     }

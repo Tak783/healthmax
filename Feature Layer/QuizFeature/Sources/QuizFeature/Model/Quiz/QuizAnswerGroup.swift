@@ -5,6 +5,8 @@
 //  Created by Tak Mazarura on 22/05/2025.
 //
 
+import Foundation
+
 public struct QuizAnswerGroup: Codable, Identifiable, Sendable {
     public let id: String
     public let title: String?

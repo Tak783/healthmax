@@ -5,6 +5,8 @@
 //  Created by Tak Mazarura on 22/05/2025.
 //
 
+import Foundation
+
 public struct QuizStep: Identifiable, Codable, Sendable {
     public let id: String
     public var title: String? = nil
