@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "CoreFoundational",
+    name: "QuizFeature",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "CoreFoundational",
-            targets: ["CoreFoundational"]),
+            name: "QuizFeature",
+            targets: ["QuizFeature"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "CoreFoundational"),
+            name: "QuizFeature"),
         .testTarget(
-            name: "CoreFoundationalTests",
-            dependencies: ["CoreFoundational"]
+            name: "QuizFeatureTests",
+            dependencies: ["QuizFeature"]
         ),
     ]
 )

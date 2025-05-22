@@ -4,39 +4,13 @@
    <Group
       location = "group:Foundation Layer"
       name = "Foundation Layer">
-      <Group
-         location = "group:CoreFoundational"
-         name = "CoreFoundational">
-         <Group
-            location = "group:Tests"
-            name = "Tests">
-            <Group
-               location = "group:CoreFoundationalTests"
-               name = "CoreFoundationalTests">
-               <FileRef
-                  location = "group:CoreFoundationalTests.swift">
-               </FileRef>
-            </Group>
-         </Group>
-         <FileRef
-            location = "group:Package.swift">
-         </FileRef>
-         <Group
-            location = "group:Sources"
-            name = "Sources">
-            <Group
-               location = "group:CoreFoundational"
-               name = "CoreFoundational">
-               <FileRef
-                  location = "group:CoreFoundational.swift">
-               </FileRef>
-            </Group>
-         </Group>
-      </Group>
    </Group>
    <Group
       location = "group:Feature Layer"
       name = "Feature Layer">
+      <FileRef
+         location = "group:QuizFeature">
+      </FileRef>
    </Group>
    <Group
       location = "group:Presentation"

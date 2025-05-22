@@ -1,0 +1,13 @@
+//
+//  QuizUpsellStepContent.swift
+//  QuizFeature
+//
+//  Created by Tak Mazarura on 22/05/2025.
+//
+
+public struct QuizUpsellStepContent: StepInfoModellable, Codable, Sendable {
+    public var emoji: String
+    public var question: String
+    public var detail: String
+    public var answerType: QuizAnswerType = .other
+}
