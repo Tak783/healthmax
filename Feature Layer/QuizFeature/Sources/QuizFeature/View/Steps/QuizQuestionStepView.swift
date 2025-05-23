@@ -24,7 +24,9 @@ struct QuizQuestionStepView: View {
             .padding(.horizontal)
         }
         .onChange(of: quizQuestionStepViewModel.didAnswerQuestion) { oldDidAnswerStatus, newDidAnswerStatus in
-            
+            if newDidAnswerStatus == true {
+                quizViewModel.recordAnswer(quizQuestionStepViewModel.answer)
+            }
         }
     }
 }
@@ -65,7 +67,8 @@ extension QuizQuestionStepView {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(questionGroup.choices) { choice in
                 HapticImpactButton {
-                        quizViewModel.processStepAction(.finishStep)
+                    quizQuestionStepViewModel.didSelectAnswerChoice(choice)
+                    quizViewModel.processStepAction(.finishStep)
                 } label: {
                     HStack {
                         Text(choice.title)
