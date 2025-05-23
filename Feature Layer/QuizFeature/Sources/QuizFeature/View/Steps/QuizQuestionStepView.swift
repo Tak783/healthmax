@@ -15,13 +15,9 @@ struct QuizQuestionStepView: View {
     
     var body: some View {
         VStack() {
-            quizQuestionScrollView()
-                .padding()
+            questionView(question: quizQuestionStepViewModel.questionContent)
             Spacer()
-            continueButtonContainer(
-                question: quizQuestionStepViewModel.questionContent
-            )
-            .padding(.horizontal)
+            answersSection(question: quizQuestionStepViewModel.questionContent)
         }
         .onChange(of: quizQuestionStepViewModel.didAnswerQuestion) { oldDidAnswerStatus, newDidAnswerStatus in
             if newDidAnswerStatus == true {
@@ -33,30 +29,23 @@ struct QuizQuestionStepView: View {
 
 // MARK: - Question View
 extension QuizQuestionStepView {
-    private func quizQuestionScrollView() -> some View {
-        ScrollView {
-            quizQuestionView(question: quizQuestionStepViewModel.questionContent)
-        }
-        .scrollIndicators(.hidden)
-    }
-    
-    private func quizQuestionView(question: QuizQuestionStepContent) -> some View {
-        VStack(alignment: .leading, spacing: 14) {
-            quizAnswersQuestionView(question: question)
+    private func questionView(
+        question: QuizQuestionStepContent
+    ) -> some View {
+        HStack {
+            Text(question.question)
+                .font(DesignSystem.DSFont.title(weight: .bold))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
+                .padding(.top, DesignSystem.Layout.extraExtraLarge)
             Spacer()
-            quizchoicesView(question: question)
         }
     }
     
-    private func quizAnswersQuestionView(question: QuizQuestionStepContent, isSmall: Bool = false) -> some View {
-        return Text(question.question)
-            .font(.title)
-            .foregroundColor(.white)
-            .multilineTextAlignment(.leading)
-    }
-    
-    private func quizchoicesView(question: QuizQuestionStepContent) -> some View {
+    private func answersSection(question: QuizQuestionStepContent) -> some View {
         VStack(alignment: .leading, spacing: 0) {
+            Spacer()
             ForEach(question.answerGroup) { questionGroup in
                 quizAnswerGroupChoicesView(questionGroup: questionGroup)
             }
@@ -64,7 +53,7 @@ extension QuizQuestionStepView {
     }
     
     private func quizAnswerGroupChoicesView(questionGroup: QuizAnswerGroup) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: DesignSystem.Layout.medium) {
             ForEach(questionGroup.choices) { choice in
                 HapticImpactButton {
                     quizQuestionStepViewModel.didSelectAnswerChoice(choice)
@@ -73,35 +62,18 @@ extension QuizQuestionStepView {
                     HStack {
                         Text(choice.title)
                             .foregroundColor(.black)
-                            .font(.callout)
+                            .font(DesignSystem.DSFont.subHeadline(weight: .semibold))
                             .multilineTextAlignment(.leading)
-                        
                         Spacer()
                     }
+                    .padding(.horizontal)
+                    .padding(.vertical, DesignSystem.Layout.extraLarge)
+                    .background(Color.white)
+                    .cornerRadius(DesignSystem.Layout.medium)
+                    .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
                 }
             }
         }
-    }
-}
-
-// MARK: - Continue Button
-extension QuizQuestionStepView {
-    @ViewBuilder
-    private func continueButtonContainer(question: QuizQuestionStepContent) -> some View {
-        if quizQuestionStepViewModel.isContinueButtonVisible() {
-            let state = StyledHapticButton.State(
-                isEnabled: quizQuestionStepViewModel.isContinueButtonEnabled(),
-                isVisible: quizQuestionStepViewModel.isContinueButtonVisible()
-            )
-            StyledHapticButton(
-                title: "Continue",
-                appearance: .default,
-                state: state
-            ) {
-                quizViewModel.processStepAction(.finishStep)
-            }
-        } else {
-            EmptyView()
-        }
+        .padding(.bottom)
     }
 }

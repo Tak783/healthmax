@@ -20,23 +20,20 @@ public struct QuizView: View {
     @Environment(\.modelContext) private var modelContext
     
     let finishQuiz: () -> Void?
-    let didTapNavigationBarBackButton: () -> Void?
     
     public init(
         quizViewModel: QuizViewModel,
-        finishQuiz: @escaping () -> Void?,
-        didTapNavigationBarBackButton: @escaping () -> Void?
+        finishQuiz: @escaping () -> Void?
     ) {
         self.quizViewModel = quizViewModel
         self.finishQuiz = finishQuiz
-        self.didTapNavigationBarBackButton = didTapNavigationBarBackButton
     }
     
     public var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            DesignSystem.DSGradient.background.ignoresSafeArea()
             
-            VStack(spacing: 12) {
+            VStack(spacing: DesignSystem.Layout.medium) {
                 if quizViewModel.isLoading {
                     loadingSpinner
                 } else {
@@ -93,17 +90,6 @@ public struct QuizView: View {
 
 // MARK: - Quiz View
 extension QuizView {
-    @ToolbarContentBuilder
-    private var navBarTitleView: some ToolbarContent {
-        if let title = quizViewModel.currentStep()?.title {
-            ToolbarItem(placement: .principal) {
-                Text(title)
-                    .font(.subheadline)
-                    .foregroundColor(.green)
-            }
-        }
-    }
-
     private func quizStepView(
         quizSessionModel: QuizSessionModel,
         currentStep: QuizStep
@@ -140,7 +126,7 @@ extension QuizView {
                 quizViewModel: quizViewModel,
                 quizQuestionStepViewModel: quizQuestionStepViewModel
             )
-            .padding(.top, -12)
+            .padding(.top, -DesignSystem.Layout.medium)
         case .upsell(let quizUpsellStepContent):
             let quizQuestionStepViewModel = QuizUpsellStepViewModel(
                 currentStep: currentStep,
@@ -196,7 +182,7 @@ extension QuizView {
     
    
     private func quizProgressHeaderView(currentStep: QuizStep) -> some View {
-        HStack(alignment: .center, spacing: 12) {
+        HStack(alignment: .center, spacing: DesignSystem.Layout.medium) {
             if currentStep.showProgressBar {
                 quizProgressView()
             } else {

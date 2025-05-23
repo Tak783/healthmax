@@ -13,57 +13,70 @@ struct QuizDOBPickerStepView: View {
     @ObservedObject var dateOfBirthViewModel: DateOfBirthViewModel
 
     var body: some View {
-        VStack(spacing: 24) {
+        VStack {
+            questionLabel
             Spacer()
-            questionView
-            Spacer()
-            continueButton
+            VStack(spacing: DesignSystem.Layout.large) {
+                pickerView
+                continueButton
+            }
         }
-        .padding()
     }
 }
 
 // MARK: - Question Picker
 extension QuizDOBPickerStepView {
-    private var questionView: some View {
-        VStack(alignment: .center, spacing: 16) {
-            questionLabel
-            pickerView
+    private var questionLabel: some View {
+        HStack {
+            Text(dateOfBirthViewModel.quizBiometricRequestContent.question)
+                .font(DesignSystem.DSFont.title(weight: .bold))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
+                .padding(.top, DesignSystem.Layout.extraLarge)
+            Spacer()
         }
     }
     
-    private var questionLabel: some View {
-        Text(dateOfBirthViewModel.quizBiometricRequestContent.question)
-            .multilineTextAlignment(.center)
-            .foregroundColor(.white)
-            .font(.system(size: 36, weight: .bold))
-    }
-    
     private var pickerView: some View {
-        DatePicker(
-            "Date of Birth",
-            selection: $dateOfBirthViewModel.dateOfBirth,
-            in: dateOfBirthViewModel.oldestSelectableDate...Date(),
-            displayedComponents: [.date]
-        )
+        VStack(alignment: .center) {
+            HStack {
+                DatePicker(
+                    String.init(),
+                    selection: $dateOfBirthViewModel.dateOfBirth,
+                    in: dateOfBirthViewModel.oldestSelectableDate...Date(),
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(.graphical)
+                .labelsHidden()
+                .padding(.horizontal, DesignSystem.Layout.medium)
+            }
+        }
     }
     
     @ViewBuilder
     private var continueButton: some View {
-        if dateOfBirthViewModel.isContinueButtonVisible() {
-            let state = StyledHapticButton.State(
-                isEnabled: dateOfBirthViewModel.isContinueButtonEnabled(),
-                isVisible: dateOfBirthViewModel.isContinueButtonVisible()
-            )
-            StyledHapticButton(
-                title: "Continue",
-                appearance: StyledHapticButton.Appearance.default,
-                state: state
-            ) {
-                quizViewModel.processStepAction(.finishStep)
+        VStack {
+            HStack(alignment: .center) {
+                HapticImpactButton {
+                    quizViewModel.processStepAction(.finishStep)
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Continue")
+                            .foregroundColor(.white)
+                            .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                            .multilineTextAlignment(.center)
+                        Image(systemName: "arrow.right.circle.fill")
+                            .tint(.white)
+                        Spacer()
+                    }
+                    .padding()
+                    .background(DesignSystem.DSGradient.button)
+                    .cornerRadius(DesignSystem.Layout.huge)
+                    .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                }
             }
-        } else {
-            EmptyView()
         }
     }
 }

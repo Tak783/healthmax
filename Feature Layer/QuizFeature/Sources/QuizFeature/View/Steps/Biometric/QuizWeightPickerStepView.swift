@@ -13,60 +13,62 @@ struct QuizWeightPickerStepView: View {
     @ObservedObject var weightViewModel: WeightViewModel
 
     var body: some View {
-        VStack(spacing: 24) {
+        VStack{
+            questionLabel
             Spacer()
-            questionView
-            Spacer()
-            continueButton
+            VStack(spacing: DesignSystem.Layout.large) {
+                pickerView
+                continueButton
+            }
         }
-        .padding()
     }
 }
 
 extension QuizWeightPickerStepView {
-    private var questionView: some View {
-        VStack(alignment: .center, spacing: 16) {
-            questionLabel
-            pickerView
-        }
-    }
-    
     private var questionLabel: some View {
-        Text(weightViewModel.quizBiometricRequestContent.question)
-            .multilineTextAlignment(.center)
-            .foregroundColor(.white)
-            .font(.system(size: 36, weight: .bold))
+        HStack {
+            Text(weightViewModel.quizBiometricRequestContent.question)
+                .font(DesignSystem.DSFont.title(weight: .bold))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.leading)
+                .padding(.top, DesignSystem.Layout.extraLarge)
+            Spacer()
+        }
+        .padding(.horizontal)
     }
     
     private var pickerView: some View {
-        VStack(spacing: 16) {
+        VStack {
             Picker("Weight", selection: $weightViewModel.weight) {
                 ForEach(weightViewModel.range, id: \.self) { value in
                     Text("\(value) \(weightViewModel.unit)").tag(value)
                 }
             }
             .pickerStyle(.wheel)
-            .frame(height: 150)
-            .clipped()
         }
     }
     
     @ViewBuilder
     private var continueButton: some View {
-        if weightViewModel.isContinueButtonVisible() {
-            let state = StyledHapticButton.State(
-                isEnabled: weightViewModel.isContinueButtonEnabled(),
-                isVisible: weightViewModel.isContinueButtonVisible()
-            )
-            StyledHapticButton(
-                title: "Continue",
-                appearance: StyledHapticButton.Appearance.default,
-                state: state
-            ) {
+        HStack(alignment: .center) {
+            HapticImpactButton {
                 quizViewModel.processStepAction(.finishStep)
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Continue")
+                        .foregroundColor(.white)
+                        .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Image(systemName: "arrow.right.circle.fill")
+                        .tint(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(DesignSystem.DSGradient.button)
+                .cornerRadius(DesignSystem.Layout.huge)
+                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
             }
-        } else {
-            EmptyView()
         }
     }
 }

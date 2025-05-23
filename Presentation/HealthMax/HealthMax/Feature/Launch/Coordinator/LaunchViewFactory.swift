@@ -16,11 +16,11 @@ struct LaunchViewFactory {
     }
     
     static func onboardingQuiz() -> some View {
-        let quizViewModel = QuizViewModel()
+        let fetchQuizService = LocalFetchQuizServiceService()
+        let quizViewModel = QuizViewModel(fetchQuizService: fetchQuizService)
         return QuizView(
             quizViewModel: quizViewModel,
-            finishQuiz: {},
-            didTapNavigationBarBackButton: {}
+            finishQuiz: {}
         )
     }
     

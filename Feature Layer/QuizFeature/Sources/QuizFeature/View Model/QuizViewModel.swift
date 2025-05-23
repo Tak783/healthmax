@@ -17,6 +17,7 @@ public final class QuizViewModel: ObservableObject {
     @Published public private(set) var didFinishQuiz = false
     @Published public private(set) var isSavingQuizAnswers = false
     
+    private let fetchQuizService: FetchQuizServiceable
     public private(set) var quizSessionModel: QuizSessionModel?
     
     public enum Error: Swift.Error {
@@ -27,7 +28,9 @@ public final class QuizViewModel: ObservableObject {
         case closeQuiz, finishStep
     }
     
-    public init() {}
+    public init(fetchQuizService: FetchQuizServiceable) {
+        self.fetchQuizService = fetchQuizService
+    }
 }
 
 // MARK: - ViewModelLoadable
@@ -36,20 +39,20 @@ extension QuizViewModel: ViewModelLoadable {}
 // MARK: - Load Quiz
 extension QuizViewModel {
     public func loadQuiz() {
-//        Task {
-//            guard let quizEndpoint else {
-//                return
-//            }
-//            setIsLoading(true)
-//            let result = await fetchQuizService.fetchQuiz(withEndpoint: quizEndpoint)
-//            switch result {
-//            case .success(let quiz):
-//                self.quizSessionModel = QuizSessionModel(quiz: quiz)
-//            case .failure(let error):
-//                efficientPrint(error.localizedDescription)
-//            }
-//            setIsLoading(false)
-//        }
+        Task { [weak self] in
+            guard let self else {
+                return
+            }
+            self.setIsLoading(true)
+            let result = await fetchQuizService.load()
+            switch result {
+            case .success(let quiz):
+                self.quizSessionModel = QuizSessionModel(quiz: quiz)
+            case .failure(let error):
+                efficientPrint(error.localizedDescription)
+            }
+            setIsLoading(false)
+        }
     }
 }
 
@@ -123,7 +126,7 @@ extension QuizViewModel {
             }
             goToNextStep()
         default:
-            break
+            goToNextStep()
         }
     }
 }

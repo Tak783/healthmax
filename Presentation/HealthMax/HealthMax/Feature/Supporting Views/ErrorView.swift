@@ -5,6 +5,7 @@
 //  Created by Tak Mazarura on 22/05/2025.
 //
 
+import CorePresentation
 import SwiftUI
 
 struct ErrorView: View {
@@ -12,7 +13,7 @@ struct ErrorView: View {
     let retryAction: () -> Void
 
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: DesignSystem.Layout.medium) {
             Text(message)
                 .foregroundColor(.red)
 

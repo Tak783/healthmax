@@ -16,9 +16,9 @@ struct QuizUpsellStepView: View {
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
-            rewardView()
+            rewardView
             Spacer()
-            continueButton()
+            continueButton
         }
         .padding()
     }
@@ -26,36 +26,43 @@ struct QuizUpsellStepView: View {
 
 // MARK: - QuizUpsellStepView
 extension QuizUpsellStepView {
-    private func rewardView() -> some View {
-        VStack(alignment: .center, spacing: 16) {
+    private var rewardView: some View {
+        VStack(alignment: .center, spacing: DesignSystem.Layout.extraLarge) {
             Text(quizUpsellStepViewModel.upsellContent.emoji)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .font(.system(size: 36, weight: .bold))
+                .font(DesignSystem.DSFont.hugeEmoji())
             Text(quizUpsellStepViewModel.upsellContent.question)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .font(.largeTitle)
+                .font(DesignSystem.DSFont.largeTitle())
             Text(quizUpsellStepViewModel.upsellContent.detail)
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color.white)
-                .font(.headline)
+                .foregroundColor(.white)
+                .font(DesignSystem.DSFont.headline(weight: .regular))
         }
     }
 
     @ViewBuilder
-    private func continueButton() -> some View {
+    private var continueButton: some View {
         if quizUpsellStepViewModel.isContinueButtonVisible() {
-            let state = StyledHapticButton.State(
-                isEnabled: quizUpsellStepViewModel.isContinueButtonEnabled(),
-                isVisible: quizUpsellStepViewModel.isContinueButtonVisible()
-            )
-            StyledHapticButton(
-                title: "Continue",
-                appearance: StyledHapticButton.Appearance.default,
-                state: state
-            ) {
+            HapticImpactButton {
                 quizViewModel.processStepAction(.finishStep)
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Continue")
+                        .foregroundColor(.white)
+                        .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Image(systemName: "arrow.right.circle.fill")
+                        .tint(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(DesignSystem.DSGradient.button)
+                .cornerRadius(DesignSystem.Layout.huge)
+                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
             }
         } else {
             EmptyView()

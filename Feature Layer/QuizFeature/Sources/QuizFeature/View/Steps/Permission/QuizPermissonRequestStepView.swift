@@ -54,16 +54,25 @@ extension QuizPermissonRequestStepView {
     
     @ViewBuilder
     private func continueButton() -> some View {
-        let state = StyledHapticButton.State(
-            isEnabled: quizPermissonStepViewModel.isContinueButtonEnabled(),
-            isVisible: quizPermissonStepViewModel.isContinueButtonVisible()
-        )
-        StyledHapticButton(
-            title: "Continue",
-            appearance: StyledHapticButton.Appearance.default,
-            state: state
-        ) {
-            quizViewModel.processStepAction(.finishStep)
+        HStack(alignment: .center) {
+            HapticImpactButton {
+                quizViewModel.processStepAction(.finishStep)
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Continue")
+                        .foregroundColor(.white)
+                        .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Image(systemName: "arrow.right.circle.fill")
+                        .tint(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(DesignSystem.DSGradient.button)
+                .cornerRadius(DesignSystem.Layout.huge)
+                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+            }
         }
     }
 }

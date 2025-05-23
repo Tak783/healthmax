@@ -13,52 +13,31 @@ struct QuizHeightPickerStepView: View {
     @ObservedObject var heightViewModel: HeightViewModel
     
     var body: some View {
-        VStack(spacing: 24) {
+        VStack{
+            questionLabel
             Spacer()
-            questionView
-            Spacer()
-            continueButton
+            VStack(spacing: 16) {
+                pickerView
+                continueButton
+            }
         }
-        .padding()
     }
 }
 
 extension QuizHeightPickerStepView {
-    private var questionView: some View {
-        VStack(alignment: .center, spacing: 16) {
-            questionLabel
-            pickerView
-        }
-    }
-    
     private var questionLabel: some View {
-        Text(heightViewModel.quizBiometricRequestContent.question)
-            .multilineTextAlignment(.center)
-            .foregroundColor(.white)
-            .font(.system(size: 36, weight: .bold))
-    }
-    
-    @ViewBuilder
-    private var continueButton: some View {
-        if heightViewModel.isContinueButtonVisible() {
-            let state = StyledHapticButton.State(
-                isEnabled: heightViewModel.isContinueButtonEnabled(),
-                isVisible: heightViewModel.isContinueButtonVisible()
-            )
-            StyledHapticButton(
-                title: "Continue",
-                appearance: StyledHapticButton.Appearance.default,
-                state: state
-            ) {
-                quizViewModel.processStepAction(.finishStep)
-            }
-        } else {
-            EmptyView()
+        HStack {
+            Text(heightViewModel.quizBiometricRequestContent.question)
+                .font(DesignSystem.DSFont.title(weight: .bold))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.leading)
+                .padding()
+            Spacer()
         }
     }
     
     private var pickerView: some View {
-        VStack(spacing: 16) {
+        VStack {
            HStack {
                Picker("Feet", selection: $heightViewModel.feet) {
                     ForEach(heightViewModel.feetRange, id: \.self) { ft in
@@ -77,10 +56,30 @@ extension QuizHeightPickerStepView {
                 .frame(width: 100)
             }
             .frame(height: 150)
-
-            Text("= \(heightViewModel.formattedCentimeters) cm")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+        }
+    }
+    
+    @ViewBuilder
+    private var continueButton: some View {
+        HStack(alignment: .center) {
+            HapticImpactButton {
+                quizViewModel.processStepAction(.finishStep)
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Continue")
+                        .foregroundColor(.white)
+                        .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Image(systemName: "arrow.right.circle.fill")
+                        .tint(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(DesignSystem.DSGradient.button)
+                .cornerRadius(DesignSystem.Layout.huge)
+                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+            }
         }
     }
 }
