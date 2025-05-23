@@ -10,8 +10,15 @@ import Foundation
 public struct QuizAnswerChoice: Identifiable, Codable, Sendable {
     public let id: String
     public let title: String
-    public let score: Int
+    public let score: Int?
     public let icon: Icon?
+    
+    public init(id: String, title: String, score: Int? = nil, icon: QuizAnswerChoice.Icon? = nil) {
+        self.id = id
+        self.title = title
+        self.score = score
+        self.icon = icon
+    }
     
     public struct Icon: Codable, Sendable {
         public let emojiName: String?

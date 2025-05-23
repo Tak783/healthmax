@@ -11,4 +11,7 @@ public struct QuizPermissionRequestContent: StepInfoModellable, Codable, Sendabl
     public var question: String
     public let answerType: QuizAnswerType
     public let permissionRequestType: PermissionRequestType
+    public let image: AppImage
+    public let title: String
+    public let detail: String
 }

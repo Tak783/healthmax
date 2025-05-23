@@ -4,44 +4,34 @@
 import PackageDescription
 
 let package = Package(
-    name: "QuizFeature",
+    name: "CorePresentation",
     platforms: [
         .iOS(.v17)
     ],
     products: [
         .library(
-            name: "QuizFeature",
-            targets: ["QuizFeature"]),
+            name: "CorePresentation",
+            targets: ["CorePresentation"]),
     ],
     dependencies: [
         .package(
             name: "CoreFoundational",
-            path: "../../Core Layer/CoreFoundational"
-        ),
-        .package(
-            name: "CorePresentation",
-            path: "../../Core Presentation/CorePresentation"
+            path: "../Core Layer/CoreFoundational"
         )
     ],
     targets: [
         .target(
-            name: "QuizFeature",
+            name: "CorePresentation",
             dependencies: [
                 .product(
                     name: "CoreFoundational",
                     package: "CoreFoundational"
-                ),
-                .product(
-                    name: "CorePresentation",
-                    package: "CorePresentation"
                 )
             ]
         ),
         .testTarget(
-            name: "QuizFeatureTests",
-            dependencies: [
-                "QuizFeature"
-            ]
+            name: "CorePresentationTests",
+            dependencies: ["CorePresentation"]
         ),
     ]
 )
