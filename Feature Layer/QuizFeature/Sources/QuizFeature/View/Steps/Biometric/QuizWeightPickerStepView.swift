@@ -8,7 +8,7 @@
 import CorePresentation
 import SwiftUI
 
-struct WeightPickerView: View {
+struct QuizWeightPickerStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel
     @ObservedObject var weightViewModel: WeightViewModel
 
@@ -23,7 +23,7 @@ struct WeightPickerView: View {
     }
 }
 
-extension WeightPickerView {
+extension QuizWeightPickerStepView {
     private var questionView: some View {
         VStack(alignment: .center, spacing: 16) {
             questionLabel

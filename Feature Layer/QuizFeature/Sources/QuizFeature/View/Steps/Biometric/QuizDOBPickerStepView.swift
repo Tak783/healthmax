@@ -1,5 +1,5 @@
 //
-//  DateOfBirthPickerView.swift
+//  QuizDOBPickerStepView.swift
 //  QuizFeature
 //
 //  Created by Tak Mazarura on 23/05/2025.
@@ -8,7 +8,7 @@
 import CorePresentation
 import SwiftUI
 
-struct DateOfBirthPickerView: View {
+struct QuizDOBPickerStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel
     @ObservedObject var dateOfBirthViewModel: DateOfBirthViewModel
 
@@ -24,7 +24,7 @@ struct DateOfBirthPickerView: View {
 }
 
 // MARK: - Question Picker
-extension DateOfBirthPickerView {
+extension QuizDOBPickerStepView {
     private var questionView: some View {
         VStack(alignment: .center, spacing: 16) {
             questionLabel

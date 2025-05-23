@@ -8,7 +8,7 @@
 import CorePresentation
 import SwiftUI
 
-struct HeightPickerView: View {
+struct QuizHeightPickerStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel
     @ObservedObject var heightViewModel: HeightViewModel
     
@@ -23,7 +23,7 @@ struct HeightPickerView: View {
     }
 }
 
-extension HeightPickerView {
+extension QuizHeightPickerStepView {
     private var questionView: some View {
         VStack(alignment: .center, spacing: 16) {
             questionLabel

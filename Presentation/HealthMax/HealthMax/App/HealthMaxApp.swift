@@ -11,7 +11,7 @@ import SwiftUI
 struct HealthMaxApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchViewFactory.launchView()
         }
     }
 }

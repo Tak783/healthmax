@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5812DE0AEB800664E7E /* CoreFoundational */; };
+		8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5832DE0AEB800664E7E /* CorePresentation */; };
+		8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5852DE0AEB800664E7E /* QuizFeature */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8B6B5F172DDD1BB3003E4D95 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */,
+				8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */,
+				8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,7 @@
 				8B6B5F082DDD1BB0003E4D95 /* HealthMax */,
 				8B6B5F192DDD1BB3003E4D95 /* HealthMaxTests */,
 				8B6B5F232DDD1BB3003E4D95 /* HealthMaxUITests */,
+				8B7DB5802DE0AEB800664E7E /* Frameworks */,
 				8B6B5F072DDD1BB0003E4D95 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +100,13 @@
 				8B6B5F202DDD1BB3003E4D95 /* HealthMaxUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8B7DB5802DE0AEB800664E7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +129,9 @@
 			);
 			name = HealthMax;
 			packageProductDependencies = (
+				8B7DB5812DE0AEB800664E7E /* CoreFoundational */,
+				8B7DB5832DE0AEB800664E7E /* CorePresentation */,
+				8B7DB5852DE0AEB800664E7E /* QuizFeature */,
 			);
 			productName = HealthMax;
 			productReference = 8B6B5F062DDD1BB0003E4D95 /* HealthMax.app */;
@@ -399,6 +419,7 @@
 				DEVELOPMENT_TEAM = D9SX45YF8X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +449,7 @@
 				DEVELOPMENT_TEAM = D9SX45YF8X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -554,6 +576,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B7DB5812DE0AEB800664E7E /* CoreFoundational */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreFoundational;
+		};
+		8B7DB5832DE0AEB800664E7E /* CorePresentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CorePresentation;
+		};
+		8B7DB5852DE0AEB800664E7E /* QuizFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QuizFeature;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B6B5EFE2DDD1BB0003E4D95 /* Project object */;
 }

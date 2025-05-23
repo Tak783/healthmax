@@ -156,7 +156,7 @@ extension QuizView {
                 let heightViewModel = HeightViewModel(
                     quizBiometricRequestContent: biometricStepContent
                 )
-                HeightPickerView(
+                QuizHeightPickerStepView(
                     quizViewModel: quizViewModel,
                     heightViewModel: heightViewModel
                 )
@@ -165,7 +165,7 @@ extension QuizView {
                     defaultWeight: 65,
                     quizBiometricRequestContent: biometricStepContent
                 )
-                WeightPickerView(
+                QuizWeightPickerStepView(
                     quizViewModel: quizViewModel,
                     weightViewModel: weightViewModel
                 )
@@ -173,7 +173,7 @@ extension QuizView {
                 let dateOfBirthViewModel = DateOfBirthViewModel(
                     quizBiometricRequestContent: biometricStepContent
                 )
-                DateOfBirthPickerView(
+                QuizDOBPickerStepView(
                     quizViewModel: quizViewModel,
                     dateOfBirthViewModel: dateOfBirthViewModel
                 )
