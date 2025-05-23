@@ -104,7 +104,10 @@ extension QuizView {
         }
     }
 
-    private func quizStepView(quizSessionModel: QuizSessionModel, currentStep: QuizStep) -> some View {
+    private func quizStepView(
+        quizSessionModel: QuizSessionModel,
+        currentStep: QuizStep
+    ) -> some View {
         TabView(selection: $quizViewModel.stepIndex) {
             ForEach(quizSessionModel.quiz.steps.indices, id: \.self) { index in
                 quizStepView(
@@ -147,8 +150,34 @@ extension QuizView {
                 quizViewModel: quizViewModel,
                 quizUpsellStepViewModel: quizQuestionStepViewModel
             )
-        case .biometric(_):
-            EmptyView()
+        case .biometric(let biometricStepContent):
+            switch biometricStepContent.biometricType {
+            case .height:
+                let heightViewModel = HeightViewModel(
+                    quizBiometricRequestContent: biometricStepContent
+                )
+                HeightPickerView(
+                    quizViewModel: quizViewModel,
+                    heightViewModel: heightViewModel
+                )
+            case .weight:
+                let weightViewModel = WeightViewModel(
+                    defaultWeight: 65,
+                    quizBiometricRequestContent: biometricStepContent
+                )
+                WeightPickerView(
+                    quizViewModel: quizViewModel,
+                    weightViewModel: weightViewModel
+                )
+            case .dateOfBirth:
+                let dateOfBirthViewModel = DateOfBirthViewModel(
+                    quizBiometricRequestContent: biometricStepContent
+                )
+                DateOfBirthPickerView(
+                    quizViewModel: quizViewModel,
+                    dateOfBirthViewModel: dateOfBirthViewModel
+                )
+            }
         case .permission(_):
             EmptyView()
         }
