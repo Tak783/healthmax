@@ -164,8 +164,24 @@ extension QuizView {
                     dateOfBirthViewModel: dateOfBirthViewModel
                 )
             }
-        case .permission(_):
-            EmptyView()
+        case .permission(let permissionStepContent):
+            switch permissionStepContent.permissionRequestType {
+            case .notifications:
+                EmptyView()
+            case .appleHealth:
+                let quizPermissonStepViewModel = QuizPermissonStepViewModel(
+                    currentStep: currentStep,
+                    permissionContent: permissionStepContent
+                )
+                let appleHealthPermissionsViewModel = AppleHealthPermissionsViewModel()
+                AppleHealthPermissonRequestStepView(
+                    quizViewModel: quizViewModel,
+                    quizPermissonStepViewModel: quizPermissonStepViewModel,
+                    appleHealthPermissionsViewModel: appleHealthPermissionsViewModel
+                )
+            case .appleFitness:
+                EmptyView()
+            }
         }
     }
 }

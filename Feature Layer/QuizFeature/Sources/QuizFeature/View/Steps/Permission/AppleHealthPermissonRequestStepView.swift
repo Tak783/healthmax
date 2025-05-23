@@ -9,33 +9,45 @@ import CorePresentation
 import CoreFoundational
 import SwiftUI
 
-struct QuizPermissonRequestStepView: View {
+struct AppleHealthPermissonRequestStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel
     @ObservedObject var quizPermissonStepViewModel: QuizPermissonStepViewModel
+    @ObservedObject var appleHealthPermissionsViewModel: AppleHealthPermissionsViewModel
     
     var body: some View {
+        contentView
+            .onChange(of: appleHealthPermissionsViewModel.requestStatus) { _, newStatus in
+                didUpdateHealthPermissionRequestStatus(newStatus)
+            }
+    }
+}
+
+// MARK: - Main Views
+extension AppleHealthPermissonRequestStepView {
+    private var contentView: some View {
         VStack(spacing: 24) {
             Spacer()
-            infoView()
+            infoView
             Spacer()
-            continueButton()
+            continueButton
         }
         .padding()
     }
 }
-
-extension QuizPermissonRequestStepView {
-    private func infoView() -> some View {
+ 
+// MARK: - Supporting Views
+extension AppleHealthPermissonRequestStepView {
+    private var infoView: some View {
         VStack(alignment: .center, spacing: 16) {
             imageView
-            Text(quizPermissonStepViewModel.permissionContent.question)
+            Text(quizPermissonStepViewModel.permissionContent.title)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .font(.largeTitle)
+                .font(DesignSystem.DSFont.largeTitle())
             Text(quizPermissonStepViewModel.permissionContent.detail)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.white)
-                .font(.headline)
+                .font(DesignSystem.DSFont.headline(weight: .regular))
         }
     }
     
@@ -52,11 +64,10 @@ extension QuizPermissonRequestStepView {
         }
     }
     
-    @ViewBuilder
-    private func continueButton() -> some View {
+    private var continueButton: some View {
         HStack(alignment: .center) {
             HapticImpactButton {
-                quizViewModel.processStepAction(.finishStep)
+                appleHealthPermissionsViewModel.requestAuthorization()
             } label: {
                 HStack {
                     Spacer()
@@ -73,6 +84,18 @@ extension QuizPermissonRequestStepView {
                 .cornerRadius(DesignSystem.Layout.huge)
                 .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
             }
+        }
+    }
+}
+
+// MARK: - Helpers
+extension AppleHealthPermissonRequestStepView {
+    func didUpdateHealthPermissionRequestStatus(_ status: HealthPermissionRequestStatus) {
+        switch status {
+        case .authorised, .denied:
+            quizViewModel.processStepAction(.finishStep)
+        case .requesting, .unknown:
+            break
         }
     }
 }

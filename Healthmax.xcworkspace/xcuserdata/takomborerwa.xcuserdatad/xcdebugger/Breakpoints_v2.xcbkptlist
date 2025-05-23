@@ -3,4 +3,52 @@
    uuid = "0127D5CC-8AA2-4ECD-A1BF-0704F3CC6A67"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feature Layer/QuizFeature/Sources/QuizFeature/View Model/Permissions/AppleHealthPermissionsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "requestAuthorization()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - ae40463418ac3c63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 () async -&gt; () in QuizFeature.AppleHealthPermissionsViewModel.requestAuthorization() -&gt; ()"
+                  moduleName = "HealthMax.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/takomborerwa/Repos/Healthmax/Feature%20Layer/QuizFeature/Sources/QuizFeature/View%20Model/Permissions/AppleHealthPermissionsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+               <Location
+                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - 9a146b10ef29b25e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 () async -&gt; () in QuizFeature.AppleHealthPermissionsViewModel.requestAuthorization() -&gt; ()"
+                  moduleName = "HealthMax.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/takomborerwa/Repos/Healthmax/Feature%20Layer/QuizFeature/Sources/QuizFeature/View%20Model/Permissions/AppleHealthPermissionsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
