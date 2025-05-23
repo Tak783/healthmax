@@ -114,7 +114,7 @@ extension Quiz {
                         question: .init(),
                         answerType: .other,
                         permissionRequestType: .appleHealth,
-                        image: .init(type: .asset, name: "AppleHealthLogo"),
+                        image: .init(name: "AppleHealthLogo", type: .asset),
                         title: "Connect to Apple Health to tell the full story of your health",
                         detail: "85% of users that connect their Apple health see faster improvements with their health"
                     )
@@ -127,7 +127,7 @@ extension Quiz {
                         question: .init(),
                         answerType: .other,
                         permissionRequestType: .notifications,
-                        image: .init(type: .emoji, name: "🧪"),
+                        image: .init(name: "🧪", type: .emoji),
                         title: "We are now creating an personalised HealthMax plan for you",
                         detail: "You will receive a notification when it is ready"
                     )

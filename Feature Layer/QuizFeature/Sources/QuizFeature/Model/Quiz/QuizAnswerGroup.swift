@@ -18,10 +18,3 @@ public struct QuizAnswerGroup: Codable, Identifiable, Sendable {
         self.choices = choices
     }
 }
-
-// MARK: - Helpers
-extension QuizAnswerGroup {
-    public func maxScore() -> Int {
-        choices.compactMap { $0.score }.max() ?? .zero
-    }
-}

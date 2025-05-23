@@ -12,7 +12,6 @@ public struct QuizAnswer: Identifiable, Codable, Equatable, Sendable {
     public let questionID: String
     public let answerType: QuizAnswerType
     public var answerValue: AnswerValue?
-    public var score: Int?
 
     public enum AnswerValue: Codable, Equatable, Sendable {
         case choice(String)
