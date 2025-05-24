@@ -56,9 +56,7 @@ public struct QuizView: View {
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .navigationBarHidden(shouldHideNavBar)
+        .navigationBarHidden(true)
         .toolbar {
             if let title = quizViewModel.currentStep()?.title {
                 ToolbarItem(placement: .principal) {
@@ -69,21 +67,10 @@ public struct QuizView: View {
             }
         }
         .onAppear {
-            quizViewModel.loadQuiz()
+            loadQuiz()
         }
         .onChange(of: quizViewModel.didFinishQuiz) { _, didFinishQuiz in
             update(withDidFinishQuizStatus: didFinishQuiz)
-        }
-        .onChange(of: quizViewModel.stepIndex) { _, newIndex in
-            updateToShowNavigationBar()
-        }
-    }
-   
-    /// A delay is needed becuase bar visibility mid-navigation or mid-tab transition can
-    ///     cause SwiftUI to skip animations or perform glitchy transitions, especially inside NavigationStack or TabView.
-    private func updateToShowNavigationBar() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            shouldHideNavBar = quizViewModel.currentStep()?.title == nil
         }
     }
 }
@@ -165,14 +152,19 @@ extension QuizView {
                 )
             }
         case .permission(let permissionStepContent):
+            let quizPermissonStepViewModel = QuizPermissonStepViewModel(
+                currentStep: currentStep,
+                permissionContent: permissionStepContent
+            )
             switch permissionStepContent.permissionRequestType {
             case .notifications:
-                EmptyView()
-            case .appleHealth:
-                let quizPermissonStepViewModel = QuizPermissonStepViewModel(
-                    currentStep: currentStep,
-                    permissionContent: permissionStepContent
+                let notificationPermissionViewModel = NotificationPermissionViewModel()
+                NotificationPermissionsStepView(
+                    quizViewModel: quizViewModel,
+                    quizPermissonStepViewModel: quizPermissonStepViewModel,
+                    notificationPermissionViewModel: notificationPermissionViewModel
                 )
+            case .appleHealth:
                 let appleHealthPermissionsViewModel = AppleHealthPermissionsViewModel()
                 AppleHealthPermissonRequestStepView(
                     quizViewModel: quizViewModel,
@@ -188,14 +180,13 @@ extension QuizView {
 
 // MARK: - Supporting Views
 extension QuizView {
-    var loadingSpinner: some View {
+    private var loadingSpinner: some View {
         VStack {
             Spacer()
             ProgressView()
             Spacer()
         }
     }
-    
    
     private func quizProgressHeaderView(currentStep: QuizStep) -> some View {
         HStack(alignment: .center, spacing: DesignSystem.Layout.medium) {
@@ -219,9 +210,15 @@ extension QuizView {
     }
 }
 
-// MARK: - Update View
+// MARK: - Helpers
 extension QuizView {
-    func update(withDidFinishQuizStatus didFinishQuiz: Bool) {
+    private func loadQuiz() {
+        Task {
+            await quizViewModel.loadQuiz()
+        }
+    }
+
+    private func update(withDidFinishQuizStatus didFinishQuiz: Bool) {
         guard didFinishQuiz else {
             return
         }
