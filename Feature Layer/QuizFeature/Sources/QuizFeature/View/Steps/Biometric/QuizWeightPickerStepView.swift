@@ -13,10 +13,20 @@ struct QuizWeightPickerStepView: View {
     @ObservedObject var weightViewModel: WeightViewModel
 
     var body: some View {
+        contentView
+            .onChange(of: weightViewModel.didSave) { oldValue, newValue in
+                quizViewModel.processStepAction(.finishStep)
+            }
+    }
+}
+
+// MARK: - Main View
+extension QuizWeightPickerStepView {
+    private var contentView: some View {
         VStack{
             questionLabel
             Spacer()
-            VStack(spacing: DesignSystem.Layout.large) {
+            VStack(spacing: 16) {
                 pickerView
                 continueButton
             }
@@ -24,6 +34,7 @@ struct QuizWeightPickerStepView: View {
     }
 }
 
+// MARK: - Supporting Views
 extension QuizWeightPickerStepView {
     private var questionLabel: some View {
         HStack {

@@ -6,21 +6,24 @@
 //
 
 import Foundation
+import CoreFoundational
 
+@MainActor
 final class HeightViewModel: ObservableObject {
     @Published var feet: Int
     @Published var inches: Int
-  
+    @Published var didSave = false
+    
     private(set) var userBiometricSevice: SaveUserBiometricsServiceable
     
     let feetRange = 3...7
     let inchesRange = 0...11
-
+    
     /// Decimal representation like 5.91 for 5 ft 11 in (not mathematically correct, just visual)
     var heightAsDecimalString: String {
         String(format: "%.2f", Double(feet) + (Double(inches) / 100))
     }
-
+    
     /// Correct mathematical decimal (e.g., 5.9166 for 5 ft 11 in)
     var heightInFeetDecimal: Double {
         Double(feet) + (Double(inches) / 12.0)
@@ -60,7 +63,14 @@ extension HeightViewModel: QuizStepViewModellable {
 
 // MARK: - BiometricViewModelling
 extension HeightViewModel: BiometricViewModelling {
-    func didRequestToSaveMetric() {
-        print("Saving Height: \(feet)ft \(inches)in (\(String(format: "%.2f", heightInFeetDecimal)) ft)")
+    func didRequestToSaveMetric() async {
+        let result = await userBiometricSevice.saveHeight(heightInFeetDecimal)
+        switch result {
+        case .success:
+            efficientPrint("✅ Saved Height: \(feet)ft \(inches)")
+            didSave = true
+        case .failure(let error):
+            efficientPrint("⛔️ Failed to save Height with error \(error.localizedDescription)")
+        }
     }
 }

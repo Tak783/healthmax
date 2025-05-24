@@ -13,6 +13,16 @@ struct QuizHeightPickerStepView: View {
     @ObservedObject var heightViewModel: HeightViewModel
     
     var body: some View {
+        contentView
+            .onChange(of: heightViewModel.didSave) { oldValue, newValue in
+                quizViewModel.processStepAction(.finishStep)
+            }
+    }
+}
+
+// MARK: - Main View
+extension QuizHeightPickerStepView {
+    private var contentView: some View {
         VStack{
             questionLabel
             Spacer()
@@ -24,6 +34,7 @@ struct QuizHeightPickerStepView: View {
     }
 }
 
+// MARK: - Supporting Views
 extension QuizHeightPickerStepView {
     private var questionLabel: some View {
         HStack {
@@ -63,7 +74,9 @@ extension QuizHeightPickerStepView {
     private var continueButton: some View {
         HStack(alignment: .center) {
             HapticImpactButton {
-                quizViewModel.processStepAction(.finishStep)
+                Task {
+                    await heightViewModel.didRequestToSaveMetric()
+                }
             } label: {
                 HStack {
                     Spacer()

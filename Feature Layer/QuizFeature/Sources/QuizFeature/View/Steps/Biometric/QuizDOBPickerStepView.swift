@@ -13,10 +13,20 @@ struct QuizDOBPickerStepView: View {
     @ObservedObject var dateOfBirthViewModel: DateOfBirthViewModel
 
     var body: some View {
-        VStack {
+        contentView
+            .onChange(of: dateOfBirthViewModel.didSave) { oldValue, newValue in
+                quizViewModel.processStepAction(.finishStep)
+            }
+    }
+}
+
+// MARK: - Main View
+extension QuizDOBPickerStepView {
+    private var contentView: some View {
+        VStack{
             questionLabel
             Spacer()
-            VStack(spacing: DesignSystem.Layout.large) {
+            VStack(spacing: 16) {
                 pickerView
                 continueButton
             }
@@ -24,7 +34,7 @@ struct QuizDOBPickerStepView: View {
     }
 }
 
-// MARK: - Question Picker
+// MARK: - Supporting Views
 extension QuizDOBPickerStepView {
     private var questionLabel: some View {
         HStack {

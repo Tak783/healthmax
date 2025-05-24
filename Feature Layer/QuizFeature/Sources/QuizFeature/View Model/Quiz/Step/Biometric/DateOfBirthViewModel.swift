@@ -5,10 +5,13 @@
 //  Created by Tak Mazarura on 23/05/2025.
 //
 
+import CoreFoundational
 import Foundation
 
+@MainActor
 final class DateOfBirthViewModel: ObservableObject {
     @Published var dateOfBirth: Date
+    @Published var didSave = false
     
     private(set) var userBiometricSevice: SaveUserBiometricsServiceable
    
@@ -53,7 +56,14 @@ extension DateOfBirthViewModel: QuizStepViewModellable {
 
 // MARK: - BiometricViewModelling
 extension DateOfBirthViewModel: BiometricViewModelling {
-    func didRequestToSaveMetric() {
-        print("Saving Date of Birth: \(dateOfBirth)")
+    func didRequestToSaveMetric() async {
+        let result = await userBiometricSevice.saveBirthday(dateOfBirth)
+        switch result {
+        case .success:
+            efficientPrint("✅ Date of Birth: \(dateOfBirth)")
+            didSave = true
+        case .failure(let error):
+            efficientPrint("⛔️ Failed to saved Date of Birth with error \(error.localizedDescription)")
+        }
     }
 }

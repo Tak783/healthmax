@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SaveUserBiometricsServiceable {
+protocol SaveUserBiometricsServiceable: Sendable {
     func saveGender(_ gender: String) async -> Result<Void, Error>
     func saveBirthday(_ age: Date) async -> Result<Void, Error>
     func saveHeight(_ height: Double) async -> Result<Void, Error>

@@ -7,13 +7,7 @@
 
 import Foundation
 
-final class UserDefaultsSaveUserBiometricsService {    
-    private let defaults: UserDefaults
-    
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-    }
-}
+final class UserDefaultsSaveUserBiometricsService {}
 
 // MARK: - SaveUserBiometricsServiceable
 extension UserDefaultsSaveUserBiometricsService: SaveUserBiometricsServiceable {
@@ -37,7 +31,7 @@ extension UserDefaultsSaveUserBiometricsService: SaveUserBiometricsServiceable {
 // MARK: - Helpers
 extension UserDefaultsSaveUserBiometricsService {
     private func save<T>(value: T, forKey key: String) async -> Result<Void, Error> {
-        defaults.set(value, forKey: key)
+        UserDefaults.standard.set(value, forKey: key)
         return .success(())
     }
 }

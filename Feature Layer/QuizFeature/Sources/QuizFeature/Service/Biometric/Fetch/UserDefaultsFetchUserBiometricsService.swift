@@ -7,13 +7,7 @@
 
 import Foundation
 
-final class UserDefaultsFetchUserBiometricsService {
-    private let defaults: UserDefaults
-
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-    }
-}
+final class UserDefaultsFetchUserBiometricsService {}
 
 // MARK: - FetchUserBiometricsServiceable
 extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable {
@@ -37,7 +31,7 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
 // MARK: - Helpers
 extension UserDefaultsFetchUserBiometricsService {
     private func fetch<T>(forKey key: String) async -> Result<T?, Error> {
-        let value = defaults.object(forKey: key) as? T
+        let value = UserDefaults.standard.object(forKey: key) as? T
         return .success(value)
     }
 }
