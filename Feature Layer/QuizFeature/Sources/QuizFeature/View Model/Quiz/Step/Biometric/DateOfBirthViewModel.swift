@@ -9,6 +9,9 @@ import Foundation
 
 final class DateOfBirthViewModel: ObservableObject {
     @Published var dateOfBirth: Date
+    
+    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+   
     let oldestSelectableDate: Date
     let quizBiometricRequestContent: QuizBiometricRequestContent
     
@@ -27,11 +30,13 @@ final class DateOfBirthViewModel: ObservableObject {
     init(
         defaultDOB: Date = DateOfBirthViewModel.defaultDateOfBirth,
         oldestSelectableDate: Date = DateOfBirthViewModel.oldestSelectableDateOfBirth,
-        quizBiometricRequestContent: QuizBiometricRequestContent
+        quizBiometricRequestContent: QuizBiometricRequestContent,
+        userBiometricSevice: SaveUserBiometricsServiceable
     ) {
         self.dateOfBirth = defaultDOB
         self.oldestSelectableDate = oldestSelectableDate
         self.quizBiometricRequestContent = quizBiometricRequestContent
+        self.userBiometricSevice = userBiometricSevice
     }
 }
 

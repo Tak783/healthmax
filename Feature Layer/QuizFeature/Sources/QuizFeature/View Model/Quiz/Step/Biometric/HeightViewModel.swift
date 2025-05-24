@@ -11,6 +11,8 @@ final class HeightViewModel: ObservableObject {
     @Published var feet: Int
     @Published var inches: Int
   
+    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+    
     let feetRange = 3...7
     let inchesRange = 0...11
 
@@ -35,11 +37,13 @@ final class HeightViewModel: ObservableObject {
     init(
         defaultFeet: Int = 5,
         defaultInches: Int = 7,
-        quizBiometricRequestContent: QuizBiometricRequestContent
+        quizBiometricRequestContent: QuizBiometricRequestContent,
+        userBiometricSevice: SaveUserBiometricsServiceable
     ) {
         self.feet = defaultFeet
         self.inches = defaultInches
         self.quizBiometricRequestContent = quizBiometricRequestContent
+        self.userBiometricSevice = userBiometricSevice
     }
 }
 

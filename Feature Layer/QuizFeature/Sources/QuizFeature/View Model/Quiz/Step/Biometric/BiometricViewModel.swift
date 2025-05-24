@@ -6,5 +6,7 @@
 //
 
 protocol BiometricViewModelling {
+    var userBiometricSevice: FetchUserBiometricsServiceable { get }
+    
     func didRequestToSaveMetric()
 }

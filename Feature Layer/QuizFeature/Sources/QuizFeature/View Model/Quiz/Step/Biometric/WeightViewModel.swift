@@ -9,6 +9,9 @@ import Foundation
 
 final class WeightViewModel: ObservableObject {
     @Published var weight: Int
+    
+    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+    
     let range: ClosedRange<Int>
     let unit: String
     let quizBiometricRequestContent: QuizBiometricRequestContent
@@ -17,12 +20,14 @@ final class WeightViewModel: ObservableObject {
         defaultWeight: Int = 70,
         range: ClosedRange<Int> = 20...200,
         unit: String = "kg",
-        quizBiometricRequestContent: QuizBiometricRequestContent
+        quizBiometricRequestContent: QuizBiometricRequestContent,
+        userBiometricSevice: SaveUserBiometricsServiceable
     ) {
         self.weight = defaultWeight
         self.range = range
         self.unit = unit
         self.quizBiometricRequestContent = quizBiometricRequestContent
+        self.userBiometricSevice = userBiometricSevice
     }
 }
 

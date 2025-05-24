@@ -31,10 +31,6 @@ final class QuizQuestionStepViewModel: ObservableObject {
             )
         }
     }
-    
-    func resetDidAnswerQuestion() {
-        didAnswerQuestion = false
-    }
 }
 
 // MARK: - QuizStepViewModellable
