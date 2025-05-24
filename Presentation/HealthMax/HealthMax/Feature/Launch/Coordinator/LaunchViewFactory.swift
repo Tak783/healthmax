@@ -15,12 +15,12 @@ struct LaunchViewFactory {
         return LaunchView(coordinator: coordinator)
     }
     
-    static func onboardingQuiz() -> some View {
+    static func onboardingQuiz(didFinishQuiz: @escaping () -> Void?) -> some View {
         let fetchQuizService = LocalFetchQuizServiceService()
         let quizViewModel = QuizViewModel(fetchQuizService: fetchQuizService)
         return QuizView(
             quizViewModel: quizViewModel,
-            finishQuiz: {}
+            finishQuiz: didFinishQuiz
         )
     }
     

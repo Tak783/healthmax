@@ -11,13 +11,18 @@ import SwiftUI
 struct LaunchRouter {
     @ViewBuilder
     static func navigateToDestination(
-        _ destination: LaunchCoordinator.NavigationDestination
+        _ destination: LaunchCoordinator.NavigationDestination,
+        coordinator: LaunchCoordinator
     ) -> some View {
         switch destination {
         case .dashboard:
             LaunchViewFactory.dashboardView()
         case .onboardingQuiz:
-            LaunchViewFactory.onboardingQuiz()
+            LaunchViewFactory.onboardingQuiz(
+                didFinishQuiz: {
+                    coordinator.navigateToDashboard()
+                }
+            )
         }
     }
 }

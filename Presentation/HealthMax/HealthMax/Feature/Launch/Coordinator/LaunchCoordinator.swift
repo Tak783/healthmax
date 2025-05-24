@@ -16,7 +16,7 @@ final class LaunchCoordinator: ObservableObject {
         case dashboard
     }
    
-    func navigateToOnboardingQuzi() {
+    func navigateToOnboardingQuiz() {
         navigate(toDestination: .onboardingQuiz)
     }
     

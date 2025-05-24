@@ -17,7 +17,7 @@ struct LaunchView: View {
                 .navigationDestination(
                     for: LaunchCoordinator.NavigationDestination.self
                 ) { destination in
-                    LaunchRouter.navigateToDestination(destination)
+                    LaunchRouter.navigateToDestination(destination, coordinator: coordinator)
                 }
         }
     }
@@ -71,7 +71,7 @@ extension LaunchView {
     private var getStartedButton: some View {
         HStack(alignment: .center) {
             HapticImpactButton {
-                coordinator.navigateToOnboardingQuzi()
+                coordinator.navigateToOnboardingQuiz()
             } label: {
                 HStack {
                     Spacer()
