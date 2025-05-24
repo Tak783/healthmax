@@ -8,7 +8,6 @@
 import Foundation
 
 protocol HealthDataServiceable {
-    func userAuthorized() -> Bool
     func fetchAllMetrics(for date: Date) async -> Result<[HealthMetric], Error> 
     
     func fetchWeight() async -> Result<HealthMetric, Error>

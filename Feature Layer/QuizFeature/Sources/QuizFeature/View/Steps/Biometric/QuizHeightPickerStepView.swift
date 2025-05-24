@@ -56,6 +56,7 @@ extension QuizHeightPickerStepView {
                     }
                 }
                 .pickerStyle(.wheel)
+                .disableTabViewSwipeGesture(false)
                 .frame(width: 100)
 
                Picker("Inches", selection: $heightViewModel.inches) {

@@ -49,19 +49,16 @@ extension QuizDOBPickerStepView {
     }
     
     private var pickerView: some View {
-        VStack(alignment: .center) {
-            HStack {
-                DatePicker(
-                    String.init(),
-                    selection: $dateOfBirthViewModel.dateOfBirth,
-                    in: dateOfBirthViewModel.oldestSelectableDate...Date(),
-                    displayedComponents: [.date]
-                )
-                .datePickerStyle(.graphical)
-                .labelsHidden()
-                .padding(.horizontal, DesignSystem.Layout.medium)
-            }
-        }
+        DatePicker(
+            "",
+            selection: $dateOfBirthViewModel.dateOfBirth,
+            in: dateOfBirthViewModel.oldestSelectableDate...Date(),
+            displayedComponents: [.date]
+        )
+        .datePickerStyle(.graphical)
+        .disableTabViewSwipeGesture(false)
+        .labelsHidden()
+        .padding(.horizontal, DesignSystem.Layout.medium)
     }
     
     @ViewBuilder

@@ -25,6 +25,13 @@ struct LaunchViewFactory {
     }
     
     static func dashboardView() -> some View {
-        Text("Dashboard")
+        let healthService = HealthKitHealthDataService()
+        let biometricsService = UserDefaultsFetchUserBiometricsService()
+        
+        let healthDashboardViewModel = HealthDashboardViewModel(
+            healthService: healthService,
+            biometricsService: biometricsService
+        )
+        return HealthDashboardView(viewModel: healthDashboardViewModel)
     }
 }

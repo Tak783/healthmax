@@ -60,16 +60,21 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
         }
 
         if case let .success(value) = results.2, let height = value {
-            metrics.append(HealthMetric(type: .height, value: "\(height) cm"))
+            let (feet, inches) = Double.toFeet(height)
+            metrics.append(HealthMetric(type: .height, value: "\(feet)'\(inches) ft"))
         }
 
         if case let .success(value) = results.3, let weight = value {
             metrics.append(HealthMetric(type: .weight, value: "\(weight) kg"))
         }
 
-        return metrics.isEmpty
-            ? .failure(BiometricFetchError.allValuesMissing)
-            : .success(metrics)
+        if metrics.isEmpty {
+            efficientPrint("⛔️ Failed to fetch stored metrics")
+            return .failure(BiometricFetchError.allValuesMissing)
+        } else {
+            efficientPrint("✅ Successfully fetched: \(metrics.count) stored metrics")
+            return .success(metrics)
+        }
     }
 }
 

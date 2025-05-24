@@ -50,8 +50,9 @@ extension AppleHealthPermissionsViewModel: AppleHealthPermissionsViewModelling {
             do {
                 try await healthStore.requestAuthorization(toShare: .init(), read: readTypes)
                 requestStatus = .authorised
+                efficientPrint("✅ Authorised Health access")
             } catch {
-                efficientPrint("Failed to authorise Health access: \(error.localizedDescription)")
+                efficientPrint("⛔️ Failed to authorise Health access: \(error.localizedDescription)")
                 requestStatus = .denied
             }
     }

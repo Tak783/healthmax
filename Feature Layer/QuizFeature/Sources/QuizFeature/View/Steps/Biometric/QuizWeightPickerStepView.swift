@@ -56,6 +56,7 @@ extension QuizWeightPickerStepView {
                 }
             }
             .pickerStyle(.wheel)
+            .disableTabViewSwipeGesture(false)
         }
     }
     
