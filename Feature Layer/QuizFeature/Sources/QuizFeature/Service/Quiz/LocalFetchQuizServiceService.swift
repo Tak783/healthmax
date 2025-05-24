@@ -17,10 +17,11 @@ extension LocalFetchQuizServiceService: FetchQuizServiceable {
     }
 }
 
+// MARK: - Factory
 extension LocalFetchQuizServiceService {
-    static let onboardingQuiz = Quiz(
+    private static let onboardingQuiz = Quiz(
         id: UUID().uuidString,
-        name: "BiometricPermisson",
+        name: "BiometricOnboarding",
         steps: [
             QuizStep(
                 id: UUID().uuidString,
