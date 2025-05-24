@@ -2,7 +2,7 @@
 //  SaveUserBiometricsServiceUnitTestsSpec.swift
 //  QuizFeature
 //
-//  Created by Tak Mazarura on 24/05/2025.
+//  Created on 24/05/2025.
 //
 
 protocol SaveUserBiometricsServiceUnitTestsSpec {

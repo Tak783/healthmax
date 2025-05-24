@@ -2,7 +2,7 @@
 //  String+Optional.swift
 //
 //
-//  Created by Tak Mazarura on 14/12/2023.
+//  Created on 14/12/2023.
 //
 
 import Foundation

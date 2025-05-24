@@ -2,7 +2,7 @@
 //  QuizViewModel.swift
 //  QuizFeature
 //
-//  Created by Tak Mazarura on 22/05/2025.
+//  Created on 22/05/2025.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  Double+Extensions.swift
 //  CoreFoundational
 //
-//  Created by Tak Mazarura on 24/05/2025.
+//  Created on 24/05/2025.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  String+DefaultStringExtensions.swift
 //
 //
-//  Created by Tak Mazarura on 19/03/2023.
+//  Created on 19/03/2023.
 //
 
 import Foundation

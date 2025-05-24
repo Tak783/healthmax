@@ -2,7 +2,7 @@
 //  HealthMaxUITestsLaunchTests.swift
 //  HealthMaxUITests
 //
-//  Created by Tak Mazarura on 20/05/2025.
+//  Created on 20/05/2025.
 //
 
 import XCTest

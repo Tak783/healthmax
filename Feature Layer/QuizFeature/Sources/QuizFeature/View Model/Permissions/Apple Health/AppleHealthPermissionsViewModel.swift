@@ -2,7 +2,7 @@
 //  AppleHealthPermissionsViewModel.swift
 //  QuizFeature
 //
-//  Created by Tak Mazarura on 23/05/2025.
+//  Created on 23/05/2025.
 //
 
 import CoreFoundational

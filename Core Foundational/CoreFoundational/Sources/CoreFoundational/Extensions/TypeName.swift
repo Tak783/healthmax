@@ -2,7 +2,7 @@
 //  TypeName
 //  CoreFoundational
 //
-//  Created by Tak Mazarura on 25/04/2025.
+//  Created on 25/04/2025.
 //
 
 public struct TypeNameHelper {
