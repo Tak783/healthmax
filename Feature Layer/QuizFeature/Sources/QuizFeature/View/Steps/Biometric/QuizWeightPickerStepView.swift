@@ -63,7 +63,9 @@ extension QuizWeightPickerStepView {
     private var continueButton: some View {
         HStack(alignment: .center) {
             HapticImpactButton {
-                quizViewModel.processStepAction(.finishStep)
+                Task {
+                    await weightViewModel.didRequestToSaveMetric()
+                }
             } label: {
                 HStack {
                     Spacer()

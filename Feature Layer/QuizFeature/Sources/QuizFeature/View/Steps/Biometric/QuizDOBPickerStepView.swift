@@ -69,7 +69,9 @@ extension QuizDOBPickerStepView {
         VStack {
             HStack(alignment: .center) {
                 HapticImpactButton {
-                    quizViewModel.processStepAction(.finishStep)
+                    Task {
+                        await dateOfBirthViewModel.didRequestToSaveMetric()
+                    }
                 } label: {
                     HStack {
                         Spacer()
