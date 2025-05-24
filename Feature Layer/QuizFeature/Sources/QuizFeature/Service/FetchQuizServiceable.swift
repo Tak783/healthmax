@@ -12,10 +12,3 @@ public protocol FetchQuizServiceable: Sendable {
     
     func load() async -> FetchQuizResult
 }
-
-// MARK: - FetchQuizServiceable
-extension LocalFetchQuizServiceService: FetchQuizServiceable {
-    public func load() async -> FetchQuizResult {
-        return .success(Quiz.onboardingQuiz)
-    }
-}

@@ -23,10 +23,6 @@ public final class QuizViewModel: ObservableObject {
     public enum Error: Swift.Error {
         case goToNextStepNotPossible
     }
-
-    public enum Action {
-        case closeQuiz, finishStep
-    }
     
     public init(fetchQuizService: FetchQuizServiceable) {
         self.fetchQuizService = fetchQuizService
@@ -36,29 +32,28 @@ public final class QuizViewModel: ObservableObject {
 // MARK: - ViewModelLoadable
 extension QuizViewModel: ViewModelLoadable {}
 
-// MARK: - Load Quiz
-extension QuizViewModel {
-    public func loadQuiz() {
-        Task { [weak self] in
-            guard let self else {
-                return
-            }
-            self.setIsLoading(true)
-            let result = await fetchQuizService.load()
-            switch result {
-            case .success(let quiz):
-                self.quizSessionModel = QuizSessionModel(quiz: quiz)
-            case .failure(let error):
-                efficientPrint(error.localizedDescription)
-            }
-            setIsLoading(false)
+// MARK: - QuizViewModellable
+extension QuizViewModel: QuizViewModellable {
+    public func loadQuiz() async {
+        setIsLoading(true)
+        let result = await fetchQuizService.load()
+        switch result {
+        case .success(let quiz):
+            self.quizSessionModel = QuizSessionModel(quiz: quiz)
+        case .failure(let error):
+            efficientPrint(error.localizedDescription)
         }
+        setIsLoading(false)
     }
-}
-
-// MARK: - Process Quiz Actions
-extension QuizViewModel {
-    func processStepAction(_ action: Action) {
+    
+    public func currentStep() -> QuizStep? {
+        guard let quizSessionModel else {
+            return nil
+        }
+        return quizSessionModel.currentStep
+    }
+    
+    public func processStepAction(_ action: QuizAction) {
         switch action {
         case .closeQuiz:
             break
@@ -67,14 +62,7 @@ extension QuizViewModel {
         }
     }
     
-    private func setDidFinishQuiz() {
-        self.didFinishQuiz = true
-    }
-}
-
-// MARK: - Quiz Choice Selection
-extension QuizViewModel {
-    func recordAnswer(_ answer: QuizAnswer) {
+    public func recordAnswer(_ answer: QuizAnswer) {
         guard let quizSessionModel else {
             return
         }
@@ -131,19 +119,9 @@ extension QuizViewModel {
     }
 }
 
-
 // MARK: - Helpers
 extension QuizViewModel {
-    func currentStep() -> QuizStep? {
-        guard let quizSessionModel else {
-            return nil
-        }
-        return quizSessionModel.currentStep
-    }
-    
-    func setIsSavingQuizAnswers(_ isSavingQuizAnswers: Bool) {
-        DispatchQueue.main.async {
-            self.isSavingQuizAnswers = isSavingQuizAnswers
-        }
+    private func setDidFinishQuiz() {
+        self.didFinishQuiz = true
     }
 }

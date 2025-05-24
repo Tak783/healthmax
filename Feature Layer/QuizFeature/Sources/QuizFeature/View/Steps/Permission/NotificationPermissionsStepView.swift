@@ -1,29 +1,29 @@
 //
-//  QuizPermissonRequestStepView.swift
+//  NotificationPermissionsStepView.swift
 //  QuizFeature
 //
-//  Created by Tak Mazarura on 23/05/2025.
+//  Created by Tak Mazarura on 24/05/2025.
 //
 
 import CorePresentation
 import CoreFoundational
 import SwiftUI
 
-struct AppleHealthPermissonRequestStepView: View {
+struct NotificationPermissionsStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel
     @ObservedObject var quizPermissonStepViewModel: QuizPermissonStepViewModel
-    @ObservedObject var appleHealthPermissionsViewModel: AppleHealthPermissionsViewModel
+    @ObservedObject var notificationPermissionViewModel: NotificationPermissionViewModel
     
     var body: some View {
         contentView
-            .onChange(of: appleHealthPermissionsViewModel.requestStatus) { _, newStatus in
+            .onChange(of: notificationPermissionViewModel.requestStatus) { _, newStatus in
                 didUpdateHealthPermissionRequestStatus(newStatus)
             }
     }
 }
 
 // MARK: - Main Views
-extension AppleHealthPermissonRequestStepView {
+extension NotificationPermissionsStepView {
     private var contentView: some View {
         VStack(spacing: 24) {
             Spacer()
@@ -36,7 +36,7 @@ extension AppleHealthPermissonRequestStepView {
 }
  
 // MARK: - Supporting Views
-extension AppleHealthPermissonRequestStepView {
+extension NotificationPermissionsStepView {
     private var infoView: some View {
         VStack(alignment: .center, spacing: 16) {
             imageView
@@ -59,6 +59,7 @@ extension AppleHealthPermissonRequestStepView {
             Image(systemName: image.name)
         case .emoji:
             Text(image.name)
+                .font(DesignSystem.DSFont.hugeEmoji())
         case .asset:
             Image(image.name)
         }
@@ -68,7 +69,7 @@ extension AppleHealthPermissonRequestStepView {
         HStack(alignment: .center) {
             HapticImpactButton {
                 Task {
-                    await appleHealthPermissionsViewModel.requestAuthorization()
+                    await notificationPermissionViewModel.requestAuthorization()
                 }
             } label: {
                 HStack {
@@ -91,8 +92,10 @@ extension AppleHealthPermissonRequestStepView {
 }
 
 // MARK: - Helpers
-extension AppleHealthPermissonRequestStepView {
-    func didUpdateHealthPermissionRequestStatus(_ status: HealthPermissionRequestStatus) {
+extension NotificationPermissionsStepView {
+    func didUpdateHealthPermissionRequestStatus(
+        _ status: NotificationPermissionRequestStatus
+    ) {
         switch status {
         case .authorised, .denied:
             quizViewModel.processStepAction(.finishStep)

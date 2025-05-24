@@ -14,13 +14,13 @@
             filePath = "Feature Layer/QuizFeature/Sources/QuizFeature/View Model/Permissions/AppleHealthPermissionsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "requestAuthorization()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - ae40463418ac3c63"
+                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - ae40463418ac3ca1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,11 +30,25 @@
                   urlString = "file:///Users/takomborerwa/Repos/Healthmax/Feature%20Layer/QuizFeature/Sources/QuizFeature/View%20Model/Permissions/AppleHealthPermissionsViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
                </Location>
                <Location
-                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - 9a146b10ef29b25e"
+                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - f6333eacc605309f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async -&gt; () in QuizFeature.AppleHealthPermissionsViewModel.requestAuthorization() -&gt; ()"
+                  moduleName = "HealthMax.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/takomborerwa/Repos/Healthmax/Feature%20Layer/QuizFeature/Sources/QuizFeature/View%20Model/Permissions/AppleHealthPermissionsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
+               </Location>
+               <Location
+                  uuid = "DE3BE7DB-BA40-402A-B656-D839D862ADAE - 9a146b10ef29b29c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -44,8 +58,8 @@
                   urlString = "file:///Users/takomborerwa/Repos/Healthmax/Feature%20Layer/QuizFeature/Sources/QuizFeature/View%20Model/Permissions/AppleHealthPermissionsViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
                </Location>
             </Locations>
          </BreakpointContent>
