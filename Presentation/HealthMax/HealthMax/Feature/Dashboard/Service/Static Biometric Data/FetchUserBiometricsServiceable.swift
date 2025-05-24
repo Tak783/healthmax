@@ -12,4 +12,6 @@ protocol FetchUserBiometricsServiceable {
     func getBirthday() async -> Result<Date?, Error>
     func getHeight() async -> Result<Double?, Error>
     func getWeight() async -> Result<Int?, Error>
+    
+    func fetchAllMetrics() async -> Result<[HealthMetric], Error>
 }

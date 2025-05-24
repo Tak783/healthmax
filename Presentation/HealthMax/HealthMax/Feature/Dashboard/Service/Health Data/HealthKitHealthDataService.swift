@@ -9,7 +9,12 @@ import CoreFoundational
 import Foundation
 import HealthKit
 
-final class HealthKitHealthDataService {
+struct HealthKitHealthDataService {
+    enum HealthKitFetchError: Error {
+        case allValuesMissing
+        case noData
+    }
+    
     private let healthStore = HKHealthStore()
 }
 
@@ -38,108 +43,137 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         return true
     }
     
-    func fetchAllMetrics(for date: Date = .now) async -> [HealthMetric] {
-        await withTaskGroup(of: HealthMetric?.self) { group in
-            var results: [HealthMetric?] = []
+    func fetchWeight() async -> Result<HealthMetric, Error> {
+        do {
+            guard let value = try await fetchMostRecent(.bodyMass, unit: .gramUnit(with: .kilo)) else {
+                return .failure(HealthKitFetchError.noData)
+            }
+            let metric = HealthMetric(type: .weight, value: "\(value) kg")
+            return .success(metric)
+        } catch {
+            return .failure(error)
+        }
+    }
 
-            group.addTask {
-                if let value = try? await self.fetchWeight().map({ "\($0) kg" }) {
-                    return HealthMetric(type: .weight, value: value)
-                }
-                return nil
+    func fetchSteps(for date: Date = .now) async -> Result<HealthMetric, Error> {
+        do {
+            let steps = try await fetchSum(.stepCount, unit: .count(), date: date)
+            let metric = HealthMetric(type: .steps, value: "\(Int(steps)) steps")
+            return .success(metric)
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func fetchHeartRateSamples(for date: Date = .now) async -> Result<HealthMetric, Error> {
+        do {
+            let samples = try await fetchAllSamples(
+                .heartRate,
+                unit: HKUnit.count().unitDivided(by: .minute()),
+                date: date
+            )
+            guard let avg = samples.average else {
+                return .failure(HealthKitFetchError.noData)
+            }
+            let metric = HealthMetric(type: .heartRate, value: "\(Int(avg)) bpm")
+            return .success(metric)
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func fetchBloodGlucose() async -> Result<HealthMetric, Error> {
+        do {
+            guard let value = try await fetchMostRecent(.bloodGlucose, unit: HKUnit(from: "mg/dL")) else {
+                return .failure(HealthKitFetchError.noData)
+            }
+            let metric = HealthMetric(type: .bloodGlucose, value: "\(Int(value)) mg/dL")
+            return .success(metric)
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func fetchCalories(for date: Date = .now) async -> Result<HealthMetric, Error> {
+        do {
+            let cals = try await fetchSum(.activeEnergyBurned, unit: .kilocalorie(), date: date)
+            let metric = HealthMetric(type: .calories, value: "\(Int(cals)) kcal")
+            return .success(metric)
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func fetchBodyTemperature() async -> Result<HealthMetric, Error> {
+        do {
+            guard let value = try await fetchMostRecent(.bodyTemperature, unit: .degreeCelsius()) else {
+                return .failure(HealthKitFetchError.noData)
+            }
+            let formatted = String(format: "%.1f", value)
+            let metric = HealthMetric(type: .bodyTemperature, value: "\(formatted) °C")
+            return .success(metric)
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func fetchBloodPressure() async -> Result<HealthMetric, Error> {
+        do {
+            guard
+                let sys = try await fetchMostRecent(.bloodPressureSystolic, unit: .millimeterOfMercury()),
+                let dia = try await fetchMostRecent(.bloodPressureDiastolic, unit: .millimeterOfMercury())
+            else {
+                return .failure(HealthKitFetchError.noData)
             }
 
-            group.addTask {
-                if let steps = try? await self.fetchSteps(for: date) {
-                    return HealthMetric(type: .steps, value: "\(Int(steps)) steps")
-                }
-                return nil
-            }
-
-            group.addTask {
-                if
-                    let heartRates = try? await self.fetchHeartRateSamples(for: date),
-                    let avg = heartRates.average
-                {
-                    return HealthMetric(type: .heartRate, value: "\(Int(avg)) bloodPressurem")
-                }
-                return nil
-            }
-
-            group.addTask {
-                if let glucose = try? await self.fetchBloodGlucose() {
-                    return HealthMetric(type: .bloodGlucose, value: "\(Int(glucose)) mg/dL")
-                }
-                return nil
-            }
-
-            group.addTask {
-                if let cal = try? await self.fetchCalories(for: date) {
-                    return HealthMetric(type: .calories, value: "\(Int(cal)) kcal")
-                }
-                return nil
-            }
-
-            group.addTask {
-                if let temp = try? await self.fetchBodyTemperature() {
-                    return HealthMetric(
-                        type: .bodyTemperature,
-                        value: "\(String(format: "%.1f", temp)) °C"
-                    )
-                }
-                return nil
-            }
-
-            group.addTask {
-                if
-                    let bloodPressure = try? await self.fetchBloodPressure(),
-                    let systolicPressure = bloodPressure.systolic,
-                    let diastolicPressure = bloodPressure.diastolic
-                {
-                    return HealthMetric(
-                        type: .bloodPressure,
-                        value: "\(Int(systolicPressure))/\(Int(diastolicPressure)) mmHg"
-                    )
-                }
-                return nil
-            }
-
-            for await metric in group {
-                results.append(metric)
-            }
-
-            return results.compactMap { $0 }
+            let metric = HealthMetric(
+                type: .bloodPressure,
+                value: "\(Int(sys))/\(Int(dia)) mmHg"
+            )
+            return .success(metric)
+        } catch {
+            return .failure(error)
         }
     }
     
-    func fetchWeight() async throws -> Double? {
-        try await fetchMostRecent(.bodyMass, unit: .gramUnit(with: .kilo))
-    }
+    func fetchAllMetrics(for date: Date = .now) async -> Result<[HealthMetric], Error> {
+        let tasks: [() async -> Result<HealthMetric, Error>] = [
+            { await self.fetchWeight() },
+            { await self.fetchSteps(for: date) },
+            { await self.fetchHeartRateSamples(for: date) },
+            { await self.fetchBloodGlucose() },
+            { await self.fetchCalories(for: date) },
+            { await self.fetchBodyTemperature() },
+            { await self.fetchBloodPressure() }
+        ]
 
-    func fetchSteps(for date: Date = .now) async throws -> Double {
-        try await fetchSum(.stepCount, unit: .count(), date: date)
-    }
+        var metrics: [HealthMetric] = []
+        var errors: [Error] = []
 
-    func fetchHeartRateSamples(for date: Date = .now) async throws -> [Double] {
-        try await fetchAllSamples(.heartRate, unit: HKUnit.count().unitDivided(by: .minute()), date: date)
-    }
+        await withTaskGroup(of: Result<HealthMetric, Error>.self) { group in
+            for task in tasks {
+                group.addTask {
+                    await task()
+                }
+            }
 
-    func fetchBloodGlucose() async throws -> Double? {
-        try await fetchMostRecent(.bloodGlucose, unit: HKUnit(from: "mg/dL"))
-    }
-
-    func fetchCalories(for date: Date = .now) async throws -> Double {
-        try await fetchSum(.activeEnergyBurned, unit: .kilocalorie(), date: date)
-    }
-
-    func fetchBodyTemperature() async throws -> Double? {
-        try await fetchMostRecent(.bodyTemperature, unit: .degreeCelsius())
-    }
-
-    func fetchBloodPressure() async throws -> (systolic: Double?, diastolic: Double?) {
-        let systolic = try await fetchMostRecent(.bloodPressureSystolic, unit: HKUnit.millimeterOfMercury())
-        let diastolic = try await fetchMostRecent(.bloodPressureDiastolic, unit: HKUnit.millimeterOfMercury())
-        return (systolic, diastolic)
+            for await result in group {
+                switch result {
+                case .success(let metric):
+                    metrics.append(metric)
+                case .failure(let error):
+                    errors.append(error)
+                }
+            }
+        }
+        if metrics.isEmpty {
+            efficientPrint("Failed to fetch: \(errors.count) health metrics")
+            return .failure(HealthKitFetchError.allValuesMissing)
+        } else {
+            efficientPrint("Successfully fetched: \(metrics.count) health metrics")
+            efficientPrint("Failed to fetch: \(errors.count) health metrics")
+            return .success(metrics)
+        }
     }
 }
 
