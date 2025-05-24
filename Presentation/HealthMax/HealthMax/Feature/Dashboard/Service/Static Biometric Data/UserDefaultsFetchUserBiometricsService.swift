@@ -6,25 +6,26 @@
 //
 
 import Foundation
+import QuizFeature
 
 final class UserDefaultsFetchUserBiometricsService {}
 
 // MARK: - FetchUserBiometricsServiceable
 extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable {
     func getGender() async -> Result<String?, Error> {
-        await fetch(forKey: UserBiometricKeys.gender)
+        await fetch(forKey: UserBiometricKeys.gender.rawValue)
     }
     
     func getBirthday() async -> Result<Date?, Error> {
-        await fetch(forKey: UserBiometricKeys.birthday)
+        await fetch(forKey: UserBiometricKeys.birthday.rawValue)
     }
     
     func getHeight() async -> Result<Double?, Error> {
-        await fetch(forKey: UserBiometricKeys.height)
+        await fetch(forKey: UserBiometricKeys.height.rawValue)
     }
     
     func getWeight() async -> Result<Int?, Error> {
-        await fetch(forKey: UserBiometricKeys.weight)
+        await fetch(forKey: UserBiometricKeys.weight.rawValue)
     }
 }
 

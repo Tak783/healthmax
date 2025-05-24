@@ -5,7 +5,7 @@
 //  Created by Tak Mazarura on 23/05/2025.
 //
 
-public struct LocalImage: Codable, Equatable, Sendable {
+public struct LocalImage: Codable, Equatable, Sendable, Hashable {
     public enum ImageType: String, Codable, Sendable {
         case emoji
         case system

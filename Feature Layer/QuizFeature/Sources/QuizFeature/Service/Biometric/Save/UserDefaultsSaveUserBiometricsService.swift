@@ -12,19 +12,19 @@ final class UserDefaultsSaveUserBiometricsService {}
 // MARK: - SaveUserBiometricsServiceable
 extension UserDefaultsSaveUserBiometricsService: SaveUserBiometricsServiceable {
     func saveGender(_ gender: String) async -> Result<Void, Error> {
-        await save(value: gender, forKey: UserBiometricKeys.gender)
+        await save(value: gender, forKey: UserBiometricKeys.gender.rawValue)
     }
     
     func saveBirthday(_ date: Date) async -> Result<Void, Error> {
-        await save(value: date, forKey: UserBiometricKeys.birthday)
+        await save(value: date, forKey: UserBiometricKeys.birthday.rawValue)
     }
     
     func saveHeight(_ height: Double) async -> Result<Void, Error> {
-        await save(value: height, forKey: UserBiometricKeys.height)
+        await save(value: height, forKey: UserBiometricKeys.height.rawValue)
     }
     
     func saveWeight(_ weight: Int) async -> Result<Void, Error> {
-        await save(value: weight, forKey: UserBiometricKeys.weight)
+        await save(value: weight, forKey: UserBiometricKeys.weight.rawValue)
     }
 }
 

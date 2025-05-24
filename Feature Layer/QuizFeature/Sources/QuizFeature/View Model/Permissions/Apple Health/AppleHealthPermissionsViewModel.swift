@@ -15,21 +15,27 @@ final class AppleHealthPermissionsViewModel: ObservableObject {
     
     @Published var requestStatus = HealthPermissionRequestStatus.unknown
     
-    private lazy var readTypes: Set<HKObjectType> =  {
-        let types: [HKQuantityType?] = [
-            HKQuantityType.quantityType(forIdentifier: .stepCount),
-            HKQuantityType.quantityType(forIdentifier: .bodyMass),
-            HKQuantityType.quantityType(forIdentifier: .heartRate),
-            HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)
+    private lazy var readTypes: Set<HKObjectType> = {
+        let quantityTypes: [HKQuantityTypeIdentifier] = [
+            .bodyMass,
+            .stepCount,
+            .heartRate,
+            .bloodGlucose,
+            .activeEnergyBurned,
+            .bodyTemperature,
+            .bloodPressureSystolic,
+            .bloodPressureDiastolic
         ]
-        return Set(types.compactMap { $0 as HKObjectType? })
-    }()
-    
-    private lazy var shareTypes: Set<HKSampleType> = {
-        let types: [HKQuantityType?] = [
-            HKQuantityType.quantityType(forIdentifier: .bodyMass)
-        ]
-        return Set(types.compactMap { $0 as HKSampleType? })
+
+        let quantityHKTypes: [HKObjectType] = quantityTypes.compactMap {
+            HKQuantityType.quantityType(forIdentifier: $0)
+        }
+
+        let categoryHKTypes: [HKObjectType] = [
+            HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)
+        ].compactMap { $0 }
+
+        return Set(quantityHKTypes + categoryHKTypes)
     }()
 }
 
@@ -42,7 +48,7 @@ extension AppleHealthPermissionsViewModel: AppleHealthPermissionsViewModelling {
             }
             self.requestStatus = .requesting
             do {
-                try await healthStore.requestAuthorization(toShare: shareTypes, read: readTypes)
+                try await healthStore.requestAuthorization(toShare: .init(), read: readTypes)
                 requestStatus = .authorised
             } catch {
                 efficientPrint("Failed to authorise Health access: \(error.localizedDescription)")
