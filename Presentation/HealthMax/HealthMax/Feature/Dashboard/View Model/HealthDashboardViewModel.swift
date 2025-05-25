@@ -39,7 +39,7 @@ extension HealthDashboardViewModel: HealthDashboardViewModellable {
         
         let results = await (biometricsRequestResult, healthMetricsRequestResult)
         
-        //update(withBiometricsResult: results.0, healthMetricsResult: results.1)
+        update(withBiometricsResult: results.0, healthMetricsResult: results.1)
         
         setIsLoading(false)
     }
