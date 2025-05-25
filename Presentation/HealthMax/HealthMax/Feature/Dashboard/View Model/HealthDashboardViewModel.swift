@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 final class HealthDashboardViewModel: ObservableObject {
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool = true
     @Published var staticMetrics: [HealthMetric] = []
     @Published var dynamicMetrics: [HealthMetric] = []
     
@@ -33,20 +33,42 @@ extension HealthDashboardViewModel: ViewModelLoadable {}
 extension HealthDashboardViewModel: HealthDashboardViewModellable {
     public func load() async {
         setIsLoading(true)
+        
+        async let biometricsRequestResult = await biometricsService.fetchAllMetrics()
+        async let healthMetricsRequestResult = await healthService.fetchAllMetrics(for: .now)
+        
+        let results = await (biometricsRequestResult, healthMetricsRequestResult)
+        
+        //update(withBiometricsResult: results.0, healthMetricsResult: results.1)
+        
+        setIsLoading(false)
+    }
+}
 
-        async let biometricsResult = await biometricsService.fetchAllMetrics()
-        async let healthMetricsResult = await healthService.fetchAllMetrics(for: .now)
-        
-        let results = await (biometricsResult, healthMetricsResult)
-        
-        if case let .success(returnedBiometrics) = results.0 {
-            staticMetrics = returnedBiometrics
+// MARK: - Helpers
+extension HealthDashboardViewModel {
+    private func update(
+        withBiometricsResult biometricsResult: MetricsFetchResult,
+        healthMetricsResult: MetricsFetchResult
+    ) {
+        var temporayStaticMetrics = [HealthMetric]()
+        if case let .success(returnedBiometrics) = biometricsResult{
+            temporayStaticMetrics = returnedBiometrics
         }
      
-        if case let .success(returnedHealthMetrics) = results.1 {
-            dynamicMetrics = returnedHealthMetrics
+        var finalDynamicMetrics = [HealthMetric]()
+        if case let .success(returnedHealthMetrics) = healthMetricsResult {
+            finalDynamicMetrics = returnedHealthMetrics
         }
-
-        setIsLoading(false)
+        
+        var finalStaticMetrics = [HealthMetric]()
+        for metric in temporayStaticMetrics {
+            if !finalDynamicMetrics.contains(where: { $0.type == metric.type }) {
+                finalStaticMetrics.append(metric)
+            }
+        }
+        
+        staticMetrics = finalStaticMetrics
+        dynamicMetrics = finalDynamicMetrics
     }
 }

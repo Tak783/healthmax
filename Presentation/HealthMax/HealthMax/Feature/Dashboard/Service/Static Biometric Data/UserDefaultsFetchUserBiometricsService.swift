@@ -34,18 +34,24 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
     func getWeight() async -> Result<Int?, Error> {
         await fetch(forKey: UserBiometricKeys.weight.rawValue)
     }
+    
+    func getBloodType() async -> Result<String?, Error> {
+        await fetch(forKey: UserBiometricKeys.bloodType.rawValue)
+    }
 
     func fetchAllMetrics() async -> Result<[HealthMetric], Error> {
         async let genderResult = getGender()
         async let birthdayResult = getBirthday()
         async let heightResult = getHeight()
         async let weightResult = getWeight()
+        async let bloodTypeResult = getBloodType()
 
         let results = await (
             genderResult,
             birthdayResult,
             heightResult,
-            weightResult
+            weightResult,
+            bloodTypeResult
         )
 
         var metrics: [HealthMetric] = []
@@ -67,12 +73,16 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
         if case let .success(value) = results.3, let weight = value {
             metrics.append(HealthMetric(type: .weight, value: "\(weight) kg"))
         }
+        
+        if case let .success(value) = results.4, let bloodType = value {
+            metrics.append(HealthMetric(type: .bloodType, value: "\(bloodType)"))
+        }
 
         if metrics.isEmpty {
-            efficientPrint("⛔️ Failed to fetch stored metrics")
+            safePrint("⛔️ Failed to fetch stored metrics")
             return .failure(BiometricFetchError.allValuesMissing)
         } else {
-            efficientPrint("✅ Successfully fetched: \(metrics.count) stored metrics")
+            safePrint("✅ Successfully fetched: \(metrics.count) stored metrics")
             return .success(metrics)
         }
     }

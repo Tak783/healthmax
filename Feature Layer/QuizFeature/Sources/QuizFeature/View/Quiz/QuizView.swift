@@ -126,6 +126,24 @@ extension QuizView {
         case .biometric(let biometricStepContent):
             let biometicService = UserDefaultsSaveUserBiometricsService()
             switch biometricStepContent.biometricType {
+            case .dateOfBirth:
+                let dateOfBirthViewModel = DateOfBirthViewModel(
+                    quizBiometricRequestContent: biometricStepContent,
+                    userBiometricSevice: biometicService
+                )
+                QuizDOBPickerStepView(
+                    quizViewModel: quizViewModel,
+                    dateOfBirthViewModel: dateOfBirthViewModel
+                )
+            case .bloodType:
+                let bloodTypeViewModel = BloodTypeViewModel(
+                    quizBiometricRequestContent: biometricStepContent,
+                    userBiometricSevice: biometicService
+                )
+                QuizBloodTypePickerView(
+                    quizViewModel: quizViewModel,
+                    bloodTypeViewModel: bloodTypeViewModel
+                )
             case .height:
                 let heightViewModel = HeightViewModel(
                     quizBiometricRequestContent: biometricStepContent,
@@ -145,15 +163,7 @@ extension QuizView {
                     quizViewModel: quizViewModel,
                     weightViewModel: weightViewModel
                 )
-            case .dateOfBirth:
-                let dateOfBirthViewModel = DateOfBirthViewModel(
-                    quizBiometricRequestContent: biometricStepContent,
-                    userBiometricSevice: biometicService
-                )
-                QuizDOBPickerStepView(
-                    quizViewModel: quizViewModel,
-                    dateOfBirthViewModel: dateOfBirthViewModel
-                )
+            
             }
         case .permission(let permissionStepContent):
             let quizPermissonStepViewModel = QuizPermissonStepViewModel(

@@ -43,16 +43,16 @@ final class AppleHealthPermissionsViewModel: ObservableObject {
 extension AppleHealthPermissionsViewModel: AppleHealthPermissionsViewModelling {
     func requestAuthorization() async {
             guard HKHealthStore.isHealthDataAvailable() else {
-                efficientPrint("Health data not available on this device.")
+                safePrint("Health data not available on this device.")
                 return
             }
             self.requestStatus = .requesting
             do {
                 try await healthStore.requestAuthorization(toShare: .init(), read: readTypes)
                 requestStatus = .authorised
-                efficientPrint("✅ Authorised Health access")
+                safePrint("✅ Authorised Health access")
             } catch {
-                efficientPrint("⛔️ Failed to authorise Health access: \(error.localizedDescription)")
+                safePrint("⛔️ Failed to authorise Health access: \(error.localizedDescription)")
                 requestStatus = .denied
             }
     }

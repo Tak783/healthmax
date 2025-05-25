@@ -26,6 +26,10 @@ extension UserDefaultsSaveUserBiometricsService: SaveUserBiometricsServiceable {
     func saveWeight(_ weight: Int) async -> Result<Void, Error> {
         await save(value: weight, forKey: UserBiometricKeys.weight.rawValue)
     }
+    
+    func saveBloodType(_ bloodType: String) async -> Result<Void, Error> {
+        await save(value: bloodType, forKey: UserBiometricKeys.bloodType.rawValue)
+    }
 }
 
 // MARK: - Helpers

@@ -108,6 +108,16 @@ extension LocalFetchQuizServiceService {
             ),
             QuizStep(
                 id: UUID().uuidString,
+                content: .biometric(
+                    QuizBiometricRequestContent(
+                        question: "What's your blood type?",
+                        answerType: .string,
+                        biometricType: .bloodType
+                    )
+                )
+            ),
+            QuizStep(
+                id: UUID().uuidString,
                 content: .permission(
                     QuizPermissionRequestContent(
                         question: .init(),

@@ -60,10 +60,10 @@ extension DateOfBirthViewModel: BiometricViewModelling {
         let result = await userBiometricSevice.saveBirthday(dateOfBirth)
         switch result {
         case .success:
-            efficientPrint("✅ Date of Birth: \(dateOfBirth)")
+            safePrint("✅ Date of Birth: \(dateOfBirth)")
             didSave = true
         case .failure(let error):
-            efficientPrint("⛔️ Failed to saved Date of Birth with error \(error.localizedDescription)")
+            safePrint("⛔️ Failed to saved Date of Birth with error: \(error.localizedDescription)")
         }
     }
 }

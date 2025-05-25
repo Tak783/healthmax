@@ -9,7 +9,7 @@ import Foundation
 
 extension Double {
     /// Converts feet + inches into a decimal feet value.
-    public static func heightInFeetDecimal(feet: Int, inches: Int) -> Double {
+    public static func combinedHeightInFeet(feet: Int, inches: Int) -> Double {
         return Double(feet) + Double(inches) / 12.0
     }
 

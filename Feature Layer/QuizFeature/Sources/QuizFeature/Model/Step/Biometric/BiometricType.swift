@@ -6,7 +6,8 @@
 //
 
 public enum BiometricType: Int, Codable, Sendable {
+    case bloodType
+    case dateOfBirth
     case height
     case weight
-    case dateOfBirth
 }

@@ -20,7 +20,7 @@ struct HealthKitHealthDataService {
 
 // MARK: - HealthDataServiceable
 extension HealthKitHealthDataService: HealthDataServiceable {
-    func fetchWeight() async -> Result<HealthMetric, Error> {
+    func fetchWeight() async -> MetricFetchResult{
         do {
             guard let value = try await fetchMostRecent(.bodyMass, unit: .gramUnit(with: .kilo)) else {
                 return .failure(HealthKitFetchError.noData)
@@ -32,7 +32,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         }
     }
     
-    func fetchSteps(for date: Date = .now) async -> Result<HealthMetric, Error> {
+    func fetchSteps(for date: Date = .now) async -> MetricFetchResult{
         do {
             let steps = try await fetchSum(.stepCount, unit: .count(), date: date)
             let metric = HealthMetric(type: .steps, value: "\(Int(steps)) steps")
@@ -42,7 +42,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         }
     }
     
-    func fetchHeartRateSamples(for date: Date = .now) async -> Result<HealthMetric, Error> {
+    func fetchHeartRateSamples(for date: Date = .now) async -> MetricFetchResult{
         do {
             let samples = try await fetchAllSamples(
                 .heartRate,
@@ -59,7 +59,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         }
     }
     
-    func fetchBloodGlucose() async -> Result<HealthMetric, Error> {
+    func fetchBloodGlucose() async -> MetricFetchResult{
         do {
             guard let value = try await fetchMostRecent(.bloodGlucose, unit: HKUnit(from: "mg/dL")) else {
                 return .failure(HealthKitFetchError.noData)
@@ -71,7 +71,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         }
     }
     
-    func fetchCalories(for date: Date = .now) async -> Result<HealthMetric, Error> {
+    func fetchCalories(for date: Date = .now) async -> MetricFetchResult{
         do {
             let cals = try await fetchSum(.activeEnergyBurned, unit: .kilocalorie(), date: date)
             let metric = HealthMetric(type: .calories, value: "\(Int(cals)) kcal")
@@ -81,7 +81,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         }
     }
     
-    func fetchBodyTemperature() async -> Result<HealthMetric, Error> {
+    func fetchBodyTemperature() async -> MetricFetchResult{
         do {
             guard let value = try await fetchMostRecent(.bodyTemperature, unit: .degreeCelsius()) else {
                 return .failure(HealthKitFetchError.noData)
@@ -94,7 +94,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         }
     }
     
-    func fetchBloodPressure() async -> Result<HealthMetric, Error> {
+    func fetchBloodPressure() async -> MetricFetchResult{
         do {
             guard
                 let sys = try await fetchMostRecent(.bloodPressureSystolic, unit: .millimeterOfMercury()),
@@ -114,7 +114,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
     }
     
     func fetchAllMetrics(for date: Date = .now) async -> Result<[HealthMetric], Error> {
-        let tasks: [() async -> Result<HealthMetric, Error>] = [
+        let tasks: [() async -> MetricFetchResult] = [
             { await self.fetchWeight() },
             { await self.fetchSteps(for: date) },
             { await self.fetchHeartRateSamples(for: date) },
@@ -127,7 +127,7 @@ extension HealthKitHealthDataService: HealthDataServiceable {
         var metrics: [HealthMetric] = []
         var errors: [Error] = []
         
-        await withTaskGroup(of: Result<HealthMetric, Error>.self) { group in
+        await withTaskGroup(of: MetricFetchResult.self) { group in
             for task in tasks {
                 group.addTask {
                     await task()
@@ -144,11 +144,11 @@ extension HealthKitHealthDataService: HealthDataServiceable {
             }
         }
         if metrics.isEmpty {
-            efficientPrint("⛔️ Failed to fetch: \(errors.count) Apple Health metrics")
+            safePrint("⛔️ Failed to fetch: \(errors.count) Apple Health metrics")
             return .failure(HealthKitFetchError.allValuesMissing)
         } else {
-            efficientPrint("✅ Successfully fetched: \(metrics.count) Apple Health metrics")
-            efficientPrint("⛔️ Failed to fetch: \(errors.count) Apple Health metrics")
+            safePrint("✅ Successfully fetched: \(metrics.count) Apple Health metrics")
+            safePrint("⛔️ Failed to fetch: \(errors.count) Apple Health metrics")
             return .success(metrics)
         }
     }

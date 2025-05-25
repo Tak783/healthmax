@@ -41,7 +41,7 @@ extension QuizViewModel: QuizViewModellable {
         case .success(let quiz):
             self.quizSessionModel = QuizSessionModel(quiz: quiz)
         case .failure(let error):
-            efficientPrint(error.localizedDescription)
+            safePrint(error.localizedDescription)
         }
         setIsLoading(false)
     }

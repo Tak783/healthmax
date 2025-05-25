@@ -12,4 +12,5 @@ protocol SaveUserBiometricsServiceable: Sendable {
     func saveBirthday(_ age: Date) async -> Result<Void, Error>
     func saveHeight(_ height: Double) async -> Result<Void, Error>
     func saveWeight(_ weight: Int) async -> Result<Void, Error>
+    func saveBloodType(_ bloodType: String) async -> Result<Void, Error>
 }

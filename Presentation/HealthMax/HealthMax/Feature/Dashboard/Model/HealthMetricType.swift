@@ -11,6 +11,7 @@ enum HealthMetricType: String, CaseIterable, Codable, Sendable, Hashable {
     case weight
     case steps
     case heartRate
+    case bloodType
     case bloodGlucose
     case calories
     case bodyTemperature
@@ -29,6 +30,8 @@ enum HealthMetricType: String, CaseIterable, Codable, Sendable, Hashable {
             return "Heart Rate"
         case .bloodGlucose:
             return "Blood Glucose"
+        case .bloodType:
+            return "Blood Type"
         case .calories:
             return "Calories"
         case .bodyTemperature:
@@ -47,13 +50,15 @@ enum HealthMetricType: String, CaseIterable, Codable, Sendable, Hashable {
     public var icon: LocalImage {
         switch self {
         case .weight:
-            return .init(name: "⚖️", type: .emoji)
+            return .init(name: "scalemass.fill", type: .system)
         case .steps:
             return .init(name: "🦶", type: .emoji)
         case .heartRate:
             return .init(name: "❤️", type: .emoji)
-        case .bloodGlucose:
+        case .bloodType:
             return .init(name: "🩸", type: .emoji)
+        case .bloodGlucose:
+            return .init(name: "🍫", type: .emoji)
         case .calories:
             return .init(name: "🔥", type: .emoji)
         case .bodyTemperature:
@@ -61,11 +66,11 @@ enum HealthMetricType: String, CaseIterable, Codable, Sendable, Hashable {
         case .bloodPressure:
             return .init(name: "waveform.path.ecg", type: .system)
         case .gender:
-            return .init(name: "🧑", type: .emoji)
+            return .init(name: "⚥", type: .emoji)
         case .birthday:
             return .init(name: "🎂", type: .emoji)
         case .height:
-            return .init(name: "ruler", type: .system)
+            return .init(name: "lines.measurement.vertical", type: .system)
         }
     }
 }

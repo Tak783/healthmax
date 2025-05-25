@@ -16,7 +16,11 @@ struct HealthDashboardView: View {
             DesignSystem.DSGradient.background.ignoresSafeArea()
             content
                 .padding()
-                .navigationTitle("Home")
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        navBarTitleView
+                    }
+                }
                 .navigationBarBackButtonHidden(true)
                 .onAppear {
                     loadFeed()
@@ -41,6 +45,10 @@ extension HealthDashboardView {
         ZStack {
             if viewModel.isLoading {
                 LoadingView()
+            } else if viewModel.staticMetrics.isEmpty && viewModel.dynamicMetrics.isEmpty{
+                MetricsErrorView {
+                    loadFeed()
+                }
             } else {
                 ScrollView {
                     VStack(spacing: 24) {
@@ -62,14 +70,23 @@ extension HealthDashboardView {
 
 // MARK: - Supporting Views
 extension HealthDashboardView {
+    private var navBarTitleView: some View {
+        Text("Home")
+            .font(.custom("Impact", size: 24))
+            .foregroundColor(.white)
+    }
+    
     @ViewBuilder
     private func metricsSection(title: String, metrics: [HealthMetric]) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: DesignSystem.Layout.medium) {
             Text(title)
-                .font(.custom("Impact", size: 22))
+                .font(DesignSystem.DSFont.headline())
                 .foregroundColor(.white)
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+            LazyVGrid(
+                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                spacing: DesignSystem.Layout.large
+            ) {
                 ForEach(metrics, id: \.self) { metric in
                     metricCard(metric)
                 }
@@ -78,7 +95,7 @@ extension HealthDashboardView {
     }
     
     private func metricCard(_ metric: HealthMetric) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: DesignSystem.Layout.extraSmall) {
             imageView(withImage:  metric.image)
             
             Text(metric.title)
@@ -93,7 +110,7 @@ extension HealthDashboardView {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: DesignSystem.Layout.medium))
     }
     
     private var premiumUnlockBanner: some View {

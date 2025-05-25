@@ -1,41 +1,35 @@
 //
-//  WeightViewModel.swift
+//  BloodTypeViewModel.swift
 //  QuizFeature
 //
-//  Created on 23/05/2025.
+//  Created by Tak Mazarura on 25/05/2025.
 //
 
 import CoreFoundational
-import Foundation
+import SwiftUI
 
 @MainActor
-final class WeightViewModel: ObservableObject {
-    @Published var weight: Int
+final class BloodTypeViewModel: ObservableObject {
+    @Published var bloodType: BloodType
     @Published var didSave = false
     
     private(set) var userBiometricSevice: SaveUserBiometricsServiceable
-    
-    let range: ClosedRange<Int>
-    let unit: String
+ 
     let quizBiometricRequestContent: QuizBiometricRequestContent
     
     init(
-        defaultWeight: Int = 70,
-        range: ClosedRange<Int> = 20...200,
-        unit: String = "kg",
+        bloodType: BloodType = .aPositive,
         quizBiometricRequestContent: QuizBiometricRequestContent,
         userBiometricSevice: SaveUserBiometricsServiceable
     ) {
-        self.weight = defaultWeight
-        self.range = range
-        self.unit = unit
+        self.bloodType = bloodType
         self.quizBiometricRequestContent = quizBiometricRequestContent
         self.userBiometricSevice = userBiometricSevice
     }
 }
 
 // MARK: - QuizStepViewModellable
-extension WeightViewModel: QuizStepViewModellable {
+extension BloodTypeViewModel: QuizStepViewModellable {
     func isContinueButtonVisible() -> Bool {
         true
     }
@@ -46,15 +40,15 @@ extension WeightViewModel: QuizStepViewModellable {
 }
 
 // MARK: - BiometricViewModelling
-extension WeightViewModel: BiometricViewModelling {
+extension BloodTypeViewModel: BiometricViewModelling {
     func didRequestToSaveMetric() async {
-        let result = await userBiometricSevice.saveWeight(weight)
+        let result = await userBiometricSevice.saveBloodType(bloodType.displayName)
         switch result {
         case .success:
-            safePrint("✅ Saved Weight: \(weight)")
+            safePrint("✅ Saved Blood Type: \(bloodType.displayName)")
             didSave = true
         case .failure(let error):
-            safePrint("⛔️ Failed to save Weight: \(weight) kg with error: \(error.localizedDescription)")
+            safePrint("⛔️ Failed to save Blood Type with error: \(error.localizedDescription)")
         }
     }
 }
