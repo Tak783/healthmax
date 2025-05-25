@@ -104,7 +104,8 @@ extension HealthDashboardView {
                 .foregroundColor(.white)
             
             Text(metric.value)
-                .font(.headline)
+                .font(.footnote)
+                .fontWeight(.bold)
                 .foregroundColor(.white)
         }
         .padding()
