@@ -10,9 +10,13 @@ import Foundation
 
 @MainActor
 final class HealthDashboardViewModel: ObservableObject {
-    @Published var isLoading: Bool = true
-    @Published var staticMetrics: [HealthMetric] = []
-    @Published var dynamicMetrics: [HealthMetric] = []
+    @Published var isLoading = true
+    @Published private(set) var staticMetricPresentationModels = [HealthMetricPresentationModel]()
+    @Published private(set) var dynamicMetricsPresentationModels = [HealthMetricPresentationModel]()
+    @Published private(set) var feedIsEmpty = false
+    
+    private var staticMetrics = [HealthMetric]()
+    private var dynamicMetrics = [HealthMetric]()
     
     private let healthService: HealthDataServiceable
     private let biometricsService: FetchUserBiometricsServiceable
@@ -39,7 +43,12 @@ extension HealthDashboardViewModel: HealthDashboardViewModellable {
         
         let results = await (biometricsRequestResult, healthMetricsRequestResult)
         
-        update(withBiometricsResult: results.0, healthMetricsResult: results.1)
+        setLocalModels(
+            withBiometricsResult: results.0,
+            healthMetricsResult: results.1
+        )
+        updatePresentationModels()
+        updateFeedIsEmptyStatus()
         
         setIsLoading(false)
     }
@@ -47,7 +56,7 @@ extension HealthDashboardViewModel: HealthDashboardViewModellable {
 
 // MARK: - Helpers
 extension HealthDashboardViewModel {
-    private func update(
+    private func setLocalModels(
         withBiometricsResult biometricsResult: MetricsFetchResult,
         healthMetricsResult: MetricsFetchResult
     ) {
@@ -70,5 +79,14 @@ extension HealthDashboardViewModel {
         
         staticMetrics = finalStaticMetrics
         dynamicMetrics = finalDynamicMetrics
+    }
+    
+    private func updatePresentationModels() {
+        staticMetricPresentationModels = staticMetrics.map { HealthMetricPresentationModel(metric: $0) }
+        dynamicMetricsPresentationModels = dynamicMetrics.map { HealthMetricPresentationModel(metric: $0) }
+    }
+    
+    private func updateFeedIsEmptyStatus() {
+        feedIsEmpty = staticMetricPresentationModels.isEmpty && dynamicMetricsPresentationModels.isEmpty
     }
 }

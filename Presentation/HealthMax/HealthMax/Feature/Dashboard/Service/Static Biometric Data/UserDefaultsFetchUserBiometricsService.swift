@@ -8,6 +8,7 @@
 import CoreFoundational
 import Foundation
 import QuizFeature
+import HealthKit
 
 final class UserDefaultsFetchUserBiometricsService {
     enum BiometricFetchError: Error {
@@ -57,25 +58,24 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
         var metrics: [HealthMetric] = []
 
         if case let .success(value) = results.0, let gender = value {
-            metrics.append(HealthMetric(type: .gender, value: gender.capitalized))
+            metrics.append(HealthMetric(type: .gender, value: HealthMetricValue.string(gender) ))
         }
 
         if case let .success(value) = results.1, let birthday = value {
-            let formatted = DateFormatter.readableDayOnlyDateFormatter.string(from: birthday)
-            metrics.append(HealthMetric(type: .birthday, value: formatted))
+            metrics.append(HealthMetric(type: .birthday, value: HealthMetricValue.date(birthday)))
         }
 
         if case let .success(value) = results.2, let height = value {
             let (feet, inches) = Double.toFeet(height)
-            metrics.append(HealthMetric(type: .height, value: "\(feet)'\(inches) ft"))
+            metrics.append(HealthMetric(type: .height, value: HealthMetricValue.double(height), unit: .foot()))
         }
 
         if case let .success(value) = results.3, let weight = value {
-            metrics.append(HealthMetric(type: .weight, value: "\(weight) kg"))
+            metrics.append(HealthMetric(type: .weight, value: HealthMetricValue.int(weight), unit: .gramUnit(with: .kilo)))
         }
         
         if case let .success(value) = results.4, let bloodType = value {
-            metrics.append(HealthMetric(type: .bloodType, value: "\(bloodType)"))
+            metrics.append(HealthMetric(type: .bloodType, value: HealthMetricValue.string(bloodType)))
         }
 
         if metrics.isEmpty {

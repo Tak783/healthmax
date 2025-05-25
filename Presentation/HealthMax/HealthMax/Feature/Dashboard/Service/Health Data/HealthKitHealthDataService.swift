@@ -9,110 +9,100 @@ import CoreFoundational
 import Foundation
 import HealthKit
 
-struct HealthKitHealthDataService {
-    enum HealthKitFetchError: Error {
-        case allValuesMissing
-        case noData
-    }
-    
+public struct HealthKitHealthDataService {
     private let healthStore = HKHealthStore()
 }
 
 // MARK: - HealthDataServiceable
 extension HealthKitHealthDataService: HealthDataServiceable {
-    func fetchWeight() async -> MetricFetchResult{
+    func fetchWeight(unit: HKUnit = .gramUnit(with: .kilo)) async -> MetricFetchResult {
         do {
-            guard let value = try await fetchMostRecent(.bodyMass, unit: .gramUnit(with: .kilo)) else {
-                return .failure(HealthKitFetchError.noData)
+            guard let value = try await fetchMostRecent(.bodyMass, unit: unit) else {
+                return .failure(HealthKitError.noData)
             }
-            let metric = HealthMetric(type: .weight, value: "\(value) kg")
+            let metric = HealthMetric(type: .weight, value: .double(value), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
-    func fetchSteps(for date: Date = .now) async -> MetricFetchResult{
+
+    func fetchSteps(for date: Date = .now, unit: HKUnit = .count()) async -> MetricFetchResult {
         do {
-            let steps = try await fetchSum(.stepCount, unit: .count(), date: date)
-            let metric = HealthMetric(type: .steps, value: "\(Int(steps)) steps")
+            let steps = try await fetchSum(.stepCount, unit: unit, date: date)
+            let metric = HealthMetric(type: .steps, value: .int(Int(steps)), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
-    func fetchHeartRateSamples(for date: Date = .now) async -> MetricFetchResult{
+
+    func fetchHeartRateSamples(
+        for date: Date = .now,
+        unit: HKUnit = .count().unitDivided(by: .minute())
+    ) async -> MetricFetchResult {
         do {
-            let samples = try await fetchAllSamples(
-                .heartRate,
-                unit: HKUnit.count().unitDivided(by: .minute()),
-                date: date
-            )
+            let samples = try await fetchAllSamples(.heartRate, unit: unit, date: date)
             guard let avg = samples.average else {
-                return .failure(HealthKitFetchError.noData)
+                return .failure(HealthKitError.noData)
             }
-            let metric = HealthMetric(type: .heartRate, value: "\(Int(avg)) bpm")
+            let metric = HealthMetric(type: .heartRate, value: .double(avg), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
-    func fetchBloodGlucose() async -> MetricFetchResult{
+
+    func fetchBloodGlucose(unit: HKUnit = HKUnit(from: "mg/dL")) async -> MetricFetchResult {
         do {
-            guard let value = try await fetchMostRecent(.bloodGlucose, unit: HKUnit(from: "mg/dL")) else {
-                return .failure(HealthKitFetchError.noData)
+            guard let value = try await fetchMostRecent(.bloodGlucose, unit: unit) else {
+                return .failure(HealthKitError.noData)
             }
-            let metric = HealthMetric(type: .bloodGlucose, value: "\(Int(value)) mg/dL")
+            let metric = HealthMetric(type: .bloodGlucose, value: .int(Int(value)), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
-    func fetchCalories(for date: Date = .now) async -> MetricFetchResult{
+
+    func fetchCalories(for date: Date = .now, unit: HKUnit = .kilocalorie()) async -> MetricFetchResult {
         do {
-            let cals = try await fetchSum(.activeEnergyBurned, unit: .kilocalorie(), date: date)
-            let metric = HealthMetric(type: .calories, value: "\(Int(cals)) kcal")
+            let cals = try await fetchSum(.activeEnergyBurned, unit: unit, date: date)
+            let metric = HealthMetric(type: .calories, value: .int(Int(cals)), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
-    func fetchBodyTemperature() async -> MetricFetchResult{
+
+    func fetchBodyTemperature(unit: HKUnit = .degreeCelsius()) async -> MetricFetchResult {
         do {
-            guard let value = try await fetchMostRecent(.bodyTemperature, unit: .degreeCelsius()) else {
-                return .failure(HealthKitFetchError.noData)
+            guard let value = try await fetchMostRecent(.bodyTemperature, unit: unit) else {
+                return .failure(HealthKitError.noData)
             }
-            let formatted = String(format: "%.1f", value)
-            let metric = HealthMetric(type: .bodyTemperature, value: "\(formatted) °C")
+            let metric = HealthMetric(type: .bodyTemperature, value: .double(value), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
-    func fetchBloodPressure() async -> MetricFetchResult{
+
+    func fetchBloodPressure(unit: HKUnit = .millimeterOfMercury()) async -> MetricFetchResult {
         do {
             guard
-                let sys = try await fetchMostRecent(.bloodPressureSystolic, unit: .millimeterOfMercury()),
-                let dia = try await fetchMostRecent(.bloodPressureDiastolic, unit: .millimeterOfMercury())
+                let systolic = try await fetchMostRecent(.bloodPressureSystolic, unit: unit),
+                let diastolic = try await fetchMostRecent(.bloodPressureDiastolic, unit: unit)
             else {
-                return .failure(HealthKitFetchError.noData)
+                return .failure(HealthKitError.noData)
             }
-            
-            let metric = HealthMetric(
-                type: .bloodPressure,
-                value: "\(Int(sys))/\(Int(dia)) mmHg"
-            )
+            let combined = "\(Int(systolic))/\(Int(diastolic))"
+            let metric = HealthMetric(type: .bloodPressure, value: .string(combined), unit: unit)
             return .success(metric)
         } catch {
             return .failure(error)
         }
     }
-    
+
     func fetchAllMetrics(for date: Date = .now) async -> Result<[HealthMetric], Error> {
         let tasks: [() async -> MetricFetchResult] = [
             { await self.fetchWeight() },
@@ -123,17 +113,17 @@ extension HealthKitHealthDataService: HealthDataServiceable {
             { await self.fetchBodyTemperature() },
             { await self.fetchBloodPressure() }
         ]
-        
+
         var metrics: [HealthMetric] = []
         var errors: [Error] = []
-        
+
         await withTaskGroup(of: MetricFetchResult.self) { group in
             for task in tasks {
                 group.addTask {
                     await task()
                 }
             }
-            
+
             for await result in group {
                 switch result {
                 case .success(let metric):
@@ -143,9 +133,10 @@ extension HealthKitHealthDataService: HealthDataServiceable {
                 }
             }
         }
+
         if metrics.isEmpty {
             safePrint("⛔️ Failed to fetch: \(errors.count) Apple Health metrics")
-            return .failure(HealthKitFetchError.allValuesMissing)
+            return .failure(HealthKitError.allValuesMissing)
         } else {
             safePrint("✅ Successfully fetched: \(metrics.count) Apple Health metrics")
             safePrint("⛔️ Failed to fetch: \(errors.count) Apple Health metrics")
@@ -154,8 +145,24 @@ extension HealthKitHealthDataService: HealthDataServiceable {
     }
 }
 
-// MARK: - Fetch Helpers
+// MARK: - Core Reusable Queries
 extension HealthKitHealthDataService {
+    private func fetchMostRecent(
+        _ identifier: HKQuantityTypeIdentifier,
+        unit: HKUnit
+    ) async throws -> Double? {
+        let type = try resolveQuantityType(identifier)
+        let sort = NSSortDescriptor(
+            key: HKSampleSortIdentifierEndDate,
+            ascending: false
+        )
+        return try await executeMostRecentSampleQuery(
+            type: type,
+            sortDescriptors: [sort],
+            unit: unit
+        )
+    }
+    
     private func fetchSum(
         _ identifier: HKQuantityTypeIdentifier,
         unit: HKUnit,
@@ -173,42 +180,6 @@ extension HealthKitHealthDataService {
         )
     }
     
-    private func fetchMostRecent(
-        _ identifier: HKQuantityTypeIdentifier,
-        unit: HKUnit
-    ) async throws -> Double? {
-        let type = try resolveQuantityType(identifier)
-        let sort = NSSortDescriptor(
-            key: HKSampleSortIdentifierEndDate,
-            ascending: false
-        )
-        return try await executeMostRecentSampleQuery(
-            type: type,
-            sortDescriptors: [sort],
-            unit: unit
-        )
-    }
-    
-    private func fetchAllSamples(
-        _ identifier: HKQuantityTypeIdentifier,
-        unit: HKUnit,
-        date: Date
-    ) async throws -> [Double] {
-        let type = try resolveQuantityType(identifier)
-        let predicate = HKQuery.predicateForSamples(
-            withStart: date.startOfDay,
-            end: date.endOfDay
-        )
-        return try await executeAllSamplesQuery(
-            type: type,
-            predicate: predicate,
-            unit: unit
-        )
-    }
-}
-
-// MARK: - Core Reusable Queries
-extension HealthKitHealthDataService {
     private func resolveQuantityType(
         _ identifier: HKQuantityTypeIdentifier
     ) throws -> HKQuantityType {
@@ -259,6 +230,23 @@ extension HealthKitHealthDataService {
             }
             healthStore.execute(query)
         }
+    }
+    
+    private func fetchAllSamples(
+        _ identifier: HKQuantityTypeIdentifier,
+        unit: HKUnit,
+        date: Date
+    ) async throws -> [Double] {
+        let type = try resolveQuantityType(identifier)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: date.startOfDay,
+            end: date.endOfDay
+        )
+        return try await executeAllSamplesQuery(
+            type: type,
+            predicate: predicate,
+            unit: unit
+        )
     }
     
     private func executeAllSamplesQuery(

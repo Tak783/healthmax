@@ -45,19 +45,19 @@ extension HealthDashboardView {
         ZStack {
             if viewModel.isLoading {
                 LoadingView()
-            } else if viewModel.staticMetrics.isEmpty && viewModel.dynamicMetrics.isEmpty{
+            } else if viewModel.feedIsEmpty {
                 MetricsErrorView {
                     loadFeed()
                 }
             } else {
                 ScrollView {
                     VStack(spacing: 24) {
-                        if !viewModel.staticMetrics.isEmpty {
-                            metricsSection(title: "Entered Metrics", metrics: viewModel.staticMetrics)
+                        if !viewModel.staticMetricPresentationModels.isEmpty {
+                            metricsSection(title: "Entered Metrics", metrics: viewModel.staticMetricPresentationModels)
                         }
                         
-                        if !viewModel.dynamicMetrics.isEmpty {
-                            metricsSection(title: "Apple Health Metrics", metrics: viewModel.dynamicMetrics)
+                        if !viewModel.dynamicMetricsPresentationModels.isEmpty {
+                            metricsSection(title: "Apple Health Metrics", metrics: viewModel.dynamicMetricsPresentationModels)
                         }
                         
                         premiumUnlockBanner
@@ -77,7 +77,7 @@ extension HealthDashboardView {
     }
     
     @ViewBuilder
-    private func metricsSection(title: String, metrics: [HealthMetric]) -> some View {
+    private func metricsSection(title: String, metrics: [HealthMetricPresentationModel]) -> some View {
         VStack(alignment: .leading, spacing: DesignSystem.Layout.medium) {
             Text(title)
                 .font(DesignSystem.DSFont.headline())
@@ -94,9 +94,9 @@ extension HealthDashboardView {
         }
     }
     
-    private func metricCard(_ metric: HealthMetric) -> some View {
+    private func metricCard(_ metric: HealthMetricPresentationModel) -> some View {
         VStack(alignment: .leading, spacing: DesignSystem.Layout.extraSmall) {
-            imageView(withImage:  metric.image)
+            imageView(withImage:  metric.icon)
             
             Text(metric.title)
                 .font(.caption)

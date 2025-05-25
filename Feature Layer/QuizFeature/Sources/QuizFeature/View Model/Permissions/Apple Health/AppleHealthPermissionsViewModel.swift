@@ -26,15 +26,15 @@ final class AppleHealthPermissionsViewModel: ObservableObject {
             .bloodPressureSystolic,
             .bloodPressureDiastolic
         ]
-
+        
         let quantityHKTypes: [HKObjectType] = quantityTypes.compactMap {
             HKQuantityType.quantityType(forIdentifier: $0)
         }
-
+        
         let categoryHKTypes: [HKObjectType] = [
             HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)
         ].compactMap { $0 }
-
+        
         return Set(quantityHKTypes + categoryHKTypes)
     }()
 }
@@ -42,18 +42,18 @@ final class AppleHealthPermissionsViewModel: ObservableObject {
 // MARK: - AppleHealthPermissionsViewModelling
 extension AppleHealthPermissionsViewModel: AppleHealthPermissionsViewModelling {
     func requestAuthorization() async {
-            guard HKHealthStore.isHealthDataAvailable() else {
-                safePrint("Health data not available on this device.")
-                return
-            }
-            self.requestStatus = .requesting
-            do {
-                try await healthStore.requestAuthorization(toShare: .init(), read: readTypes)
-                requestStatus = .authorised
-                safePrint("✅ Authorised Health access")
-            } catch {
-                safePrint("⛔️ Failed to authorise Health access: \(error.localizedDescription)")
-                requestStatus = .denied
-            }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            safePrint("Health data not available on this device.")
+            return
+        }
+        self.requestStatus = .requesting
+        do {
+            try await healthStore.requestAuthorization(toShare: .init(), read: readTypes)
+            requestStatus = .authorised
+            safePrint("✅ Authorised Health access")
+        } catch {
+            safePrint("⛔️ Failed to authorise Health access: \(error.localizedDescription)")
+            requestStatus = .denied
+        }
     }
 }

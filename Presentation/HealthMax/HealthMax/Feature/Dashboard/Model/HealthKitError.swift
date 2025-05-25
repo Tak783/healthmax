@@ -6,6 +6,7 @@
 //
 
 enum HealthKitError: Error {
+    case allValuesMissing
     case notAvailable
     case noData
 }

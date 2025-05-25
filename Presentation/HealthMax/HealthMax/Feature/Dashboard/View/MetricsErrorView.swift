@@ -16,10 +16,8 @@ public struct MetricsErrorView: View {
     }
 
     public var body: some View {
-        VStack(spacing: DesignSystem.Layout.extraLarge) {
-            errorIcon
-            titleText
-            subtitleText
+        VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
+            errorInfoView
             retryButton
         }
         .padding()
@@ -29,6 +27,14 @@ public struct MetricsErrorView: View {
 
 // MARK: - Subviews
 private extension MetricsErrorView {
+    var errorInfoView: some View {
+        VStack(spacing: DesignSystem.Layout.extraLarge) {
+            errorIcon
+            titleText
+            subtitleText
+        }
+    }
+    
     var errorIcon: some View {
         Image(systemName: "exclamationmark.triangle.fill")
             .resizable()

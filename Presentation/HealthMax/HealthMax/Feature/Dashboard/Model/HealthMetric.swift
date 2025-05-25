@@ -5,18 +5,20 @@
 //  Created on 24/05/2025.
 //
 
+import CoreFoundational
 import CorePresentation
+import HealthKit
 
-struct HealthMetric: Codable, Hashable, Sendable {
+struct HealthMetric: Hashable, Sendable {
+    let id: String
     let type: HealthMetricType
-    let title: String
-    let value: String
-    let image: LocalImage
+    let value: HealthMetricValue
+    let unit: HKUnit?
 
-    init(type: HealthMetricType, value: String) {
+    init(id: String = UUID().uuidString, type: HealthMetricType, value: HealthMetricValue, unit: HKUnit? = nil) {
+        self.id = id
         self.type = type
-        self.title = type.displayName
         self.value = value
-        self.image = type.icon
+        self.unit = unit
     }
 }
