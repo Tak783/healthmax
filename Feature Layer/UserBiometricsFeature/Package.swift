@@ -47,7 +47,10 @@ let package = Package(
         ),
         .testTarget(
             name: "UserBiometricsFeatureTests",
-            dependencies: ["UserBiometricsFeature"]
+            dependencies: [
+                "UserBiometricsFeature",
+                "CoreHealthMaxModels"
+            ]
         ),
     ]
 )
