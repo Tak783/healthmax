@@ -1,4 +1,4 @@
-# HEALTHMAX.AI – README
+# HealthMax.AI – README
 
 * Simple health metrics dashboard app to display data from user input and Apple Health
 * In the future, will connect to OpenAI/Claude/Gemini to give the user tips on how to maximise their health
