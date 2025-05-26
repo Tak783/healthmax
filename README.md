@@ -1,6 +1,7 @@
 # HEALTHMAX.AI – README
 
-A production-grade health onboarding and metrics dashboard app, designed to maximise **user engagement**, **data collection**, and **retention** through intelligent onboarding, adaptive quizzes, and HealthKit integrations. It's an app that collects user data and, in the future, will connect to OpenAI/Claude/Gemini to give the user tips on how maximise their health using the data given from user input and Apple Health
+* Simple health metrics dashboard app to display data from user input and Apple Health
+* In the future, will connect to OpenAI/Claude/Gemini to give the user tips on how to maximise their health
 
 ## 🚀 Highlights
 
