@@ -26,7 +26,7 @@ struct EngagementNotificationScheduler {
             content.body = "Your personalised plan to maximise your health is now ready"
             content.sound = .default
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 14, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
             
             let request = UNNotificationRequest(
                 identifier: "personalisedPlanReady",

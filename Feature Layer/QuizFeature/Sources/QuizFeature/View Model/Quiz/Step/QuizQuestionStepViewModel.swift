@@ -5,6 +5,7 @@
 //  Created on 23/05/2025.
 //
 
+import UserBiometricsFeature
 import Foundation
 
 @MainActor
@@ -59,6 +60,12 @@ extension QuizQuestionStepViewModel {
         switch questionContent.answerType {
         case .singleChoice:
             answer.answerValue = .choice(choice.id)
+            
+            // TODO: - use a new quiz service instead of saving manually
+            Task.detached {
+                await UserDefaultsSaveUserBiometricsService().saveGender(choice.title)
+            }
+            
         default:
             break
         }
