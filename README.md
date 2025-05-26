@@ -24,8 +24,8 @@ A production-grade health onboarding and metrics dashboard app, designed to maxi
 ## 📱 For the Best User Experience
 1. Add Codesigning using your Apple Developer account in the XCode Project Settings
 2. Run Xcode and install it on the device
-3. For full experience - Acccept notifications in totality 
-3. For full experience - Acccept Apple Health Permissions in totality   
+3. 🚨 For full experience - Accept notifications in totality 
+3. 🚨 For full experience - Accept Apple Health Permissions in totality   
 3. Delete and reinstall to experience again  
 
 ## 🛠 How It Was Built
