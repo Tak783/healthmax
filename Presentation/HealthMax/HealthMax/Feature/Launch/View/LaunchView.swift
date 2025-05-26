@@ -54,16 +54,16 @@ extension LaunchView {
         VStack(spacing: DesignSystem.Layout.medium) {
             Text("Welcome to!")
                 .font(DesignSystem.DSFont.title(weight: .bold))
-                .foregroundColor(.primary)
+                .foregroundColor(.white)
             
             Text("HEALTHMAX.AI")
                 .font(.custom("Impact", size: 45))
-                .foregroundColor(.primary)
+                .foregroundColor(.white)
             
             Text("Maximising your health\nmade easy")
                 .font(DesignSystem.DSFont.title(weight: .bold))
                 .multilineTextAlignment(.center)
-                .foregroundColor(.primary)
+                .foregroundColor(.white)
                 .padding(.top, DesignSystem.Layout.medium)
         }
     }

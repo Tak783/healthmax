@@ -5,6 +5,7 @@
 //  Created on 24/05/2025.
 //
 
+import CoreFoundational
 import CorePresentation
 import CoreSharedModels
 import SwiftUI
@@ -23,6 +24,7 @@ struct HealthDashboardView: View {
                     }
                 }
                 .navigationBarBackButtonHidden(true)
+                .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
                     loadFeed()
                 }
@@ -43,27 +45,17 @@ extension HealthDashboardView {
 extension HealthDashboardView {
     @ViewBuilder
     private var content: some View {
-        ZStack {
-            if viewModel.isLoading {
-                LoadingView()
-            } else if viewModel.feedIsEmpty {
-                MetricsErrorView {
-                    loadFeed()
-                }
-            } else {
-                ScrollView {
-                    VStack(spacing: 24) {
-                        if !viewModel.staticMetricPresentationModels.isEmpty {
-                            metricsSection(title: "Entered Metrics", metrics: viewModel.staticMetricPresentationModels)
-                        }
-                        
-                        if !viewModel.dynamicMetricsPresentationModels.isEmpty {
-                            metricsSection(title: "Apple Health Metrics", metrics: viewModel.dynamicMetricsPresentationModels)
-                        }
-                        
-                        premiumUnlockBanner
-                    }
-                }
+        if viewModel.isLoading {
+            LoadingView()
+        } else if viewModel.feedIsEmpty {
+            MetricsErrorView {
+                loadFeed()
+            }
+        } else {
+            VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
+                metricsScrollView
+                Spacer()
+                unlockPremiumView
             }
         }
     }
@@ -77,44 +69,32 @@ extension HealthDashboardView {
             .foregroundColor(.white)
     }
     
-    @ViewBuilder
-    private func metricsSection(title: String, metrics: [HealthMetricPresentationModel]) -> some View {
-        VStack(alignment: .leading, spacing: DesignSystem.Layout.medium) {
-            Text(title)
-                .font(DesignSystem.DSFont.headline())
-                .foregroundColor(.white)
-            
-            LazyVGrid(
-                columns: [GridItem(.flexible()), GridItem(.flexible())],
-                spacing: DesignSystem.Layout.large
-            ) {
-                ForEach(metrics, id: \.self) { metric in
-                    metricCard(metric)
+    private var metricsScrollView: some View {
+        ScrollView {
+            VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
+                if !viewModel.staticMetricPresentationModels.isEmpty {
+                    HealthMetricsSectionView(
+                        title: "Entered Metrics",
+                        metrics: viewModel.staticMetricPresentationModels
+                    )
                 }
+                
+                if !viewModel.dynamicMetricsPresentationModels.isEmpty {
+                    HealthMetricsSectionView(
+                        title: "Apple Health Metrics",
+                        metrics: viewModel.dynamicMetricsPresentationModels
+                    )
+                }
+                Spacer()
             }
         }
     }
     
-    private func metricCard(_ metric: HealthMetricPresentationModel) -> some View {
-        VStack(alignment: .leading, spacing: DesignSystem.Layout.extraSmall) {
-            imageView(withImage:  metric.icon)
-            
-            Text(metric.title)
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-                .lineLimit(1)
-            
-            Text(metric.value)
-                .font(.footnote)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .lineLimit(1)
+    private var unlockPremiumView: some View {
+        VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
+            premiumUnlockBanner
+            paywallButton
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: DesignSystem.Layout.medium))
     }
     
     private var premiumUnlockBanner: some View {
@@ -126,16 +106,26 @@ extension HealthDashboardView {
             .frame(maxWidth: .infinity)
     }
     
-    @ViewBuilder
-    private func imageView(withImage localImage: LocalImage) -> some View {
-        switch localImage.type {
-        case .system:
-            Image(systemName: localImage.name)
-        case .emoji:
-            Text(localImage.name)
-                .foregroundColor(.white)
-        case .asset:
-            Image(localImage.name)
+    private var paywallButton: some View {
+        HStack(alignment: .center) {
+            HapticImpactButton {
+                safePrint("Did request to open paywall")
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Start maximising Heath")
+                        .foregroundColor(.white)
+                        .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Image(systemName: "arrow.right.circle.fill")
+                        .tint(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(DesignSystem.DSGradient.button)
+                .cornerRadius(DesignSystem.Layout.huge)
+                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+            }
         }
     }
 }
