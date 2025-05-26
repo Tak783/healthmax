@@ -68,25 +68,36 @@ extension AppleHealthPermissonRequestStepView {
     
     private var continueButton: some View {
         HStack(alignment: .center) {
-            HapticImpactButton {
-                Task {
-                    await appleHealthPermissionsViewModel.requestAuthorization()
-                }
-            } label: {
-                HStack {
-                    Spacer()
-                    Text("Continue")
+            if appleHealthPermissionsViewModel.requestStatus == .requesting {
+                VStack(spacing: DesignSystem.Layout.medium) {
+                    Text("Connecting to Apple Health")
                         .foregroundColor(.white)
-                        .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                        .font(DesignSystem.DSFont.footnote(weight: .bold))
                         .multilineTextAlignment(.center)
-                    Image(systemName: "arrow.right.circle.fill")
+                    ProgressView()
                         .tint(.white)
-                    Spacer()
                 }
-                .padding()
-                .background(DesignSystem.DSGradient.button)
-                .cornerRadius(DesignSystem.Layout.huge)
-                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+            } else {
+                HapticImpactButton {
+                    Task {
+                        await appleHealthPermissionsViewModel.requestAuthorization()
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Continue")
+                            .foregroundColor(.white)
+                            .font(DesignSystem.DSFont.subHeadline(weight: .bold))
+                            .multilineTextAlignment(.center)
+                        Image(systemName: "arrow.right.circle.fill")
+                            .tint(.white)
+                        Spacer()
+                    }
+                    .padding()
+                    .background(DesignSystem.DSGradient.button)
+                    .cornerRadius(DesignSystem.Layout.huge)
+                    .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                }
             }
         }
     }
