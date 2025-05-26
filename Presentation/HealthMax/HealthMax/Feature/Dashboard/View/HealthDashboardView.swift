@@ -52,9 +52,8 @@ extension HealthDashboardView {
                 loadFeed()
             }
         } else {
-            VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
+            VStack(spacing: DesignSystem.Layout.medium) {
                 metricsScrollView
-                Spacer()
                 unlockPremiumView
             }
         }
@@ -85,7 +84,6 @@ extension HealthDashboardView {
                         metrics: viewModel.dynamicMetricsPresentationModels
                     )
                 }
-                Spacer()
             }
         }
     }
