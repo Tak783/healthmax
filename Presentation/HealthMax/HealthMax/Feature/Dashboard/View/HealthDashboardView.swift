@@ -91,14 +91,14 @@ extension HealthDashboardView {
     }
     
     private var unlockPremiumView: some View {
-        VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
+        VStack(spacing: DesignSystem.Layout.medium) {
             premiumUnlockBanner
             paywallButton
         }
     }
     
     private var premiumUnlockBanner: some View {
-        Text("Unlock HealthMax.AI Premium to\nmaximise your health")
+        Text("Unlock HEALTHMAX.AI Premium to\nmaximise your health")
             .font(.footnote)
             .foregroundColor(.white.opacity(0.8))
             .multilineTextAlignment(.center)
@@ -113,7 +113,7 @@ extension HealthDashboardView {
             } label: {
                 HStack {
                     Spacer()
-                    Text("Start maximising Heath")
+                    Text("Start Maximising Your Health")
                         .foregroundColor(.white)
                         .font(DesignSystem.DSFont.subHeadline(weight: .bold))
                         .multilineTextAlignment(.center)

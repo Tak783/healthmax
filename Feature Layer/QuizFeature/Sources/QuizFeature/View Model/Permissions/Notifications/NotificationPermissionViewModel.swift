@@ -34,17 +34,17 @@ extension NotificationPermissionViewModel: NotificationPermissionRequesting {
                 let granted = try await notificationCenter.requestAuthorization(options: options)
                 requestStatus = granted ? .authorised : .denied
                 if !granted {
-                    safePrint("Failed to authorize notifications: user denied access")
+                    safePrint("❌ Failed to authorize notifications: user denied access")
                 }
             case .denied:
                 requestStatus = .denied
-                safePrint("Failed to authorize notifications: denied in Settings")
+                safePrint("❌ Failed to authorize notifications: denied in Settings")
             default:
                 requestStatus = .unknown
             }
         } catch {
             requestStatus = .unknown
-            safePrint("Failed to authorize notifications: \(error.localizedDescription)")
+            safePrint("❌ Failed to authorize notifications: \(error.localizedDescription)")
         }
     }
 }

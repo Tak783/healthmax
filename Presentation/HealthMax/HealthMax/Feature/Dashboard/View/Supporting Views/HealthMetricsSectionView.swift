@@ -2,7 +2,7 @@
 //  HealthMetricsSectionView.swift
 //  HealthMax
 //
-//  Created by Tak Mazarura on 26/05/2025.
+//  Created on 26/05/2025.
 //
 
 import CoreSharedModels
