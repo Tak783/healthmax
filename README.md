@@ -17,7 +17,7 @@ A production-grade health onboarding and metrics dashboard app, designed to maxi
 <img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="150" align="left">
 <img src="https://github.com/user-attachments/assets/12e38bb7-8072-4cb9-819a-5a945dfdc152" width="150" align="left">
 <img src="https://github.com/user-attachments/assets/8bb88640-019b-426f-8970-eb2c3aae1dcb" width="150" align="left">
-<img src="https://github.com/user-attachments/assets/cde1f064-6d1e-407b-a4af-888e859066de" width="200" align="left">
+<img src="https://github.com/user-attachments/assets/cde1f064-6d1e-407b-a4af-888e859066de" width="150" align="left">
 </p>
 <br clear="all" />
 
