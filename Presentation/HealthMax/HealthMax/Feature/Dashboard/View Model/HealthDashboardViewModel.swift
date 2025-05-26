@@ -9,6 +9,7 @@ import CoreHealthKit
 import CoreHealthMaxModels
 import CorePresentation
 import Foundation
+import UserBiometricsFeature
 
 @MainActor
 final class HealthDashboardViewModel: ObservableObject {

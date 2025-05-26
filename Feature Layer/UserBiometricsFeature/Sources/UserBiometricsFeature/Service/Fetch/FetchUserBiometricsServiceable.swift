@@ -9,7 +9,7 @@ import CoreHealthKit
 import CoreHealthMaxModels
 import Foundation
 
-protocol FetchUserBiometricsServiceable {
+public protocol FetchUserBiometricsServiceable: Sendable {
     func getGender() async -> Result<String?, Error>
     func getBirthday() async -> Result<Date?, Error>
     func getHeight() async -> Result<Double?, Error>

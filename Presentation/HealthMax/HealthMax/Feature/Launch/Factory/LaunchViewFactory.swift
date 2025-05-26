@@ -10,6 +10,7 @@ import CoreHealthKit
 import QuizFeature
 import QuizFeatureUI
 import SwiftUI
+import UserBiometricsFeature
 
 @MainActor
 struct LaunchViewFactory {

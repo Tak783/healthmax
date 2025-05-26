@@ -9,6 +9,7 @@ import CoreHealthMaxModels
 import CoreSharedModels
 import CoreFoundational
 import SwiftUI
+import UserBiometricsFeature
 
 @MainActor
 public final class BloodTypeViewModel: ObservableObject {

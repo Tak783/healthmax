@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B515ABF2DE49624001486F5 /* QuizFeatureUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8B515ABE2DE49624001486F5 /* QuizFeatureUI */; };
+		8B515AC12DE497E1001486F5 /* UserBiometricsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8B515AC02DE497E1001486F5 /* UserBiometricsFeature */; };
 		8B63E3F32DE4818E00AC7D36 /* CoreHealthMaxModels in Frameworks */ = {isa = PBXBuildFile; productRef = 8B63E3F22DE4818E00AC7D36 /* CoreHealthMaxModels */; };
 		8B63E3F52DE4818E00AC7D36 /* CoreSharedModels in Frameworks */ = {isa = PBXBuildFile; productRef = 8B63E3F42DE4818E00AC7D36 /* CoreSharedModels */; };
 		8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5812DE0AEB800664E7E /* CoreFoundational */; };
@@ -64,6 +65,7 @@
 				8B63E3F52DE4818E00AC7D36 /* CoreSharedModels in Frameworks */,
 				8B63E3F32DE4818E00AC7D36 /* CoreHealthMaxModels in Frameworks */,
 				8B515ABF2DE49624001486F5 /* QuizFeatureUI in Frameworks */,
+				8B515AC12DE497E1001486F5 /* UserBiometricsFeature in Frameworks */,
 				8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */,
 				8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */,
 				8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */,
@@ -141,6 +143,7 @@
 				8B63E3F22DE4818E00AC7D36 /* CoreHealthMaxModels */,
 				8B63E3F42DE4818E00AC7D36 /* CoreSharedModels */,
 				8B515ABE2DE49624001486F5 /* QuizFeatureUI */,
+				8B515AC02DE497E1001486F5 /* UserBiometricsFeature */,
 			);
 			productName = HealthMax;
 			productReference = 8B6B5F062DDD1BB0003E4D95 /* HealthMax.app */;
@@ -596,6 +599,10 @@
 		8B515ABE2DE49624001486F5 /* QuizFeatureUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = QuizFeatureUI;
+		};
+		8B515AC02DE497E1001486F5 /* UserBiometricsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserBiometricsFeature;
 		};
 		8B63E3F22DE4818E00AC7D36 /* CoreHealthMaxModels */ = {
 			isa = XCSwiftPackageProductDependency;

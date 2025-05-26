@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "QuizFeature",
+    name: "UserBiometricsFeature",
     platforms: [
         .iOS(.v17)
     ],
     products: [
         .library(
-            name: "QuizFeature",
-            targets: ["QuizFeature"]),
+            name: "UserBiometricsFeature",
+            targets: ["UserBiometricsFeature"]),
     ],
     dependencies: [
         .package(
@@ -26,38 +26,28 @@ let package = Package(
             name: "CoreHealthKit",
             path: "../CoreHealthKit"
         ),
-        .package(
-            name: "UserBiometricsFeature",
-            path: "../UserBiometricsFeature"
-        )
     ],
     targets: [
         .target(
-            name: "QuizFeature",
+            name: "UserBiometricsFeature",
             dependencies: [
                 .product(
                     name: "CoreFoundational",
                     package: "CoreFoundational"
                 ),
                 .product(
-                    name: "CoreHealthKit",
-                    package: "CoreHealthKit"
-                ),
-                .product(
                     name: "CoreHealthMaxModels",
                     package: "CoreHealthMaxModels"
                 ),
                 .product(
-                    name: "UserBiometricsFeature",
-                    package: "UserBiometricsFeature"
+                    name: "CoreHealthKit",
+                    package: "CoreHealthKit"
                 )
             ]
         ),
         .testTarget(
-            name: "QuizFeatureTests",
-            dependencies: [
-                "QuizFeature"
-            ]
+            name: "UserBiometricsFeatureTests",
+            dependencies: ["UserBiometricsFeature"]
         ),
     ]
 )

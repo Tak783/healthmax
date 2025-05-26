@@ -5,8 +5,9 @@
 //  Created on 23/05/2025.
 //
 
-import Foundation
 import CoreFoundational
+import Foundation
+import UserBiometricsFeature
 
 @MainActor
 public final class HeightViewModel: ObservableObject {

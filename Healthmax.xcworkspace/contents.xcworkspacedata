@@ -16,6 +16,9 @@
       location = "group:Feature Layer"
       name = "Feature Layer">
       <FileRef
+         location = "group:UserBiometricsFeature">
+      </FileRef>
+      <FileRef
          location = "group:QuizFeature">
       </FileRef>
       <FileRef

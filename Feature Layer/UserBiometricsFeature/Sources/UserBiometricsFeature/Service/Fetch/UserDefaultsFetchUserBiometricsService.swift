@@ -10,37 +10,39 @@ import CoreFoundational
 import Foundation
 import HealthKit
 
-final class UserDefaultsFetchUserBiometricsService {
+public final class UserDefaultsFetchUserBiometricsService {
     enum BiometricFetchError: Error {
         case allValuesMissing
         case missingValue(forKey: String)
         case typeMismatch(expected: String, actual: Any.Type, key: String)
     }
+    
+    public init() {}
 }
 
 // MARK: - FetchUserBiometricsServiceable
 extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable {
-    func getGender() async -> Result<String?, Error> {
+    public func getGender() async -> Result<String?, Error> {
         await fetch(forKey: UserBiometricKeys.gender.rawValue)
     }
     
-    func getBirthday() async -> Result<Date?, Error> {
+    public func getBirthday() async -> Result<Date?, Error> {
         await fetch(forKey: UserBiometricKeys.birthday.rawValue)
     }
     
-    func getHeight() async -> Result<Double?, Error> {
+    public func getHeight() async -> Result<Double?, Error> {
         await fetch(forKey: UserBiometricKeys.height.rawValue)
     }
     
-    func getWeight() async -> Result<Int?, Error> {
+    public func getWeight() async -> Result<Int?, Error> {
         await fetch(forKey: UserBiometricKeys.weight.rawValue)
     }
     
-    func getBloodType() async -> Result<String?, Error> {
+    public func getBloodType() async -> Result<String?, Error> {
         await fetch(forKey: UserBiometricKeys.bloodType.rawValue)
     }
 
-    func fetchAllMetrics() async -> Result<[HealthMetric], Error> {
+    public func fetchAllMetrics() async -> Result<[HealthMetric], Error> {
         async let genderResult = getGender()
         async let birthdayResult = getBirthday()
         async let heightResult = getHeight()

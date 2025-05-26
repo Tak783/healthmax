@@ -11,6 +11,7 @@ import Foundation
 import QuizFeature
 import SwiftData
 import SwiftUI
+import UserBiometricsFeature
 
 public struct QuizView: View {
     @State private var title = String.init()

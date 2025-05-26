@@ -7,6 +7,7 @@
 
 import CoreFoundational
 import Foundation
+import UserBiometricsFeature
 
 @MainActor
 public final class WeightViewModel: ObservableObject {
