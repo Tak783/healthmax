@@ -5,16 +5,17 @@
 //  Created by Tak Mazarura on 25/05/2025.
 //
 
+import CoreFoundational
 import Foundation
 
-enum HealthMetricValue: Hashable, Sendable {
+public enum HealthMetricValue: Hashable, Sendable {
     case int(Int)
     case double(Double)
     case string(String)
     case bool(Bool)
     case date(Date)
 
-    var defaultStringValue: String {
+    public var defaultStringValue: String {
         switch self {
         case .int(let value):
             return String(value)

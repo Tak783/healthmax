@@ -5,6 +5,7 @@
 //  Created on 22/05/2025.
 //
 
+import CoreSharedModels
 import CorePresentation
 import Foundation
 

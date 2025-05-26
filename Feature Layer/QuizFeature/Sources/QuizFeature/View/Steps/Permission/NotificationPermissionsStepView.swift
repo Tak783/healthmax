@@ -5,8 +5,9 @@
 //  Created on 24/05/2025.
 //
 
-import CorePresentation
 import CoreFoundational
+import CorePresentation
+import CoreSharedModels
 import SwiftUI
 
 struct NotificationPermissionsStepView: View {
@@ -17,7 +18,7 @@ struct NotificationPermissionsStepView: View {
     var body: some View {
         contentView
             .onChange(of: notificationPermissionViewModel.requestStatus) { _, newStatus in
-                didUpdateHealthPermissionRequestStatus(newStatus)
+                didUpdatePermissionRequestStatus(newStatus)
             }
     }
 }
@@ -93,8 +94,8 @@ extension NotificationPermissionsStepView {
 
 // MARK: - Helpers
 extension NotificationPermissionsStepView {
-    func didUpdateHealthPermissionRequestStatus(
-        _ status: NotificationPermissionRequestStatus
+    func didUpdatePermissionRequestStatus(
+        _ status: PermissionRequestStatus
     ) {
         switch status {
         case .authorised, .denied:

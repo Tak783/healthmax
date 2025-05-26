@@ -6,6 +6,7 @@
 //
 
 import CorePresentation
+import CoreSharedModels
 import SwiftUI
 
 struct HealthDashboardView: View {
@@ -102,11 +103,13 @@ extension HealthDashboardView {
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
+                .lineLimit(1)
             
             Text(metric.value)
                 .font(.footnote)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
+                .lineLimit(1)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

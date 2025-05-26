@@ -21,6 +21,9 @@
       <FileRef
          location = "group:QuizFeature">
       </FileRef>
+      <FileRef
+         location = "group:CoreHealthKit">
+      </FileRef>
    </Group>
    <Group
       location = "group:Presentation"
@@ -29,4 +32,8 @@
          location = "group:HealthMax/HealthMax.xcodeproj">
       </FileRef>
    </Group>
+   <FileSystemSynchronizedGroup
+      location = "group:Core Healthmax"
+      name = "Core Healthmax">
+   </FileSystemSynchronizedGroup>
 </Workspace>

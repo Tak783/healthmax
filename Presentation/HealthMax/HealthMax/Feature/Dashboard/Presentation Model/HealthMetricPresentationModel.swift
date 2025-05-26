@@ -5,6 +5,8 @@
 //  Created by Tak Mazarura on 25/05/2025.
 //
 
+import CoreSharedModels
+import CoreHealthMaxModels
 import CorePresentation
 
 struct HealthMetricPresentationModel: Hashable, Sendable {

@@ -9,7 +9,9 @@ import UIKit
 
 @MainActor
 public struct HapticGenerator {
-    public static func generateHapticImpact(_ impact: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
+    public static func generateHapticImpact(
+        _ impact: UIImpactFeedbackGenerator.FeedbackStyle = .medium
+    ) {
         UIImpactFeedbackGenerator(style: impact).impactOccurred()
     }
 }

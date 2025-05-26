@@ -5,6 +5,8 @@
 //  Created on 24/05/2025.
 //
 
+import CoreHealthKit
+import CoreHealthMaxModels
 import CorePresentation
 import Foundation
 

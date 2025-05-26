@@ -5,6 +5,7 @@
 //  Created on 24/05/2025.
 //
 
+import CoreHealthMaxModels
 import CoreFoundational
 import Foundation
 import QuizFeature
@@ -66,7 +67,6 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
         }
 
         if case let .success(value) = results.2, let height = value {
-            let (feet, inches) = Double.toFeet(height)
             metrics.append(HealthMetric(type: .height, value: HealthMetricValue.double(height), unit: .foot()))
         }
 

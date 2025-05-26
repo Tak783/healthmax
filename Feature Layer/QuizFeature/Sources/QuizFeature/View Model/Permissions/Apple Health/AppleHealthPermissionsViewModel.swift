@@ -6,6 +6,7 @@
 //
 
 import CoreFoundational
+import CoreSharedModels
 import Foundation
 import HealthKit
 
@@ -13,7 +14,7 @@ import HealthKit
 final class AppleHealthPermissionsViewModel: ObservableObject {
     private let healthStore = HKHealthStore()
     
-    @Published var requestStatus = HealthPermissionRequestStatus.unknown
+    @Published var requestStatus = PermissionRequestStatus.unknown
     
     private lazy var readTypes: Set<HKObjectType> = {
         let quantityTypes: [HKQuantityTypeIdentifier] = [

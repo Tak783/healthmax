@@ -5,9 +5,9 @@
 //  Created on 24/05/2025.
 //
 
+import CoreHealthKit
+import CoreHealthMaxModels
 import Foundation
-
-typealias MetricsFetchResult =  Result<[HealthMetric], any Error>
 
 protocol FetchUserBiometricsServiceable {
     func getGender() async -> Result<String?, Error>

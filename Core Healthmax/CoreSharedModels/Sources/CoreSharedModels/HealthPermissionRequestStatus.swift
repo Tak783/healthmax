@@ -1,11 +1,11 @@
 //
-//  HealthPermissionRequestStatus.swift
+//  PermissionRequestStatus.swift
 //  QuizFeature
 //
 //  Created on 23/05/2025.
 //
 
-enum HealthPermissionRequestStatus {
+public enum PermissionRequestStatus {
     case requesting
     case authorised
     case denied

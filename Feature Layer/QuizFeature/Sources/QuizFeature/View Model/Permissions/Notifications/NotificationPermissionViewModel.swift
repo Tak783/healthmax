@@ -6,12 +6,13 @@
 //
 
 import CoreFoundational
+import CoreSharedModels
 import Foundation
 @preconcurrency import UserNotifications
 
 @MainActor
 final class NotificationPermissionViewModel: ObservableObject {
-    @Published private(set) var requestStatus: NotificationPermissionRequestStatus = .unknown
+    @Published private(set) var requestStatus: PermissionRequestStatus = .unknown
     
     private let notificationCenter = UNUserNotificationCenter.current()
 }

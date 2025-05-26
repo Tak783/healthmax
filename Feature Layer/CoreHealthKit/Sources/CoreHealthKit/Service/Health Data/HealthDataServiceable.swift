@@ -7,10 +7,12 @@
 
 import Foundation
 import HealthKit
+import CoreHealthMaxModels
 
-typealias MetricFetchResult =  Result<HealthMetric, any Error>
+public typealias MetricFetchResult = Result<HealthMetric, any Error>
+public typealias MetricsFetchResult = Result<[HealthMetric], any Error>
 
-protocol HealthDataServiceable {
+public protocol HealthDataServiceable: Sendable {
     func fetchAllMetrics(for date: Date) async -> MetricsFetchResult
 
     func fetchWeight(unit: HKUnit) async -> MetricFetchResult

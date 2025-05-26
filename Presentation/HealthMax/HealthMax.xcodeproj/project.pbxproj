@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B63E3F32DE4818E00AC7D36 /* CoreHealthMaxModels in Frameworks */ = {isa = PBXBuildFile; productRef = 8B63E3F22DE4818E00AC7D36 /* CoreHealthMaxModels */; };
+		8B63E3F52DE4818E00AC7D36 /* CoreSharedModels in Frameworks */ = {isa = PBXBuildFile; productRef = 8B63E3F42DE4818E00AC7D36 /* CoreSharedModels */; };
 		8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5812DE0AEB800664E7E /* CoreFoundational */; };
 		8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5832DE0AEB800664E7E /* CorePresentation */; };
 		8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5852DE0AEB800664E7E /* QuizFeature */; };
@@ -58,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B63E3F52DE4818E00AC7D36 /* CoreSharedModels in Frameworks */,
+				8B63E3F32DE4818E00AC7D36 /* CoreHealthMaxModels in Frameworks */,
 				8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */,
 				8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */,
 				8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */,
@@ -132,6 +136,8 @@
 				8B7DB5812DE0AEB800664E7E /* CoreFoundational */,
 				8B7DB5832DE0AEB800664E7E /* CorePresentation */,
 				8B7DB5852DE0AEB800664E7E /* QuizFeature */,
+				8B63E3F22DE4818E00AC7D36 /* CoreHealthMaxModels */,
+				8B63E3F42DE4818E00AC7D36 /* CoreSharedModels */,
 			);
 			productName = HealthMax;
 			productReference = 8B6B5F062DDD1BB0003E4D95 /* HealthMax.app */;
@@ -584,6 +590,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8B63E3F22DE4818E00AC7D36 /* CoreHealthMaxModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreHealthMaxModels;
+		};
+		8B63E3F42DE4818E00AC7D36 /* CoreSharedModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreSharedModels;
+		};
 		8B7DB5812DE0AEB800664E7E /* CoreFoundational */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreFoundational;

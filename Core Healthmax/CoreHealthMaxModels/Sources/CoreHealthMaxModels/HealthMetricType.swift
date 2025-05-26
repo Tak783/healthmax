@@ -5,9 +5,9 @@
 //  Created on 24/05/2025.
 //
 
-import CorePresentation
+import CoreSharedModels
 
-enum HealthMetricType: String, CaseIterable, Codable, Sendable, Hashable {
+public enum HealthMetricType: String, CaseIterable, Codable, Sendable, Hashable {
     case weight
     case steps
     case heartRate

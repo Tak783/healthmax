@@ -6,6 +6,7 @@
 //
 
 import CorePresentation
+import CoreSharedModels
 import CoreFoundational
 import SwiftUI
 
@@ -17,7 +18,7 @@ struct AppleHealthPermissonRequestStepView: View {
     var body: some View {
         contentView
             .onChange(of: appleHealthPermissionsViewModel.requestStatus) { _, newStatus in
-                didUpdateHealthPermissionRequestStatus(newStatus)
+                didUpdatePermissionRequestStatus(newStatus)
             }
     }
 }
@@ -92,7 +93,7 @@ extension AppleHealthPermissonRequestStepView {
 
 // MARK: - Helpers
 extension AppleHealthPermissonRequestStepView {
-    func didUpdateHealthPermissionRequestStatus(_ status: HealthPermissionRequestStatus) {
+    func didUpdatePermissionRequestStatus(_ status: PermissionRequestStatus) {
         switch status {
         case .authorised, .denied:
             quizViewModel.processStepAction(.finishStep)
