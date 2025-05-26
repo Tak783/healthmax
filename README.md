@@ -160,7 +160,8 @@
 * Layer dependencies are used vertically: each module can import from layers below or in the same layer,never above
 * In this discussion, the bottom layer is `Core Foundational`, the top layer is `Presentation Layer` 
 
-<img width="1277" alt="README-Architecture" src="https://github.com/user-attachments/assets/cf31758a-86b4-4cfb-a04d-e9ef91a782d3">
+### Architecture Diagram
+<img width="1000" alt="5. Architecture Diagram" src="https://github.com/user-attachments/assets/de66e16d-73a8-47a7-bd23-d7befcda75d0"/>
 
 ### Platform Agnostic Components (Reasoning)
 Every layer that exists below the presentation layer is built with platform-agnostic components for the following reasons.
