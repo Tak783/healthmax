@@ -225,4 +225,5 @@ Consumes Feature Layer packages into presentable view components to be consumed 
 8. Add missing UI states — e.g., when Apple Health permission is skipped
 9. Show notification for re-engagmemt after user closes the app  
 10. Other suggestions as doumented earlier in README
-Thank you for your consideration.
+
+Thank you for your consideration :) 
