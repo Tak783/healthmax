@@ -100,7 +100,6 @@ extension HealthDashboardView {
             .font(.footnote)
             .foregroundColor(.white.opacity(0.8))
             .multilineTextAlignment(.center)
-            .padding(.top, 32)
             .frame(maxWidth: .infinity)
     }
     
