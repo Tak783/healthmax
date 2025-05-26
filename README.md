@@ -176,7 +176,7 @@ Every layer that exists below the presentation layer is built with platform-agno
 
 ## Architectural decisions 
 
-<img width="1277" alt="README-Architecture" src="https://github.com/user-attachments/assets/c7a59d35-ffd2-48f3-b86c-71d70571c401">
+<img width="893" alt="ArchitectureDiagram" src="https://github.com/user-attachments/assets/de66e16d-73a8-47a7-bd23-d7befcda75d0"/>
 
 ### Layers (overview)
 * As seen in the overview, the app has four layers: `Foundation Layer`, `Core Shared Components`, `Feature Layer` and the `Presentation Layer`
