@@ -37,7 +37,7 @@ extension HealthDashboardViewModel: ViewModelLoadable {}
 
 // MARK: - HealthDashboardViewModellable
 extension HealthDashboardViewModel: HealthDashboardViewModellable {
-    public func load() async {
+    func load() async {
         setIsLoading(true)
         
         async let biometricsRequestResult = await biometricsService.fetchAllMetrics()

@@ -19,10 +19,6 @@ let package = Package(
             path: "../../Core Layer/CoreFoundational"
         ),
         .package(
-            name: "CorePresentation",
-            path: "../../Core Presentation/CorePresentation"
-        ),
-        .package(
             name: "CoreHealthMaxModels",
             path: "../Core HealthMax/CoreHealthMaxModels"
         ),
@@ -38,10 +34,6 @@ let package = Package(
                 .product(
                     name: "CoreFoundational",
                     package: "CoreFoundational"
-                ),
-                .product(
-                    name: "CorePresentation",
-                    package: "CorePresentation"
                 ),
                 .product(
                     name: "CoreHealthKit",

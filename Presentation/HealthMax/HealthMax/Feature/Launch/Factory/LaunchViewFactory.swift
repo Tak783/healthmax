@@ -8,6 +8,7 @@
 import CoreHealthMaxModels
 import CoreHealthKit
 import QuizFeature
+import QuizFeatureUI
 import SwiftUI
 
 @MainActor

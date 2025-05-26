@@ -5,7 +5,7 @@
 //  Created by Tak Mazarura on 25/05/2025.
 //
 
-enum BloodType: String, CaseIterable, Identifiable {
+public enum BloodType: String, CaseIterable, Identifiable {
     case aPositive = "A+"
     case aNegative = "A−"
     case bPositive = "B+"
@@ -15,10 +15,9 @@ enum BloodType: String, CaseIterable, Identifiable {
     case oPositive = "O+"
     case oNegative = "O−"
 
-    var id: String { rawValue }
+    public var id: String { rawValue }
     
-    var displayName: String {
+    public var displayName: String {
         rawValue
     }
 }
-

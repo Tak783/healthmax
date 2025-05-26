@@ -8,14 +8,14 @@
 import CorePresentation
 import SwiftUI
 
-public struct MetricsErrorView: View {
-    public let retryAction: () -> Void
+struct MetricsErrorView: View {
+    let retryAction: () -> Void
 
-    public init(retryAction: @escaping () -> Void) {
+    init(retryAction: @escaping () -> Void) {
         self.retryAction = retryAction
     }
 
-    public var body: some View {
+    var body: some View {
         VStack(spacing: DesignSystem.Layout.extraExtraLarge) {
             errorInfoView
             retryButton

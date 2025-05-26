@@ -6,7 +6,6 @@
 //
 
 import CoreSharedModels
-import CorePresentation
 import Foundation
 
 public struct QuizPermissionRequestContent: StepInfoModellable, Codable, Sendable {

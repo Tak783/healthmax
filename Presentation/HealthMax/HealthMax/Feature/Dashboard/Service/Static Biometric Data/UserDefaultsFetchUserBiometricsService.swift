@@ -8,7 +8,6 @@
 import CoreHealthMaxModels
 import CoreFoundational
 import Foundation
-import QuizFeature
 import HealthKit
 
 final class UserDefaultsFetchUserBiometricsService {
@@ -90,6 +89,7 @@ extension UserDefaultsFetchUserBiometricsService: FetchUserBiometricsServiceable
 
 // MARK: - Helpers
 extension UserDefaultsFetchUserBiometricsService {
+    // TODO: - Move to a new swift package
     private func fetch<T>(forKey key: String) async -> Result<T, Error> {
         guard let rawValue = UserDefaults.standard.object(forKey: key) else {
             return .failure(BiometricFetchError.missingValue(forKey: key))

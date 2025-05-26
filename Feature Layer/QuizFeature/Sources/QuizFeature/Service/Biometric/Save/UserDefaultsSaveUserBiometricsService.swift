@@ -5,6 +5,7 @@
 //  Created on 24/05/2025.
 //
 
+import CoreHealthMaxModels
 import Foundation
 
 final class UserDefaultsSaveUserBiometricsService {}
@@ -34,6 +35,7 @@ extension UserDefaultsSaveUserBiometricsService: SaveUserBiometricsServiceable {
 
 // MARK: - Helpers
 extension UserDefaultsSaveUserBiometricsService {
+    // TODO: - Move to a new swift package
     private func save<T>(value: T, forKey key: String) async -> Result<Void, Error> {
         UserDefaults.standard.set(value, forKey: key)
         return .success(())

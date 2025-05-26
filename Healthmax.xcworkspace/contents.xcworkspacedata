@@ -8,13 +8,10 @@
          location = "group:CoreFoundational">
       </FileRef>
    </Group>
-   <Group
-      location = "group:Core Presentation Layer"
-      name = "Core Presentation Layer">
-      <FileRef
-         location = "group:CorePresentation">
-      </FileRef>
-   </Group>
+   <FileSystemSynchronizedGroup
+      location = "group:Core Healthmax"
+      name = "Core Healthmax">
+   </FileSystemSynchronizedGroup>
    <Group
       location = "group:Feature Layer"
       name = "Feature Layer">
@@ -26,14 +23,21 @@
       </FileRef>
    </Group>
    <Group
+      location = "group:Core Presentation Layer"
+      name = "Core Presentation Layer">
+      <FileRef
+         location = "group:CorePresentation">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Presentation"
       name = "Presentation">
       <FileRef
          location = "group:HealthMax/HealthMax.xcodeproj">
       </FileRef>
    </Group>
-   <FileSystemSynchronizedGroup
-      location = "group:Core Healthmax"
-      name = "Core Healthmax">
-   </FileSystemSynchronizedGroup>
+   <Group
+      location = "group:Feature UI"
+      name = "Feature UI">
+   </Group>
 </Workspace>

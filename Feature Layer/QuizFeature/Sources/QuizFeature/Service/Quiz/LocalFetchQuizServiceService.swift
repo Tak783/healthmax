@@ -5,7 +5,9 @@
 //  Created on 23/05/2025.
 //
 
+import CoreHealthMaxModels
 import Foundation
+
 public struct LocalFetchQuizServiceService: Sendable {
     public init() {}
 }
