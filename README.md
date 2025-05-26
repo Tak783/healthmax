@@ -14,16 +14,18 @@ A production-grade health onboarding and metrics dashboard app, designed to maxi
 * Protocol-oriented approach to building, services, view models and test specs to maximise reusability and flexibility  
 
 <p float="left">
-<img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="200" align="left">
-<img src="https://github.com/user-attachments/assets/12e38bb7-8072-4cb9-819a-5a945dfdc152" width="200" align="left">
-<img src="https://github.com/user-attachments/assets/8bb88640-019b-426f-8970-eb2c3aae1dcb" width="200" align="left">
+<img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="150" align="left">
+<img src="https://github.com/user-attachments/assets/12e38bb7-8072-4cb9-819a-5a945dfdc152" width="150" align="left">
+<img src="https://github.com/user-attachments/assets/8bb88640-019b-426f-8970-eb2c3aae1dcb" width="150" align="left">
 <img src="https://github.com/user-attachments/assets/cde1f064-6d1e-407b-a4af-888e859066de" width="200" align="left">
 </p>
 <br clear="all" />
 
 ## 📱 For the Best User Experience
 1. Add Codesigning using your Apple Developer account in the XCode Project Settings
-2. Run Xcode and install it on the device  
+2. Run Xcode and install it on the device
+3. For full experience - Acccept notifications in totality 
+3. For full experience - Acccept Apple Health Permissions in totality   
 3. Delete and reinstall to experience again  
 
 ## 🛠 How It Was Built
