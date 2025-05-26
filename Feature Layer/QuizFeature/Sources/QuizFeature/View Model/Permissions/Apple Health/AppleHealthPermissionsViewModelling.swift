@@ -8,7 +8,7 @@
 import CoreSharedModels
 
 @MainActor
-protocol AppleHealthPermissionsViewModelling {
+public protocol AppleHealthPermissionsViewModelling {
     var requestStatus: PermissionRequestStatus { get }
     
     func requestAuthorization() async

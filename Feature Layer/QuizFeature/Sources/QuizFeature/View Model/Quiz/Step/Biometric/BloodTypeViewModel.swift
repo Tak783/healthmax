@@ -11,15 +11,15 @@ import CoreFoundational
 import SwiftUI
 
 @MainActor
-final class BloodTypeViewModel: ObservableObject {
-    @Published var bloodType: BloodType
-    @Published var didSave = false
+public final class BloodTypeViewModel: ObservableObject {
+    @Published public var bloodType: BloodType
+    @Published public var didSave = false
     
-    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+    public private(set) var userBiometricSevice: SaveUserBiometricsServiceable
  
-    let quizBiometricRequestContent: QuizBiometricRequestContent
+    public let quizBiometricRequestContent: QuizBiometricRequestContent
     
-    init(
+    public init(
         bloodType: BloodType = .aPositive,
         quizBiometricRequestContent: QuizBiometricRequestContent,
         userBiometricSevice: SaveUserBiometricsServiceable
@@ -32,18 +32,18 @@ final class BloodTypeViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension BloodTypeViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         true
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
 }
 
 // MARK: - BiometricViewModelling
 extension BloodTypeViewModel: BiometricViewModelling {
-    func didRequestToSaveMetric() async {
+    public func didRequestToSaveMetric() async {
         let result = await userBiometricSevice.saveBloodType(bloodType.displayName)
         switch result {
         case .success:

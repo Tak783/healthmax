@@ -6,7 +6,7 @@
 //
 
 @MainActor
-protocol BiometricViewModelling {
+public protocol BiometricViewModelling {
     var userBiometricSevice: SaveUserBiometricsServiceable { get }
     
     func didRequestToSaveMetric() async

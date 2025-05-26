@@ -9,19 +9,18 @@ import Foundation
 import CoreFoundational
 
 @MainActor
-final class HeightViewModel: ObservableObject {
-    @Published var feet: Int
-    @Published var inches: Int
-    @Published var didSave = false
+public final class HeightViewModel: ObservableObject {
+    @Published public var feet: Int
+    @Published public var inches: Int
+    @Published public var didSave = false
     
-    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+    public private(set) var userBiometricSevice: SaveUserBiometricsServiceable
     
-    let feetRange = 3...7
-    let inchesRange = 0...11
-
-    let quizBiometricRequestContent: QuizBiometricRequestContent
+    public let feetRange = 3...7
+    public let inchesRange = 0...11
+    public let quizBiometricRequestContent: QuizBiometricRequestContent
     
-    init(
+    public init(
         defaultFeet: Int = 5,
         defaultInches: Int = 7,
         quizBiometricRequestContent: QuizBiometricRequestContent,
@@ -36,18 +35,18 @@ final class HeightViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension HeightViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         true
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
 }
 
 // MARK: - BiometricViewModelling
 extension HeightViewModel: BiometricViewModelling {
-    func didRequestToSaveMetric() async {
+    public func didRequestToSaveMetric() async {
         let combinedHeightInFeet = Double.combinedHeightInFeet(feet: feet, inches: inches)
         let result = await userBiometricSevice.saveHeight(combinedHeightInFeet)
         switch result {

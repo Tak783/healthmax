@@ -11,10 +11,10 @@ import Foundation
 import HealthKit
 
 @MainActor
-final class AppleHealthPermissionsViewModel: ObservableObject {
+public final class AppleHealthPermissionsViewModel: ObservableObject {
     private let healthStore = HKHealthStore()
     
-    @Published var requestStatus = PermissionRequestStatus.unknown
+    @Published public var requestStatus = PermissionRequestStatus.unknown
     
     private lazy var readTypes: Set<HKObjectType> = {
         let quantityTypes: [HKQuantityTypeIdentifier] = [
@@ -38,11 +38,13 @@ final class AppleHealthPermissionsViewModel: ObservableObject {
         
         return Set(quantityHKTypes + categoryHKTypes)
     }()
+    
+    public init() {}
 }
 
 // MARK: - AppleHealthPermissionsViewModelling
 extension AppleHealthPermissionsViewModel: AppleHealthPermissionsViewModelling {
-    func requestAuthorization() async {
+    public func requestAuthorization() async {
         guard HKHealthStore.isHealthDataAvailable() else {
             safePrint("Health data not available on this device.")
             return

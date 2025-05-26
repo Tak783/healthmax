@@ -6,6 +6,7 @@
 //
 
 import CorePresentation
+import QuizFeature
 import SwiftUI
 
 struct QuizBloodTypePickerView: View {

@@ -7,6 +7,7 @@
 
 import CorePresentation
 import CoreFoundational
+import QuizFeature
 import SwiftUI
 
 struct QuizQuestionStepView: View {

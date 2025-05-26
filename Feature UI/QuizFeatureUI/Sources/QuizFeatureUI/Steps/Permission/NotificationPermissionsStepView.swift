@@ -8,6 +8,7 @@
 import CoreFoundational
 import CorePresentation
 import CoreSharedModels
+import QuizFeature
 import SwiftUI
 
 struct NotificationPermissionsStepView: View {

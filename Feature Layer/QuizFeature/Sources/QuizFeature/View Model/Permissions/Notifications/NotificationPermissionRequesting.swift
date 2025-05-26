@@ -9,7 +9,7 @@ import CoreSharedModels
 import SwiftUI
 
 @MainActor
-protocol NotificationPermissionRequesting: ObservableObject {
+public protocol NotificationPermissionRequesting: ObservableObject {
     var requestStatus: PermissionRequestStatus { get }
 
     func requestAuthorization() async

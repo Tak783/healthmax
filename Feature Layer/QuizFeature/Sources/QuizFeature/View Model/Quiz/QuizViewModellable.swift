@@ -6,7 +6,7 @@
 //
 
 @MainActor
-protocol QuizViewModellable {
+public protocol QuizViewModellable {
     func loadQuiz() async
     
     func currentStep() -> QuizStep?

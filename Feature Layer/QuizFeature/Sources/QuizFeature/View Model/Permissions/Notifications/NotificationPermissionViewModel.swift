@@ -11,15 +11,17 @@ import Foundation
 @preconcurrency import UserNotifications
 
 @MainActor
-final class NotificationPermissionViewModel: ObservableObject {
-    @Published private(set) var requestStatus: PermissionRequestStatus = .unknown
+public final class NotificationPermissionViewModel: ObservableObject {
+    @Published public private(set) var requestStatus: PermissionRequestStatus = .unknown
     
     private let notificationCenter = UNUserNotificationCenter.current()
+    
+    public init() {}
 }
 
 // MARK: - NotificationPermissionRequesting
 extension NotificationPermissionViewModel: NotificationPermissionRequesting {
-    func requestAuthorization() async {
+    public func requestAuthorization() async {
         requestStatus = .requesting
         
         let settings = await notificationCenter.notificationSettings()

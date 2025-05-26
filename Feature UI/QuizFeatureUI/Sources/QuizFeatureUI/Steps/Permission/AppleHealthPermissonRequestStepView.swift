@@ -8,6 +8,7 @@
 import CorePresentation
 import CoreSharedModels
 import CoreFoundational
+import QuizFeature
 import SwiftUI
 
 struct AppleHealthPermissonRequestStepView: View {

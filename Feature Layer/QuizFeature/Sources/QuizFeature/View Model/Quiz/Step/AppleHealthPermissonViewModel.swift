@@ -8,9 +8,9 @@
 import Foundation
 
 @MainActor
-final class QuizPermissonStepViewModel: ObservableObject {
-    private(set) var currentStep: QuizStep
-    private(set) var permissionContent: QuizPermissionRequestContent
+public final class QuizPermissonStepViewModel: ObservableObject {
+    public private(set) var currentStep: QuizStep
+    public private(set) var permissionContent: QuizPermissionRequestContent
     
     public init(
         currentStep: QuizStep,
@@ -23,11 +23,11 @@ final class QuizPermissonStepViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension QuizPermissonStepViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         true
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
 }

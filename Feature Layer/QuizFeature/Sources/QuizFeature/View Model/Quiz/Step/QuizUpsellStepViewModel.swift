@@ -8,9 +8,9 @@
 import Foundation
 
 @MainActor
-final class QuizUpsellStepViewModel: ObservableObject {
-    private(set) var currentStep: QuizStep
-    private(set) var upsellContent: QuizUpsellStepContent
+public final class QuizUpsellStepViewModel: ObservableObject {
+    public private(set) var currentStep: QuizStep
+    public private(set) var upsellContent: QuizUpsellStepContent
     
     public init(
         currentStep: QuizStep,
@@ -23,11 +23,11 @@ final class QuizUpsellStepViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension QuizUpsellStepViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         true
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
 }

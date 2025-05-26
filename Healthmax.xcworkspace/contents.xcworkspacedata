@@ -30,14 +30,17 @@
       </FileRef>
    </Group>
    <Group
+      location = "group:Feature UI"
+      name = "Feature UI">
+      <FileRef
+         location = "group:QuizFeatureUI">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Presentation"
       name = "Presentation">
       <FileRef
          location = "group:HealthMax/HealthMax.xcodeproj">
       </FileRef>
-   </Group>
-   <Group
-      location = "group:Feature UI"
-      name = "Feature UI">
    </Group>
 </Workspace>

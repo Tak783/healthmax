@@ -8,6 +8,7 @@
 import CorePresentation
 import CoreFoundational
 import Foundation
+import QuizFeature
 import SwiftData
 import SwiftUI
 

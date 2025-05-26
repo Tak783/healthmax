@@ -1,27 +1,28 @@
 //
-//  WeightPickerView.swift
+//  HeightPickerView.swift
 //  QuizFeature
 //
 //  Created on 23/05/2025.
 //
 
 import CorePresentation
+import QuizFeature
 import SwiftUI
 
-struct QuizWeightPickerStepView: View {
+struct QuizHeightPickerStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel
-    @ObservedObject var weightViewModel: WeightViewModel
-
+    @ObservedObject var heightViewModel: HeightViewModel
+    
     var body: some View {
         contentView
-            .onChange(of: weightViewModel.didSave) { oldValue, newValue in
+            .onChange(of: heightViewModel.didSave) { oldValue, newValue in
                 quizViewModel.processStepAction(.finishStep)
             }
     }
 }
 
 // MARK: - Main View
-extension QuizWeightPickerStepView {
+extension QuizHeightPickerStepView {
     private var contentView: some View {
         VStack{
             questionLabel
@@ -35,28 +36,39 @@ extension QuizWeightPickerStepView {
 }
 
 // MARK: - Supporting Views
-extension QuizWeightPickerStepView {
+extension QuizHeightPickerStepView {
     private var questionLabel: some View {
         HStack {
-            Text(weightViewModel.quizBiometricRequestContent.question)
+            Text(heightViewModel.quizBiometricRequestContent.question)
                 .font(DesignSystem.DSFont.title(weight: .bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.leading)
-                .padding(.top, DesignSystem.Layout.extraLarge)
+                .padding()
             Spacer()
         }
-        .padding(.horizontal)
     }
     
     private var pickerView: some View {
         VStack {
-            Picker("Weight", selection: $weightViewModel.weight) {
-                ForEach(weightViewModel.range, id: \.self) { value in
-                    Text("\(value) \(weightViewModel.unit)").tag(value)
+           HStack {
+               Picker("Feet", selection: $heightViewModel.feet) {
+                    ForEach(heightViewModel.feetRange, id: \.self) { ft in
+                        Text("\(ft) ft").tag(ft)
+                    }
                 }
+                .pickerStyle(.wheel)
+                .disableTabViewSwipeGesture(false)
+                .frame(width: 100)
+
+               Picker("Inches", selection: $heightViewModel.inches) {
+                    ForEach(heightViewModel.inchesRange, id: \.self) { inch in
+                        Text("\(inch) in").tag(inch)
+                    }
+                }
+                .pickerStyle(.wheel)
+                .frame(width: 100)
             }
-            .pickerStyle(.wheel)
-            .disableTabViewSwipeGesture(false)
+            .frame(height: 150)
         }
     }
     
@@ -65,7 +77,7 @@ extension QuizWeightPickerStepView {
         HStack(alignment: .center) {
             HapticImpactButton {
                 Task {
-                    await weightViewModel.didRequestToSaveMetric()
+                    await heightViewModel.didRequestToSaveMetric()
                 }
             } label: {
                 HStack {

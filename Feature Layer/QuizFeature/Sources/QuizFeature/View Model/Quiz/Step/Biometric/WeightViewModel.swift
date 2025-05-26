@@ -9,17 +9,17 @@ import CoreFoundational
 import Foundation
 
 @MainActor
-final class WeightViewModel: ObservableObject {
-    @Published var weight: Int
-    @Published var didSave = false
+public final class WeightViewModel: ObservableObject {
+    @Published public var weight: Int
+    @Published public var didSave = false
     
-    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+    public let userBiometricSevice: SaveUserBiometricsServiceable
     
-    let range: ClosedRange<Int>
-    let unit: String
-    let quizBiometricRequestContent: QuizBiometricRequestContent
+    public let range: ClosedRange<Int>
+    public let unit: String
+    public let quizBiometricRequestContent: QuizBiometricRequestContent
     
-    init(
+    public init(
         defaultWeight: Int = 70,
         range: ClosedRange<Int> = 20...200,
         unit: String = "kg",
@@ -36,18 +36,18 @@ final class WeightViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension WeightViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         true
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
 }
 
 // MARK: - BiometricViewModelling
 extension WeightViewModel: BiometricViewModelling {
-    func didRequestToSaveMetric() async {
+    public func didRequestToSaveMetric() async {
         let result = await userBiometricSevice.saveWeight(weight)
         switch result {
         case .success:

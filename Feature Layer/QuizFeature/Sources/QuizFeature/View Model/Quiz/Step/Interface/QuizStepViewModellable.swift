@@ -6,7 +6,7 @@
 //
 
 @MainActor
-protocol QuizStepViewModellable {
+public protocol QuizStepViewModellable {
     func isContinueButtonVisible() -> Bool
     func isContinueButtonEnabled() -> Bool
 }

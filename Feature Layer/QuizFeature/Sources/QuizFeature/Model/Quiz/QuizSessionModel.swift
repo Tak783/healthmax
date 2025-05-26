@@ -30,7 +30,7 @@ public final class QuizSessionModel {
 
 // MARK: - Helpers
 extension QuizSessionModel {
-    func recordAnswer(_ answer: QuizAnswer) {
+    public func recordAnswer(_ answer: QuizAnswer) {
         if let index = answers.firstIndex(where: { $0.questionID == answer.questionID }) {
             answers[index] = answer
         } else {
@@ -38,14 +38,14 @@ extension QuizSessionModel {
         }
     }
     
-    func answer(forQuestionID questionID: String) -> QuizAnswer? {
+    public func answer(forQuestionID questionID: String) -> QuizAnswer? {
         guard let answer = answers.first(where: { $0.questionID == questionID }) else {
             return nil
         }
         return answer
     }
     
-    func updateCurrentStep(withIndex nextIndex: Int) {
+    public func updateCurrentStep(withIndex nextIndex: Int) {
         guard quiz.steps.indices.contains(nextIndex) else {
             return
         }

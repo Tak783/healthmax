@@ -9,28 +9,28 @@ import CoreFoundational
 import Foundation
 
 @MainActor
-final class DateOfBirthViewModel: ObservableObject {
-    @Published var dateOfBirth: Date
-    @Published var didSave = false
+public final class DateOfBirthViewModel: ObservableObject {
+    @Published public var dateOfBirth: Date
+    @Published public var didSave = false
     
-    private(set) var userBiometricSevice: SaveUserBiometricsServiceable
+    public let userBiometricSevice: SaveUserBiometricsServiceable
    
-    let oldestSelectableDate: Date
-    let quizBiometricRequestContent: QuizBiometricRequestContent
+    public let oldestSelectableDate: Date
+    public let quizBiometricRequestContent: QuizBiometricRequestContent
     
-    static let defaultDateOfBirth = Calendar.current.date(
+    public static let defaultDateOfBirth = Calendar.current.date(
         byAdding: .year,
         value: -14,
         to: Date()
     )!
     
-    static let oldestSelectableDateOfBirth = Calendar.current.date(
+    public static let oldestSelectableDateOfBirth = Calendar.current.date(
         byAdding: .year,
         value: -120,
         to: Date()
     )!
     
-    init(
+    public init(
         defaultDOB: Date = DateOfBirthViewModel.defaultDateOfBirth,
         oldestSelectableDate: Date = DateOfBirthViewModel.oldestSelectableDateOfBirth,
         quizBiometricRequestContent: QuizBiometricRequestContent,
@@ -45,18 +45,18 @@ final class DateOfBirthViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension DateOfBirthViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         true
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
 }
 
 // MARK: - BiometricViewModelling
 extension DateOfBirthViewModel: BiometricViewModelling {
-    func didRequestToSaveMetric() async {
+    public func didRequestToSaveMetric() async {
         let result = await userBiometricSevice.saveBirthday(dateOfBirth)
         switch result {
         case .success:

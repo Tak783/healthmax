@@ -8,12 +8,12 @@
 import Foundation
 
 @MainActor
-final class QuizQuestionStepViewModel: ObservableObject {
-    private(set) var currentStep: QuizStep
-    private(set) var questionContent: QuizQuestionStepContent
+public final class QuizQuestionStepViewModel: ObservableObject {
+    private(set) public var currentStep: QuizStep
+    private(set) public var questionContent: QuizQuestionStepContent
     
-    @Published var didAnswerQuestion: Bool = false
-    @Published var answer: QuizAnswer
+    @Published public var didAnswerQuestion: Bool = false
+    @Published public var answer: QuizAnswer
     
     public init(
         currentStep: QuizStep,
@@ -35,15 +35,15 @@ final class QuizQuestionStepViewModel: ObservableObject {
 
 // MARK: - QuizStepViewModellable
 extension QuizQuestionStepViewModel: QuizStepViewModellable {
-    func isContinueButtonVisible() -> Bool {
+    public func isContinueButtonVisible() -> Bool {
         isDataEntryChoiceStep()
     }
     
-    func isContinueButtonEnabled() -> Bool {
+    public func isContinueButtonEnabled() -> Bool {
         true
     }
     
-    func isDataEntryChoiceStep() -> Bool {
+    public func isDataEntryChoiceStep() -> Bool {
         switch questionContent.answerType {
         case .string, .int, .double:
             return true
@@ -55,7 +55,7 @@ extension QuizQuestionStepViewModel: QuizStepViewModellable {
 
 // MARK: - Quiz Choice Selection
 extension QuizQuestionStepViewModel {
-    func didSelectAnswerChoice(_ choice: QuizAnswerChoice) {
+    public func didSelectAnswerChoice(_ choice: QuizAnswerChoice) {
         switch questionContent.answerType {
         case .singleChoice:
             answer.answerValue = .choice(choice.id)
