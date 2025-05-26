@@ -2,7 +2,7 @@
 //  BloodType.swift
 //  QuizFeature
 //
-//  Created by Tak Mazarura on 25/05/2025.
+//  Created on 25/05/2025.
 //
 
 public enum BloodType: String, CaseIterable, Identifiable {
