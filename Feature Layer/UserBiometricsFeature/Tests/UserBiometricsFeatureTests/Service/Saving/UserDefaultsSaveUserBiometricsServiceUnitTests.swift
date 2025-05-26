@@ -63,7 +63,7 @@ extension UserDefaultsSaveUserBiometricsServiceTests: SaveUserBiometricsServiceT
     }
 }
 
-// MARK: - Helpers
+// MARK: - Factory Helpers
 extension UserDefaultsSaveUserBiometricsServiceTests {
     func make_sut() -> UserDefaultsSaveUserBiometricsService {
         clearUserDefaults()
