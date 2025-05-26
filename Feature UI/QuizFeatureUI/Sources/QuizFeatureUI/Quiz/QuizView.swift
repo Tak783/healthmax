@@ -34,29 +34,7 @@ public struct QuizView: View {
     public var body: some View {
         ZStack {
             DesignSystem.DSGradient.background.ignoresSafeArea()
-            
-            VStack(spacing: DesignSystem.Layout.medium) {
-                if quizViewModel.isLoading {
-                    loadingSpinner
-                } else {
-                    if
-                        let quizSessionModel = quizViewModel.quizSessionModel,
-                        let currentStep = quizViewModel.currentStep()
-                    {
-                        quizProgressHeaderView(
-                            currentStep: currentStep
-                        )
-                        .padding(.horizontal)
-                        .padding(.top)
-                        
-                        quizStepView(
-                            quizSessionModel: quizSessionModel,
-                            currentStep: currentStep
-                        )
-                        .padding(.horizontal)
-                    }
-                }
-            }
+            contentView
         }
         .navigationBarHidden(true)
         .toolbar {
@@ -73,6 +51,34 @@ public struct QuizView: View {
         }
         .onChange(of: quizViewModel.didFinishQuiz) { _, didFinishQuiz in
             update(withDidFinishQuizStatus: didFinishQuiz)
+        }
+    }
+}
+
+// MARK: - Quiz View
+extension QuizView {
+    private var contentView: some View {
+        VStack(spacing: DesignSystem.Layout.medium) {
+            if quizViewModel.isLoading {
+                loadingSpinner
+            } else {
+                if
+                    let quizSessionModel = quizViewModel.quizSessionModel,
+                    let currentStep = quizViewModel.currentStep()
+                {
+                    quizProgressHeaderView(
+                        currentStep: currentStep
+                    )
+                    .padding(.horizontal)
+                    .padding(.top)
+                    
+                    quizStepView(
+                        quizSessionModel: quizSessionModel,
+                        currentStep: currentStep
+                    )
+                    .padding(.horizontal)
+                }
+            }
         }
     }
 }
@@ -165,7 +171,7 @@ extension QuizView {
                     quizViewModel: quizViewModel,
                     weightViewModel: weightViewModel
                 )
-            
+                
             }
         case .permission(let permissionStepContent):
             let quizPermissonStepViewModel = QuizPermissonStepViewModel(
@@ -203,7 +209,7 @@ extension QuizView {
             Spacer()
         }
     }
-   
+    
     private func quizProgressHeaderView(currentStep: QuizStep) -> some View {
         HStack(alignment: .center, spacing: DesignSystem.Layout.medium) {
             if currentStep.showProgressBar {
@@ -233,7 +239,7 @@ extension QuizView {
             await quizViewModel.loadQuiz()
         }
     }
-
+    
     private func update(withDidFinishQuizStatus didFinishQuiz: Bool) {
         guard didFinishQuiz else {
             return

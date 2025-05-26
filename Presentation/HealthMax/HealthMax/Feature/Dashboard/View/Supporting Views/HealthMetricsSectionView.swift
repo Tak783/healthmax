@@ -15,17 +15,27 @@ struct HealthMetricsSectionView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: DesignSystem.Layout.medium) {
-            Text(title)
-                .font(DesignSystem.DSFont.headline())
-                .foregroundColor(.white)
-            
-            LazyVGrid(
-                columns: [GridItem(.flexible()), GridItem(.flexible())],
-                spacing: DesignSystem.Layout.large
-            ) {
-                ForEach(metrics, id: \.self) { metric in
-                    HealthMetricCardView(metric: metric)
-                }
+            titleView
+            gridView
+        }
+    }
+}
+
+// MARK: - Supporting Views
+extension HealthMetricsSectionView {
+    private var titleView: some View {
+        Text(title)
+            .font(DesignSystem.DSFont.headline())
+            .foregroundColor(.white)
+    }
+    
+    private var gridView: some View {
+        LazyVGrid(
+            columns: [GridItem(.flexible()), GridItem(.flexible())],
+            spacing: DesignSystem.Layout.large
+        ) {
+            ForEach(metrics, id: \.self) { metric in
+                HealthMetricCardView(metric: metric)
             }
         }
     }

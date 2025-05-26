@@ -10,7 +10,7 @@ import CoreFoundational
 import Foundation
 import HealthKit
 
-public final class UserDefaultsFetchUserBiometricsService {
+public struct UserDefaultsFetchUserBiometricsService {
     enum BiometricFetchError: Error {
         case allValuesMissing
         case missingValue(forKey: String)

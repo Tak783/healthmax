@@ -23,10 +23,10 @@ struct EngagementNotificationScheduler {
             
             let content = UNMutableNotificationContent()
             content.title = "HealthMax.AI"
-            content.body = "Your personalised plan to maximise your health is now ready"
+            content.body = "Your personalised plan to maximise your health is now ready. Open app to see 🎉"
             content.sound = .default
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 14, repeats: false)
             
             let request = UNNotificationRequest(
                 identifier: "personalisedPlanReady",

@@ -8,7 +8,7 @@
 import CoreHealthMaxModels
 import Foundation
 
-public final class UserDefaultsSaveUserBiometricsService {
+public struct UserDefaultsSaveUserBiometricsService {
     public init() {}
 }
 

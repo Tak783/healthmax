@@ -12,10 +12,6 @@ import SwiftUI
 struct HealthMetricCardView: View {
     let metric: HealthMetricPresentationModel
     
-    init(metric: HealthMetricPresentationModel) {
-        self.metric = metric
-    }
-    
     var body: some View {
         VStack(alignment: .leading, spacing: DesignSystem.Layout.extraSmall) {
             imageView(withImage: metric.icon)
@@ -31,7 +27,7 @@ struct HealthMetricCardView: View {
 
 // MARK: - Supporting Views
 private extension HealthMetricCardView {
-    var titleView: some View {
+    private var titleView: some View {
         Text(metric.title)
             .font(.caption)
             .fontWeight(.semibold)
@@ -40,7 +36,7 @@ private extension HealthMetricCardView {
         
     }
     
-    var metricView: some View {
+    private var metricView: some View {
         Text(metric.value)
             .font(.footnote)
             .fontWeight(.bold)
