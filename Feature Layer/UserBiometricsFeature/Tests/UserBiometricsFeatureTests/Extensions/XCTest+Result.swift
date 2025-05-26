@@ -8,7 +8,7 @@
 import XCTest
 
 extension XCTest {
-    func XCTAssertResultSuccess<T>(
+    func XCTAssertResultVoidSuccess<T>(
         _ result: Result<T, any Error>,
         file: StaticString = #filePath,
         line: UInt = #line,
@@ -19,6 +19,20 @@ extension XCTest {
             XCTAssertTrue(true, file: file, line: line)
         case .failure(let error):
             XCTFail("\(message()) — Error: \(error)", file: file, line: line)
+        }
+    }
+    
+    func XCTAssertResultSuccess<T: Equatable>(
+        _ result: Result<T, any Error>,
+        equals expected: T,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        switch result {
+        case .success(let value):
+            XCTAssertEqual(value, expected, file: file, line: line)
+        case .failure(let error):
+            XCTFail("Expected success with value \(expected), got failure: \(error)", file: file, line: line)
         }
     }
 }
