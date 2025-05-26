@@ -13,6 +13,14 @@ A production-grade health onboarding and metrics dashboard app, designed to maxi
 * Onboarding flow designed and implemented with strategies to maximise Funnel Conversion, Data Collection & User retention  
 * Protocol-oriented approach to building, services, view models and test specs to maximise reusability and flexibility  
 
+<p float="left">
+<img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="200" align="left">
+<img src="https://github.com/user-attachments/assets/12e38bb7-8072-4cb9-819a-5a945dfdc152" width="200" align="left">
+<img src="https://github.com/user-attachments/assets/8bb88640-019b-426f-8970-eb2c3aae1dcb" width="200" align="left">
+<img src="https://github.com/user-attachments/assets/cde1f064-6d1e-407b-a4af-888e859066de" width="200" align="left">
+</p>
+<br clear="all" />
+
 ## 📱 For the Best User Experience
 1. Add Codesigning using your Apple Developer account in the XCode Project Settings
 2. Run Xcode and install it on the device  
@@ -210,7 +218,9 @@ Consumes Feature Layer packages into presentable view components to be consumed 
 3. A separate test helper Swift package to support extensions like `XCTest+Result`  
 4. Move permission request views and logic from `QuizFeature` into standalone feature packages  
 5. Move `Coordinator` into `CorePresentation` or a dedicated navigation package  
-6. Move generic supporting views into a shared components package (same with `DesignSystem`)  
-7. Add missing UI states — e.g., when Apple Health permission is skipped  
-
+6. Move generic supporting views into a shared components package (same with `DesignSystem`)
+7. Use a new quiz service instead of saving data manually 
+8. Add missing UI states — e.g., when Apple Health permission is skipped
+9. Show notification for re-engagmemt after user closes the app  
+10. Other suggestions as doumented earlier in README
 Thank you for your consideration.
