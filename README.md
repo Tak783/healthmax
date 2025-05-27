@@ -25,8 +25,8 @@
 ## 📱 For the Best User Experience
 1. Add Codesigning using your Apple Developer account in the XCode Project Settings
 2. Run Xcode and install it on the device
-3. 🚨 For full experience - Accept notifications in totality 
-3. 🚨 For full experience - Accept Apple Health Permissions in totality   
+3. 🚨 For full experience - Accept notifications in totality (close the app and wait 30 seconds after onboarding)
+3. 🚨 For full experience - Accept Apple Health Permissions in totality
 3. Delete and reinstall to experience again  
 
 ## 🛠 How It Was Built
@@ -37,7 +37,7 @@
 
 * High-quality UX, to maximise engagement and data collection  
 * As close to a production-grade monetisable state as possible within a reasonable timeframe
-* Components I could reuse in other apps
+* "Two birds one stone" - Components I could reuse in other apps, or the foundation of a new app
 
 #### Quiz was used instead of the standard form:
 
@@ -48,7 +48,8 @@
 #### Why does the quiz have “Upsell steps” and a  progress bar
 
 * To keep the user motivated to finish the quiz  
-* To keep selling to the user usefulness of the app  
+* To keep selling to the user usefulness of the app
+* To prime them for usage and paywall conversion 
 
 #### Why is quiz data entry at the bottom of the screen
 
@@ -59,7 +60,7 @@
 #### Why request notifications during onboarding?
 
 * Early access to notifications can re-engage users if they drop off at the paywall, or in further quiz steps  
-* Notifications requested with carrot of “personalised plan” to drive permission for notifications and re-engagement  
+* Notifications requested with carrot of “personalised plan” to drive permission for notifications and re-engagement
 
 #### Dashboard appearance
 
@@ -69,9 +70,9 @@
 ### 🤝 Assumptions
 
 1. The metric system is used over the imperial system. In production, both should be supported  
-2. Assumes the UI/UX is intended to be close to production-grade within a reasonable timeframe  
-3. Happy path only — assumed sufficient for the challenge (sad paths can be added later i.e. skip quiz step)  
-4. Retry queues for API persistence were omitted — can be added later if needed  
+2. Assumes the UI/UX is intended to be close to production-grade within a reasonable timeframe (bar accessibility, localisation)
+3. Happy path only — assumed sufficient for the challenge (sad paths can be added later i.e. skip quiz step, open in previous state/step)  
+4. Retry queues and failed API request persistence were omitted — can be added later if needed  
 5. Mock layer is not needed as a HealthKit was used immediatley 
 
 ### 🎨 Approach: Design Process
@@ -128,7 +129,7 @@
 * Then I can see the static data entered in AC1 
 * And I see Apple Health data if available, as given access to in AC2
 
-### ⚖️ Approach: Balancing Speed and Quality
+## ⚖️ Approach: Balancing Speed and Quality
 
 1. This app was built in a robust way to demonstrate skills set  
 2. Some parts were built in a scrappy, fast way to demonstrate the ability to move quickly and make tradeoffs (Testing, Accessibility, Structure)
@@ -136,29 +137,30 @@
 4. The balance between quality and speed varies depending on product maturity, feature phase/priorities, company lifecycle, and mulifaceted risk tolerance  
 5. This project demonstrates one version of that balance — other versions are valid (e.g. more speed, less quality or vice versa)  
 
-### ✅ Unit, Integration & UI Tests
+## ✅ Unit, Integration & UI Tests
 * Given the challenge was focused more on UI/UX, unit and integration tests were less prioritised  
 * Unit tests were written to demonstrate skillset in `CoreSharedModelsTests`, `UserBiometricsFeatureTests`  
 * One UI test was written in `LaunchViewUITests`  
-* No integration tests were written — in other projects, more tests, including Integration tests, would be expected and written with TDD
+* No integration tests were written — in other projects, more tests, including Integration tests, would be written with TDD
     * See example from an older poject: [Stocks repo](https://github.com/Tak783/Stocks/tree/main/Layers/Feature/StocksFeedFeature/Tests/StocksFeedFeatureTests))
     * Other more recent examples can be supplied 
 * `XCTest` was chosen over `SwiftTesting` for speed and familiarity 
 
-### ⏩ Not Done (for Speed)
+## ⏩ Not Done (for Speed)
 1. Accessibility / Dynamic Type  
 2. Localisation of strings and metric systems  
 3. Back buttons or skip buttons in the quiz
 4. Further modularisation
-5. Sad paths + paywall example
+5. Sad paths, resotrative paths, + paywall example
+6. Integration tests or extensive unit & UI tests for everything (did a few to demostrate)
 
-### 🧱 Architecture
+## 🧱 Architecture
 ### Architecture 
 * App is built on top of multiple platform-agnostic frameworks that exist inside their own projects, split into layers. Reasoning and design are discussed in the sections below
 * Each layer project(framework) can be built and tested on its own, including the Presentation Layer Application targets.
 * There are six layers: `Core Foundational`, `Core Healthmax`, `Feature Layer`, `Core Presentation Layer`, `Feature UI`, the `Presentation Layer` 
 * Layer dependencies are used vertically: each module can import from layers below or in the same layer,never above
-* In this discussion, the bottom layer is `Core Foundational`, the top layer is `Presentation Layer` 
+* In this discussion, the bottom layer is `Foundation Layer`, the top layer is `Presentation Layer` 
 
 ### Architecture Diagram
 <img width="1000" alt="5. Architecture Diagram" src="https://github.com/user-attachments/assets/de66e16d-73a8-47a7-bd23-d7befcda75d0"/>
@@ -172,7 +174,7 @@ Every layer that exists below the presentation layer is built with platform-agno
 * Applied Engineering business organisation considerations for *open-sourcing* capability, *hiring* and *demo apps* as layer components are independently relying on abstractions rather than concrete implementation.
 
 ### Design and Development (Discussion) 
-* Built applying SOLID principles with a relatively extensive Unit and Integration testing suite.
+* Built applying SOLID principles with Unit and Integration testing suite in some areas.
 * Parts of app were built using TDD, ensuring that functionality works as expected and also providing protection from regressions 
 * More UI, Unit and Integrations could have been added as discussed in the improvements section
 * Business and engineering organisations' considerations were made when constructing this project, as discussed in the previous section.
@@ -218,7 +220,7 @@ Consumes Feature Layer packages into presentable view components to be consumed 
 * `Healthmax`: simple app to collect health data manually and using Apple Health to then present users with a customised plan to maximise their health 
 * Other apps such as `HeartGuide` or `FitnessMaxiOS` could be built to re-use higher-level layers
 
-### 🔮 Future Changes
+## 🔮 Future Changes
 1. Simple Open AI analysis of user data and a custom plan for what the user could do to maximise their health 
 2. More unit, integration, and UI tests across all modules  
 3. A separate test helper Swift package to support extensions like `XCTest+Result`  

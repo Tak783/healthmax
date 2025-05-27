@@ -21,6 +21,7 @@ extension LocalFetchQuizServiceService: FetchQuizServiceable {
 
 // MARK: - Factory
 extension LocalFetchQuizServiceService {
+    /// The `Quiz` object is codable so can be returned from a Backend Service or Raw JSON
     private static let onboardingQuiz = Quiz(
         id: UUID().uuidString,
         name: "BiometricOnboarding",
