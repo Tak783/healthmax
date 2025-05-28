@@ -12,7 +12,7 @@
 * Haptic Feedback on button taps, Elegant UI  
 * SwiftUI Coordinator and Router for App Navigation  
 * Onboarding flow designed and implemented with strategies to maximise Funnel Conversion, Data Collection & User retention  
-* Protocol-oriented approach to building, services, view models and test specs to maximise reusability and flexibility  
+* Protocol-oriented approach to building, services, view models and test specs to maximise reusability, flexibility and testability
 
 <p float="left">
 <img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="150" align="left">
@@ -74,6 +74,9 @@
 3. Happy path only — assumed sufficient for the challenge (sad paths can be added later i.e. skip quiz step, open in previous state/step)  
 4. Retry queues and failed API request persistence were omitted — can be added later if needed  
 5. Mock layer is not needed as a HealthKit was used immediatley 
+6. Given that this is a simple project 
+    1. Security is not a meaninful consideration 
+    2. Background data syncing/refreshing whether the app is in the foreground, background or offline was not added
 
 ### 🎨 Approach: Design Process
 1. Broke down the task into Acceptance Criteria, see (Acceptance Criteria section below)
@@ -147,12 +150,14 @@
 * `XCTest` was chosen over `SwiftTesting` for speed and familiarity 
 
 ## ⏩ Not Done (for Speed)
-1. Accessibility / Dynamic Type  
+1. Accessibility / Dynamic Type & voice over
 2. Localisation of strings and metric systems  
 3. Back buttons or skip buttons in the quiz
 4. Further modularisation
 5. Sad paths, resotrative paths, + paywall example
 6. Integration tests or extensive unit & UI tests for everything (did a few to demostrate)
+7. User Defaults was used instead of SwiftData/CoreData becuase it was simple and easy to test. Given that this was a simple project meaningful security additoins were not a consideration. In a security focused future, SwiftData + Crypto kit (for encryption) + Keychain (for encryption keys) would be used to secure user biometric data + SSLPinning if API calls were introduced, authentication and biometric sign in too.
+8. 
 
 ## 🧱 Architecture
 ### Architecture 
@@ -174,7 +179,7 @@ Every layer that exists below the presentation layer is built with platform-agno
 * Applied Engineering business organisation considerations for *open-sourcing* capability, *hiring* and *demo apps* as layer components are independently relying on abstractions rather than concrete implementation.
 
 ### Design and Development (Discussion) 
-* Built applying SOLID principles with Unit and Integration testing suite in some areas.
+* Built applying SOLID principles with Unit Tests in some areas.
 * Parts of app were built using TDD, ensuring that functionality works as expected and also providing protection from regressions 
 * More UI, Unit and Integrations could have been added as discussed in the improvements section
 * Business and engineering organisations' considerations were made when constructing this project, as discussed in the previous section.
@@ -231,5 +236,14 @@ Consumes Feature Layer packages into presentable view components to be consumed 
 8. Add missing UI states — e.g., when Apple Health permission is skipped
 9. Show notification for re-engagmemt after user closes the app  
 10. Other suggestions as doumented earlier in README
+-
+12. Use Swift Data + Cryptokit and Keychain instead of User Defaults for Security reasons disucssed earlier
+13. Background refresh as discussed earlier 
+14. Biometric unlock for security reasons
+16. Add an upsell screen for blood type as its an odd thing to ask 
+17. Add jailbreak check to block users from using the app if its jailkbroken 
+18. Accessibilty (even with colour scheme) & voice over
+19. Adhere to this `https://codershigh.github.io/guidelines/ios/human-interface-guidelines/technologies/healthkit/index.html` i.e. refering to HealthKit or using apples Icons
+20. Ask for biomteric enrolment again if a user takes a screenshot, only then can it be saved
 
 Thank you for your consideration :) 
