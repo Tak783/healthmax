@@ -248,3 +248,8 @@ If the app was to go beyond the scope of the team and make it to production thes
 4. Ask for biomteric enrolment again if a user takes a screenshot, only then can it be saved
 
 Thank you for your consideration :) 
+
+------
+
+## 🔐 v0.2 Upgrades since 
+1. MaxPlan View: Healthmax now returns custom AI generated insights from Static and dynamic (HealthKit) data

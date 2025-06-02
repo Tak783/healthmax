@@ -61,7 +61,7 @@ extension HealthDashboardView {
 // MARK: - Supporting Views
 extension HealthDashboardView {
     private var navBarTitleView: some View {
-        Text("Home")
+        Text("HealthMax.AI")
             .font(.custom("Impact", size: 24))
             .foregroundColor(.white)
     }
