@@ -73,3 +73,27 @@ extension RemoteHealthRecommendationService {
         NSError(domain: domain, code: -1, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }
+
+//{
+//  "success": true,
+//  "data": [
+//    {
+//      "currentValue": 5.58,
+//      "actions": [],
+//      "metricType": "height",
+//      "summary": "Your height is recorded as 5 feet 7 inches."
+//    },
+//    {
+//      "targetRange": [50, 68],
+//      "currentValue": 65,
+//      "targetTrend": "maintain",
+//      "actions": [
+//        "Maintain a balanced diet rich in fruits, vegetables, and lean proteins.",
+//        "Engage in regular physical activity, such as 150 minutes of moderate aerobic exercise per week.",
+//        "Monitor your weight regularly to ensure it remains within the healthy range."
+//      ],
+//      "metricType": "weight",
+//      "summary": "Your weight is 65 kg, which is within a healthy range for your height."
+//    }
+//  ]
+//}
