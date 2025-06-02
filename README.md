@@ -234,16 +234,17 @@ Consumes Feature Layer packages into presentable view components to be consumed 
 6. Move generic supporting views into a shared components package (same with `DesignSystem`)
 7. Use a new quiz service instead of saving data manually 
 8. Add missing UI states — e.g., when Apple Health permission is skipped
-9. Show notification for re-engagmemt after user closes the app  
-10. Other suggestions as doumented earlier in README
--
-12. Use Swift Data + Cryptokit and Keychain instead of User Defaults for Security reasons disucssed earlier
-13. Background refresh as discussed earlier 
-14. Biometric unlock for security reasons
-16. Add an upsell screen for blood type as its an odd thing to ask 
-17. Add jailbreak check to block users from using the app if its jailkbroken 
-18. Accessibilty (even with colour scheme) & voice over
-19. Adhere to this `https://codershigh.github.io/guidelines/ios/human-interface-guidelines/technologies/healthkit/index.html` i.e. refering to HealthKit or using apples Icons
-20. Ask for biomteric enrolment again if a user takes a screenshot, only then can it be saved
+9. Other suggestions as doumented earlier in README
+10. Perioding Background refresh (as discussed earlier) when app is in the forergound 
+11. Accessibity (even with colour scheme) & voice over
+12. Adhere to this `https://codershigh.github.io/guidelines/ios/human-interface-guidelines/technologies/healthkit/index.html` i.e. refering to HealthKit or using apples Icons
+13. Add an upsell screen for blood type as its an odd thing to ask 
+
+## 🔐 Future Production Grade Security Upgrades
+If the app was to go beyond the scope of the team and make it to production these are the changes I'd make for security 
+1. Use Swift Data + Cryptokit and Keychain instead of User Defaults for Security reasons disucssed earlier
+2. Biometric unlock for security reasons
+3. Add jailbreak check to block users from using the app if its jailkbroken 
+4. Ask for biomteric enrolment again if a user takes a screenshot, only then can it be saved
 
 Thank you for your consideration :) 
