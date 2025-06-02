@@ -21,3 +21,16 @@ public struct RemoteHealthMetric: Codable {
         self.value = metric.value
     }
 }
+
+// MARK: - Helpers
+extension RemoteHealthMetric {
+    func toModel() -> HealthMetric {
+        let hkUnit: HKUnit? = unit.flatMap { HKUnit(from: $0) }
+        return HealthMetric(
+            id: id,
+            type: type,
+            value: value,
+            unit: hkUnit
+        )
+    }
+}

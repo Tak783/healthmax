@@ -2,7 +2,7 @@
 //  TargetTrend.swift
 //  CoreHealthMaxModels
 //
-//  Created by Tak Mazarura on 02/06/2025.
+//  Created on 02/06/2025.
 //
 
 public enum TargetTrend: String, Codable {

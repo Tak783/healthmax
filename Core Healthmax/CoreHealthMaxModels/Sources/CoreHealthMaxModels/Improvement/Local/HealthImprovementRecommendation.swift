@@ -15,7 +15,6 @@ public struct HealthImprovementRecommendation: Codable {
     public let targetRange: ClosedRange<Double>?
     public let targetTrend: TargetTrend
 
-    // Human-readable insight
     public let summary: String
     public let actions: [String]
 
