@@ -13,6 +13,7 @@
 * SwiftUI Coordinator and Router for App Navigation  
 * Onboarding flow designed and implemented with strategies to maximise Funnel Conversion, Data Collection & User retention  
 * Protocol-oriented approach to building, services, view models and test specs to maximise reusability, flexibility and testability
+* New: V0.2 has upgrades, please see at the bottom of the README
 
 <p float="left">
 <img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="150" align="left">
@@ -251,5 +252,11 @@ Thank you for your consideration :)
 
 ------
 
-## 🔐 v0.2 Upgrades since 
+## ⭐️ v0.2 Completed Upgrades 
 1. MaxPlan View: Healthmax now returns custom AI generated insights from Static and dynamic (HealthKit) data
+
+Notes
+* This was a quick integration E2E
+* Integration uses Firebase and OpenAI to power the service that returns personalised insights
+* Can be improved E2E from architecture, re-usability and testing
+* Best experienced using real data from Apple Health, to try, just run the app on device
