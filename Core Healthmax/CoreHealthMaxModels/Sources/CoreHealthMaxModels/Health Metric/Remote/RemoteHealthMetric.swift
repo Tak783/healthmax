@@ -1,0 +1,23 @@
+//
+//  RemoteHealthMetric.swift
+//  CoreHealthMaxModels
+//
+//  Created on 02/06/2025.
+//
+
+import Foundation
+import HealthKit
+
+public struct RemoteHealthMetric: Codable {
+    public let id: String
+    public let type: HealthMetricType
+    public let value: HealthMetricValue
+    public let unit: String?
+
+    public init(from metric: HealthMetric) {
+        self.id = metric.id
+        self.type = metric.type
+        self.unit = metric.unit?.unitString
+        self.value = metric.value
+    }
+}
