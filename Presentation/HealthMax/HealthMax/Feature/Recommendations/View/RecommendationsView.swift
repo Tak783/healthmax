@@ -39,7 +39,7 @@ struct RecommendationsListView: View {
 // MARK: - Supporting VIews
 extension RecommendationsListView {
     private var navBarTitleView: some View {
-        Text("HealthMax Plan")
+        Text("Your HealthMax Plan")
             .font(.custom("Impact", size: 24))
             .foregroundColor(.white)
     }
@@ -56,14 +56,23 @@ extension RecommendationsListView {
         }
     }
     
+    @ViewBuilder
     private var content: some View {
-        ScrollView {
-            VStack(spacing: DesignSystem.Layout.large) {
-                ForEach(viewModel.recommendationPresentationModels, id: \.self) { recommendation in
-                    recommendationCard(for: recommendation)
-                }
+        if viewModel.isLoading {
+            VStack() {
+                Spacer()
+                LoadingView()
+                Spacer()
             }
-            .padding()
+        } else {
+            ScrollView {
+                VStack(spacing: DesignSystem.Layout.large) {
+                    ForEach(viewModel.recommendationPresentationModels, id: \.self) { recommendation in
+                        recommendationCard(for: recommendation)
+                    }
+                }
+                .padding()
+            }
         }
     }
 
