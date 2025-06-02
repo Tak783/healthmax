@@ -30,20 +30,6 @@ struct HealthMaxApp: App {
                 .onChange(of: scenePhase) { _, newPhase in
                     scenePhaseDidChange(to: newPhase)
                 }
-                .onAppear {
-                    let healthService = HealthKitHealthDataService()
-                    let biometricsService = UserDefaultsFetchUserBiometricsService()
-                    let recommendationService = RemoteHealthRecommendationService()
-                    
-                    let healthDashboardViewModel = RecommendationsViewModel(
-                        healthService: healthService,
-                        biometricsService: biometricsService,
-                        recommendationService: recommendationService
-                    )
-                    Task {
-                        await healthDashboardViewModel.load()
-                    }
-                }
         }
     }
 }

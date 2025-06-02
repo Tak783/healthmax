@@ -16,6 +16,7 @@ import UserBiometricsFeature
 final class RecommendationsViewModel: ObservableObject {
     @Published var isLoading = true
     @Published private(set) var feedIsEmpty = false
+    @Published var recommendationPresentationModels = [HealthImprovementRecommendation]()
     
     private var staticMetrics = [HealthMetric]()
     private var dynamicMetrics = [HealthMetric]()
@@ -60,9 +61,15 @@ extension RecommendationsViewModel: HealthDashboardViewModellable {
         let result = await recommendationService.getRecommendations(for: remotes)
         
         switch result {
-        case .success(let response):
-            recommendations = response
-            safePrint("✅ Successfully retrieved \(response.count) recommendations")
+        case .success(let returnedRecommendations):
+            if returnedRecommendations.count == 0 {
+                recommendations = LocalHealthRecommendationService.sampleRecommendations()
+                safePrint("✅ Successfully retrieved \(recommendations.count) *sample* recommendations")
+            } else {
+                recommendations = returnedRecommendations
+                recommendationPresentationModels = returnedRecommendations
+                safePrint("✅ Successfully retrieved \(recommendations.count) *openAI* recommendations")
+            }
         case .failure(let error):
             safePrint("❌ Failed to fetch recommendations: \(error.localizedDescription)")
         }

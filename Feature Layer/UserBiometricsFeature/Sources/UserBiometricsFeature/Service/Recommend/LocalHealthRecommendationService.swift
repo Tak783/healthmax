@@ -24,7 +24,7 @@ extension LocalHealthRecommendationService: HealthRecommendationServiceable {
 
 // MARK: - Factory Helpers
 extension LocalHealthRecommendationService {
-    private static func sampleRecommendations() -> [HealthImprovementRecommendation] {
+    public static func sampleRecommendations() -> [HealthImprovementRecommendation] {
         [
             HealthImprovementRecommendation(
                 metricType: .steps,

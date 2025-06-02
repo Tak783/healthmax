@@ -38,4 +38,17 @@ struct LaunchViewFactory {
         )
         return HealthDashboardView(viewModel: healthDashboardViewModel)
     }
+    
+    static func recommendationsView() -> some View {
+        let healthService = HealthKitHealthDataService()
+        let biometricsService = UserDefaultsFetchUserBiometricsService()
+        let recommendationService = RemoteHealthRecommendationService()
+        
+        let recommendationsViewModel = RecommendationsViewModel(
+            healthService: healthService,
+            biometricsService: biometricsService,
+            recommendationService: recommendationService
+        )
+        return RecommendationsListView(viewModel: recommendationsViewModel)
+    }
 }

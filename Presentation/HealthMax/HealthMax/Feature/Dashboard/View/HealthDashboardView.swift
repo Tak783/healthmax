@@ -13,6 +13,8 @@ import SwiftUI
 struct HealthDashboardView: View {
     @StateObject var viewModel: HealthDashboardViewModel
     
+    @State private var showRecommendations = false
+    
     var body: some View {
         ZStack {
             DesignSystem.DSGradient.background.ignoresSafeArea()
@@ -28,15 +30,11 @@ struct HealthDashboardView: View {
                 .onAppear {
                     loadFeed()
                 }
-        }
-    }
-}
-
-// MARK: - Helpers
-extension HealthDashboardView {
-    func loadFeed() {
-        Task {
-            await viewModel.load()
+                .sheet(isPresented: $showRecommendations) {
+                    NavigationView {
+                        LaunchViewFactory.recommendationsView()
+                    }
+                }
         }
     }
 }
@@ -90,7 +88,7 @@ extension HealthDashboardView {
     
     private var unlockPremiumView: some View {
         VStack(spacing: DesignSystem.Layout.medium) {
-            premiumUnlockBanner
+            // premiumUnlockBanner
             paywallButton
         }
     }
@@ -106,11 +104,11 @@ extension HealthDashboardView {
     private var paywallButton: some View {
         HStack(alignment: .center) {
             HapticImpactButton {
-                safePrint("Did request to open paywall")
+                showRecommendations = true
             } label: {
                 HStack {
                     Spacer()
-                    Text("Start Maximising Your Health")
+                    Text("See your MAX plan ")
                         .foregroundColor(.white)
                         .font(DesignSystem.DSFont.subHeadline(weight: .bold))
                         .multilineTextAlignment(.center)
@@ -123,6 +121,15 @@ extension HealthDashboardView {
                 .cornerRadius(DesignSystem.Layout.huge)
                 .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
             }
+        }
+    }
+}
+
+// MARK: - Helpers
+extension HealthDashboardView {
+    func loadFeed() {
+        Task {
+            await viewModel.load()
         }
     }
 }

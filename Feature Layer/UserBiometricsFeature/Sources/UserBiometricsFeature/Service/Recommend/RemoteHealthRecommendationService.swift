@@ -56,14 +56,16 @@ extension RemoteHealthRecommendationService {
     }
 
     private func handleResult(_ result: HTTPSCallableResult) -> Result<[HealthImprovementRecommendation], Error> {
-        guard let data = result.data as? [[String: Any]] else {
+        guard
+          let root = result.data as? [String: Any],
+          let data = root["data"] as? [[String: Any]] else {
             return .failure(error("Invalid response format.", domain: "RemoteHealthRecommendationService"))
         }
 
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data)
-            let decoded = try JSONDecoder().decode([HealthImprovementRecommendation].self, from: jsonData)
-            return .success(decoded)
+            let recommendations = try JSONDecoder().decode([HealthImprovementRecommendation].self, from: jsonData)
+            return .success(recommendations)
         } catch {
             return .failure(error)
         }
@@ -73,27 +75,3 @@ extension RemoteHealthRecommendationService {
         NSError(domain: domain, code: -1, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }
-
-//{
-//  "success": true,
-//  "data": [
-//    {
-//      "currentValue": 5.58,
-//      "actions": [],
-//      "metricType": "height",
-//      "summary": "Your height is recorded as 5 feet 7 inches."
-//    },
-//    {
-//      "targetRange": [50, 68],
-//      "currentValue": 65,
-//      "targetTrend": "maintain",
-//      "actions": [
-//        "Maintain a balanced diet rich in fruits, vegetables, and lean proteins.",
-//        "Engage in regular physical activity, such as 150 minutes of moderate aerobic exercise per week.",
-//        "Monitor your weight regularly to ensure it remains within the healthy range."
-//      ],
-//      "metricType": "weight",
-//      "summary": "Your weight is 65 kg, which is within a healthy range for your height."
-//    }
-//  ]
-//}
