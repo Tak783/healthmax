@@ -8,7 +8,7 @@
 import Foundation
 import HealthKit
 
-public struct RemoteHealthMetric: Codable {
+public struct RemoteHealthMetric: Codable, Sendable {
     public let id: String
     public let type: HealthMetricType
     public let value: HealthMetricValue

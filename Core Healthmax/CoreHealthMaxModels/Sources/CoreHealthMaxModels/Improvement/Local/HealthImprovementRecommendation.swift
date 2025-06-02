@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct HealthImprovementRecommendation: Codable {
+public struct HealthImprovementRecommendation: Codable, Sendable {
     public let metricType: HealthMetricType
 
     public let currentValue: Double
