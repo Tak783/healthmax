@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 import CoreHealthMaxModels
 import CoreHealthKit
 import SwiftUI

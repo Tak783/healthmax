@@ -9,18 +9,17 @@ import Foundation
 import CoreFoundational
 import CoreHealthKit
 import CoreHealthMaxModels
-import CorePresentation
 
 @MainActor
 protocol SimpleRecommendationsViewModellable {
-    var recommendationPresentationModels: [SimpleRecommendationPresentationModellabe] { get }
+    var recommendationPresentationModels: [SimpleRecommendationPresentationModel] { get }
     func load() async
 }
 
 @MainActor
 public final class SimpleRecommendationsViewModel: ObservableObject {
     @Published public var isLoading = true
-    @Published public var recommendationPresentationModels = [SimpleRecommendationPresentationModellabe]()
+    @Published public var recommendationPresentationModels = [SimpleRecommendationPresentationModel]()
     @Published public private(set) var feedIsEmpty = false
     
     private var caloriesMetric: HealthMetric?
@@ -53,7 +52,7 @@ extension SimpleRecommendationsViewModel: SimpleRecommendationsViewModellable {
                 safePrint("⛔️ Failed to return inte value for burned calories metric")
             }
         case .failure(let error):
-            safePrint("⛔️ Failed to load recommendations: error not handled for now")
+            safePrint("⛔️ Failed to load recommendations: error not handled for now: \(error.localizedDescription)")
         }
     }
 }
@@ -62,30 +61,28 @@ extension SimpleRecommendationsViewModel: SimpleRecommendationsViewModellable {
 extension SimpleRecommendationsViewModel {
     private static func recommendationPresentationModels(
         fromBurnedCalories burnedCalories: Int
-    ) -> [SimpleRecommendationPresentationModellabe] {
-        let models: [SimpleRecommendationPresentationModel]
+    ) -> [SimpleRecommendationPresentationModel] {
         switch burnedCalories {
         case 0..<200:
-            models = [
+            return [
                 .init(emoji: "🚶", title: "Take a Walk", description: "A 20-min brisk walk can get your day going."),
                 .init(emoji: "🧘", title: "Stretch It Out", description: "Do 5 mins of stretching to ease in.")
             ]
         case 200..<500:
-            models = [
+            return [
                 .init(emoji: "🏃", title: "Quick Run", description: "A 10-min jog can power up your numbers."),
                 .init(emoji: "💪", title: "Mini Workout", description: "Try 15 mins of bodyweight exercises.")
             ]
         case 500..<650:
-            models = [
+            return [
                 .init(emoji: "🔥", title: "One Last Push", description: "You’re nearly there—just a short walk left."),
                 .init(emoji: "🎯", title: "Stretch Goal", description: "Go beyond your burn goal for bonus health!")
             ]
         default:
-            models = [
+            return [
                 .init(emoji: "✅", title: "Goal Crushed", description: "You hit your burn target—amazing job!"),
                 .init(emoji: "🌟", title: "Keep Glowing", description: "Cool down with some gentle yoga.")
             ]
         }
-        return models
     }
 }

@@ -10,6 +10,7 @@ import CoreFoundational
 import CorePresentation
 import CoreSharedModels
 import SwiftUI
+import CoreUIKit
 
 struct HealthDashboardView: View {
     @StateObject var viewModel: HealthDashboardViewModel

@@ -29,6 +29,9 @@
       location = "group:Core Presentation Layer"
       name = "Core Presentation Layer">
       <FileRef
+         location = "group:CoreUIKit">
+      </FileRef>
+      <FileRef
          location = "group:CorePresentation">
       </FileRef>
    </Group>

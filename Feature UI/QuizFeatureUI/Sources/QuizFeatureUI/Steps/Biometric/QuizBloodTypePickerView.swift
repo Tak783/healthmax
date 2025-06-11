@@ -8,6 +8,7 @@
 import CorePresentation
 import QuizFeature
 import SwiftUI
+import CoreUIKit
 
 struct QuizBloodTypePickerView: View {
     @ObservedObject var quizViewModel: QuizViewModel

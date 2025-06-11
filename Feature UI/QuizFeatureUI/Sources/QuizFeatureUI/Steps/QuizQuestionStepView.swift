@@ -9,6 +9,7 @@ import CorePresentation
 import CoreFoundational
 import QuizFeature
 import SwiftUI
+import CoreUIKit
 
 struct QuizQuestionStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel

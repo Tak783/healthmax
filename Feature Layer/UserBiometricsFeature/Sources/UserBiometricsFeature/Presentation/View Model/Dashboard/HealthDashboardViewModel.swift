@@ -7,7 +7,6 @@
 
 import CoreHealthKit
 import CoreHealthMaxModels
-import CorePresentation
 import Foundation
 
 @MainActor

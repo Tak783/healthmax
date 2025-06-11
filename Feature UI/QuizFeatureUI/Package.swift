@@ -23,6 +23,10 @@ let package = Package(
             path: "../../Core Presentation/CorePresentation"
         ),
         .package(
+            name: "CoreUIKit",
+            path: "../../Core Presentation/CoreUIKit"
+        ),
+        .package(
             name: "CoreHealthMaxModels",
             path: "../Core HealthMax/CoreHealthMaxModels"
         ),
@@ -46,6 +50,10 @@ let package = Package(
                 .product(
                     name: "CorePresentation",
                     package: "CorePresentation"
+                ),
+                .product(
+                    name: "CoreUIKit",
+                    package: "CoreUIKit"
                 ),
                 .product(
                     name: "CoreHealthKit",

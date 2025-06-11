@@ -10,6 +10,7 @@ import CorePresentation
 import CoreSharedModels
 import QuizFeature
 import SwiftUI
+import CoreUIKit
 
 struct NotificationPermissionsStepView: View {
     @ObservedObject var quizViewModel: QuizViewModel

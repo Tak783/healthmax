@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol SimpleRecommendationPresentationModellabe: Sendable {
+public protocol SimpleRecommendationPresentationModellabe: Sendable, Identifiable {
     var id: String { get }
     var emoji: String { get }
     var title: String { get }

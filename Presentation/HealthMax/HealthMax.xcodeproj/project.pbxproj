@@ -14,7 +14,14 @@
 		8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5812DE0AEB800664E7E /* CoreFoundational */; };
 		8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5832DE0AEB800664E7E /* CorePresentation */; };
 		8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5852DE0AEB800664E7E /* QuizFeature */; };
+		8B8DA0B02DF9CDBF00B1401B /* CoreUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8DA0AF2DF9CDBF00B1401B /* CoreUIKit */; };
 		8B9B53902DF9ACAB0044BF27 /* HMaxLite Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8B9B536D2DF9ACA70044BF27 /* HMaxLite Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8B9B539F2DF9B9940044BF27 /* CoreFoundational in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9B539E2DF9B9940044BF27 /* CoreFoundational */; };
+		8B9B53A12DF9B9940044BF27 /* CoreHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9B53A02DF9B9940044BF27 /* CoreHealthKit */; };
+		8B9B53A32DF9B9940044BF27 /* CoreHealthMaxModels in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9B53A22DF9B9940044BF27 /* CoreHealthMaxModels */; };
+		8B9B53A52DF9B9940044BF27 /* CorePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9B53A42DF9B9940044BF27 /* CorePresentation */; };
+		8B9B53A72DF9B9950044BF27 /* CoreSharedModels in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9B53A62DF9B9950044BF27 /* CoreSharedModels */; };
+		8B9B53A92DF9B9950044BF27 /* UserBiometricsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9B53A82DF9B9950044BF27 /* UserBiometricsFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8DA0B02DF9CDBF00B1401B /* CoreUIKit in Frameworks */,
 				8B63E3F52DE4818E00AC7D36 /* CoreSharedModels in Frameworks */,
 				8B63E3F32DE4818E00AC7D36 /* CoreHealthMaxModels in Frameworks */,
 				8B515ABF2DE49624001486F5 /* QuizFeatureUI in Frameworks */,
@@ -144,6 +152,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9B53A72DF9B9950044BF27 /* CoreSharedModels in Frameworks */,
+				8B9B53A92DF9B9950044BF27 /* UserBiometricsFeature in Frameworks */,
+				8B9B53A12DF9B9940044BF27 /* CoreHealthKit in Frameworks */,
+				8B9B53A52DF9B9940044BF27 /* CorePresentation in Frameworks */,
+				8B9B53A32DF9B9940044BF27 /* CoreHealthMaxModels in Frameworks */,
+				8B9B539F2DF9B9940044BF27 /* CoreFoundational in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +241,7 @@
 				8B63E3F42DE4818E00AC7D36 /* CoreSharedModels */,
 				8B515ABE2DE49624001486F5 /* QuizFeatureUI */,
 				8B515AC02DE497E1001486F5 /* UserBiometricsFeature */,
+				8B8DA0AF2DF9CDBF00B1401B /* CoreUIKit */,
 			);
 			productName = HealthMax;
 			productReference = 8B6B5F062DDD1BB0003E4D95 /* HealthMax.app */;
@@ -295,6 +310,12 @@
 			);
 			name = "HMaxLite Watch App";
 			packageProductDependencies = (
+				8B9B539E2DF9B9940044BF27 /* CoreFoundational */,
+				8B9B53A02DF9B9940044BF27 /* CoreHealthKit */,
+				8B9B53A22DF9B9940044BF27 /* CoreHealthMaxModels */,
+				8B9B53A42DF9B9940044BF27 /* CorePresentation */,
+				8B9B53A62DF9B9950044BF27 /* CoreSharedModels */,
+				8B9B53A82DF9B9950044BF27 /* UserBiometricsFeature */,
 			);
 			productName = "HMaxLite Watch App";
 			productReference = 8B9B536D2DF9ACA70044BF27 /* HMaxLite Watch App.app */;
@@ -583,6 +604,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -639,6 +661,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -673,6 +696,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -707,6 +731,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -725,6 +750,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthMax.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HealthMax";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -743,6 +769,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthMax.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HealthMax";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -759,6 +786,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = HealthMax;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -775,6 +803,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = HealthMax;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -804,7 +833,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -834,7 +863,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -854,7 +883,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HMaxLite Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HMaxLite Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -874,7 +903,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HMaxLite Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HMaxLite Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -893,7 +922,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "HMaxLite Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -912,7 +941,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "HMaxLite Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -1012,6 +1041,34 @@
 		8B7DB5852DE0AEB800664E7E /* QuizFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = QuizFeature;
+		};
+		8B8DA0AF2DF9CDBF00B1401B /* CoreUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreUIKit;
+		};
+		8B9B539E2DF9B9940044BF27 /* CoreFoundational */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreFoundational;
+		};
+		8B9B53A02DF9B9940044BF27 /* CoreHealthKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreHealthKit;
+		};
+		8B9B53A22DF9B9940044BF27 /* CoreHealthMaxModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreHealthMaxModels;
+		};
+		8B9B53A42DF9B9940044BF27 /* CorePresentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CorePresentation;
+		};
+		8B9B53A62DF9B9950044BF27 /* CoreSharedModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreSharedModels;
+		};
+		8B9B53A82DF9B9950044BF27 /* UserBiometricsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserBiometricsFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

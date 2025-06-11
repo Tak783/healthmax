@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import CoreHealthKit
+import UserBiometricsFeature
 
 @main
 struct HMaxLite_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let service = HealthKitHealthDataService()
+            let viewModel = SimpleRecommendationsViewModel(healthService: service)
+            RecommendationsCarouselView(viewModel: viewModel)
         }
     }
 }
