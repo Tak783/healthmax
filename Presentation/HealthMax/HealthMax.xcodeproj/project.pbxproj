@@ -819,7 +819,7 @@
 				DEVELOPMENT_TEAM = 77324YP468;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = HealthMax;
+				INFOPLIST_KEY_CFBundleDisplayName = "Max Calorie Burner";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your active calorie data to give you recommendations";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = healthmax.apps.healthaxai;
@@ -851,7 +851,7 @@
 				DEVELOPMENT_TEAM = 77324YP468;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = HealthMax;
+				INFOPLIST_KEY_CFBundleDisplayName = "Max Calorie Burner";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your active calorie data to give you recommendations";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = healthmax.apps.healthaxai;

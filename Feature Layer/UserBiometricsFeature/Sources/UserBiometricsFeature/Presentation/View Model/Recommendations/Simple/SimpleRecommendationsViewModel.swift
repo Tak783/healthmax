@@ -79,31 +79,44 @@ extension SimpleRecommendationsViewModel: SimpleRecommendationsViewModellable {
 }
 
 // MARK: - Factory Helpers
-extension SimpleRecommendationsViewModel {
-    private static func recommendationPresentationModels(
-        fromBurnedCalories burnedCalories: Int
-    ) -> [SimpleRecommendationPresentationModel] {
-        switch burnedCalories {
-        case 0..<200:
-            return [
-                .init(emoji: "🚶", title: "Take a Walk", description: "A 20-min brisk walk can get your day going."),
-                .init(emoji: "🧘", title: "Stretch It Out", description: "Do 5 mins of stretching to ease in.")
-            ]
-        case 200..<500:
-            return [
-                .init(emoji: "🏃", title: "Quick Run", description: "A 10-min jog can power up your numbers."),
-                .init(emoji: "💪", title: "Mini Workout", description: "Try 15 mins of bodyweight exercises.")
-            ]
-        case 500..<650:
-            return [
-                .init(emoji: "🔥", title: "One Last Push", description: "You’re nearly there—just a short walk left."),
-                .init(emoji: "🎯", title: "Stretch Goal", description: "Go beyond your burn goal for bonus health!")
-            ]
-        default:
-            return [
-                .init(emoji: "✅", title: "Goal Crushed", description: "You hit your burn target—amazing job!"),
-                .init(emoji: "🌟", title: "Keep Glowing", description: "Cool down with some gentle yoga.")
-            ]
-        }
+private static func recommendationPresentationModels(
+    fromBurnedCalories burnedCalories: Int
+) -> [SimpleRecommendationPresentationModel] {
+    switch burnedCalories {
+    case 0..<200:
+        return [
+            .init(emoji: "🚶", title: "Take a Walk", description: "A 20-min brisk walk can get your day going."),
+            .init(emoji: "🧘", title: "Stretch It Out", description: "Do 5 mins of stretching to ease in."),
+            .init(emoji: "🪑", title: "Stand Break", description: "Stand and stretch for 2 mins to reset."),
+            .init(emoji: "🚰", title: "Hydration Time", description: "Grab a glass of water to wake your body."),
+            .init(emoji: "🎵", title: "Move to Music", description: "Put on a song and dance for one track.")
+        ]
+        
+    case 200..<500:
+        return [
+            .init(emoji: "🏃", title: "Quick Run", description: "A 10-min jog can power up your numbers."),
+            .init(emoji: "💪", title: "Mini Workout", description: "Try 15 mins of bodyweight exercises."),
+            .init(emoji: "🚲", title: "Spin It Up", description: "Hop on a bike for a short indoor session."),
+            .init(emoji: "🧗", title: "Climb Something", description: "Use stairs for a quick cardio blast."),
+            .init(emoji: "🕺", title: "Active Break", description: "Do jumping jacks or dance around the room.")
+        ]
+        
+    case 500..<650:
+        return [
+            .init(emoji: "🔥", title: "One Last Push", description: "You’re nearly there—just a short walk left."),
+            .init(emoji: "🎯", title: "Stretch Goal", description: "Go beyond your burn goal for bonus health!"),
+            .init(emoji: "🤸", title: "Mobility Flow", description: "Try some dynamic stretches to finish strong."),
+            .init(emoji: "🚶‍♂️", title: "Lap Finish", description: "One final lap around the block seals the deal."),
+            .init(emoji: "🧍", title: "Body Reset", description: "Roll your shoulders and shake it off for recovery.")
+        ]
+        
+    default:
+        return [
+            .init(emoji: "✅", title: "Goal Crushed", description: "You hit your burn target—amazing job!"),
+            .init(emoji: "🌟", title: "Keep Glowing", description: "Cool down with some gentle yoga."),
+            .init(emoji: "🛁", title: "Recovery Time", description: "Enjoy a relaxing shower or bath."),
+            .init(emoji: "📈", title: "Track Progress", description: "Log your win and reflect on today."),
+            .init(emoji: "🍽", title: "Fuel Smart", description: "Refuel with something healthy and satisfying.")
+        ]
     }
 }

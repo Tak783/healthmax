@@ -37,13 +37,15 @@ struct RecommendationsCarouselView: View {
                 } else {
                     TabView {
                         ForEach(viewModel.recommendationPresentationModels) { recommendation in
-                            VStack(spacing: 6) {
+                            VStack(spacing: 4) {
                                 Text(recommendation.emoji)
-                                    .font(.title)
+                                    .font(.system(size: 20, weight: .bold))
+                                    .multilineTextAlignment(.center)
                                 Text(recommendation.title)
-                                    .font(.caption)
+                                    .font(.system(size: 13, weight: .bold))
+                                    .multilineTextAlignment(.center)
                                 Text(recommendation.description)
-                                    .font(.caption)
+                                    .font(.system(size: 12, weight: .light))
                                     .multilineTextAlignment(.center)
                             }
                             .padding()
