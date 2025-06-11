@@ -30,6 +30,19 @@ public enum HealthMetricValue: Hashable, Sendable {
             return date
         }
     }
+    
+    public var intValue: Int? {
+        switch self {
+        case .int(let value):
+            return value
+        case .double(let value):
+            return Int(value)
+        case .string(let value):
+            return Int(value)
+        default:
+            return nil
+        }
+    }
 }
 
 // MARK: - Codable
