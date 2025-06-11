@@ -5,6 +5,7 @@
 //  Created on 26/05/2025.
 //
 
+import UserBiometricsFeature
 import CorePresentation
 import CoreSharedModels
 import SwiftUI

@@ -6,6 +6,6 @@
 //
 
 @MainActor
-protocol HealthDashboardViewModellable {
+public protocol HealthDashboardViewModellable {
     func load() async
 }

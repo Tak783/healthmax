@@ -9,14 +9,13 @@ import CoreHealthKit
 import CoreHealthMaxModels
 import CorePresentation
 import Foundation
-import UserBiometricsFeature
 
 @MainActor
-final class HealthDashboardViewModel: ObservableObject {
-    @Published var isLoading = true
-    @Published private(set) var staticMetricPresentationModels = [HealthMetricPresentationModel]()
-    @Published private(set) var dynamicMetricsPresentationModels = [HealthMetricPresentationModel]()
-    @Published private(set) var feedIsEmpty = false
+public final class HealthDashboardViewModel: ObservableObject {
+    @Published public var isLoading = true
+    @Published public private(set) var staticMetricPresentationModels = [HealthMetricPresentationModel]()
+    @Published public private(set) var dynamicMetricsPresentationModels = [HealthMetricPresentationModel]()
+    @Published public private(set) var feedIsEmpty = false
     
     private var staticMetrics = [HealthMetric]()
     private var dynamicMetrics = [HealthMetric]()
@@ -24,7 +23,7 @@ final class HealthDashboardViewModel: ObservableObject {
     private let healthService: HealthDataServiceable
     private let biometricsService: FetchUserBiometricsServiceable
     
-    init(
+    public init(
         healthService: HealthDataServiceable,
         biometricsService: FetchUserBiometricsServiceable
     ) {
@@ -38,7 +37,7 @@ extension HealthDashboardViewModel: ViewModelLoadable {}
 
 // MARK: - HealthDashboardViewModellable
 extension HealthDashboardViewModel: HealthDashboardViewModellable {
-    func load() async {
+    public func load() async {
         setIsLoading(true)
         
         async let biometricsRequestResult = await biometricsService.fetchAllMetrics()

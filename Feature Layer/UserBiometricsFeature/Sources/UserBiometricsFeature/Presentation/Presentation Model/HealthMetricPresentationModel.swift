@@ -7,14 +7,13 @@
 
 import CoreSharedModels
 import CoreHealthMaxModels
-import CorePresentation
 
-struct HealthMetricPresentationModel: Hashable, Sendable {
-    let title: String
-    let value: String
-    let icon: LocalImage
+public struct HealthMetricPresentationModel: Hashable, Sendable {
+    public let title: String
+    public let value: String
+    public let icon: LocalImage
 
-    init(metric: HealthMetric) {
+    public init(metric: HealthMetric) {
         self.title = metric.type.displayName
         self.value = metric.value.defaultStringValue + String.space + (metric.unit?.unitString ?? String.empty)
         self.icon = metric.type.icon

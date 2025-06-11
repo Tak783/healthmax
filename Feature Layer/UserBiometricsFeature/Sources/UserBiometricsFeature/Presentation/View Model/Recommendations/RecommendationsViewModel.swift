@@ -10,13 +10,12 @@ import CoreHealthKit
 import CoreHealthMaxModels
 import CorePresentation
 import Foundation
-import UserBiometricsFeature
 
 @MainActor
-final class RecommendationsViewModel: ObservableObject {
-    @Published var isLoading = true
-    @Published private(set) var feedIsEmpty = false
-    @Published var recommendationPresentationModels = [HealthImprovementRecommendation]()
+public final class RecommendationsViewModel: ObservableObject {
+    @Published public var isLoading = true
+    @Published public var recommendationPresentationModels = [HealthImprovementRecommendation]()
+    @Published public private(set) var feedIsEmpty = false
     
     private var staticMetrics = [HealthMetric]()
     private var dynamicMetrics = [HealthMetric]()
@@ -26,7 +25,7 @@ final class RecommendationsViewModel: ObservableObject {
     private let biometricsService: FetchUserBiometricsServiceable
     private let recommendationService: HealthRecommendationServiceable
 
-    init(
+    public init(
         healthService: HealthDataServiceable,
         biometricsService: FetchUserBiometricsServiceable,
         recommendationService: HealthRecommendationServiceable
@@ -42,7 +41,7 @@ extension RecommendationsViewModel: ViewModelLoadable {}
 
 // MARK: - RecommendationsViewModellable
 extension RecommendationsViewModel: HealthDashboardViewModellable {
-    func load() async {
+    public func load() async {
         setIsLoading(true)
 
         async let biometricsResult = biometricsService.fetchAllMetrics()

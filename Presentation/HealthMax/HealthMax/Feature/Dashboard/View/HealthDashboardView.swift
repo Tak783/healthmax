@@ -5,6 +5,7 @@
 //  Created on 24/05/2025.
 //
 
+import UserBiometricsFeature
 import CoreFoundational
 import CorePresentation
 import CoreSharedModels

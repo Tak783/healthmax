@@ -8,7 +8,7 @@
 import Foundation
 import CoreHealthMaxModels
 
-public protocol HealthRecommendationServiceable {
+public protocol HealthRecommendationServiceable: Sendable {
     func getRecommendations(
         for metrics: [RemoteHealthMetric]
     ) async -> Result<[HealthImprovementRecommendation], Error>

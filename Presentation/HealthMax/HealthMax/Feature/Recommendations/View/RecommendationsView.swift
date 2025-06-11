@@ -5,10 +5,11 @@
 //  Created by Tak Mazarura on 02/06/2025.
 //
 
+import CoreHealthMaxModels
 import CorePresentation
 import CoreSharedModels
 import SwiftUI
-import CoreHealthMaxModels
+import UserBiometricsFeature
 
 struct RecommendationsListView: View {
     @ObservedObject var viewModel: RecommendationsViewModel
