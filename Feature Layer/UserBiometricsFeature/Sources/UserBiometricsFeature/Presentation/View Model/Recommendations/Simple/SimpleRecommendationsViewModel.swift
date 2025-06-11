@@ -16,6 +16,7 @@ public final class SimpleRecommendationsViewModel: ObservableObject {
     @Published public var isLoading = false
     @Published public private(set) var recommendationPresentationModels = [SimpleRecommendationPresentationModel]()
     @Published public private(set) var feedIsEmpty = false
+    @Published public private(set) var didNotBurnEnoughCalories = false
     @Published public private(set) var burnedCalories: Int = 0
     
     private var caloriesMetric: HealthMetric?
@@ -61,12 +62,16 @@ extension SimpleRecommendationsViewModel {
     private func didSuccessfullyLoadCalorieMetric(_ caloriesMetric: HealthMetric) {
         self.caloriesMetric = caloriesMetric
        
-        guard let burnedCalories = caloriesMetric.value.intValue else {
+        guard let caloriesBurned = caloriesMetric.value.intValue else {
             safePrint("⛔️ Failed to return int value for burned calories metric")
             return
         }
+        burnedCalories = caloriesBurned
+        if burnedCalories < 500 {
+            didNotBurnEnoughCalories = true
+        }
         let presentationModels = Self.recommendationPresentationModels(
-            fromBurnedCalories: burnedCalories
+            fromBurnedCalories: caloriesBurned
         )
         recommendationPresentationModels = presentationModels
         feedIsEmpty = presentationModels.isEmpty
@@ -127,7 +132,6 @@ extension SimpleRecommendationsViewModel {
                 .init(emoji: "✅", title: "Goal Crushed", description: "You hit your burn target—amazing job!"),
                 .init(emoji: "🌟", title: "Keep Glowing", description: "Cool down with some gentle yoga."),
                 .init(emoji: "🛁", title: "Recovery Time", description: "Enjoy a relaxing shower or bath."),
-                .init(emoji: "📈", title: "Track Progress", description: "Log your win and reflect on today."),
                 .init(emoji: "🍽", title: "Fuel Smart", description: "Refuel with something healthy and satisfying.")
             ]
         }

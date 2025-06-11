@@ -19,38 +19,11 @@ struct RecommendationsCarouselView: View {
 
             Group {
                 if viewModel.isLoading {
-                    ProgressView("Loading...")
+                    loadingView
                 } else if viewModel.recommendationPresentationModels.isEmpty {
-                    VStack(spacing: 4) {
-                        Text("👋")
-                            .font(.system(size: 20, weight: .bold))
-                            .multilineTextAlignment(.center)
-                        Text("No recommendations yet!")
-                            .font(.system(size: 13, weight: .bold))
-                            .multilineTextAlignment(.center)
-                        Text("Make sure you've set up Apple Health in HealthMax iPhone App")
-                            .font(.system(size: 12, weight: .light))
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding()
+                    emptyStateView
                 } else {
-                    TabView {
-                        ForEach(viewModel.recommendationPresentationModels) { recommendation in
-                            VStack(spacing: 4) {
-                                Text(recommendation.emoji)
-                                    .font(.system(size: 20, weight: .bold))
-                                    .multilineTextAlignment(.center)
-                                Text(recommendation.title)
-                                    .font(.system(size: 13, weight: .bold))
-                                    .multilineTextAlignment(.center)
-                                Text(recommendation.description)
-                                    .font(.system(size: 12, weight: .light))
-                                    .multilineTextAlignment(.center)
-                            }
-                            .padding()
-                        }
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                    recommendationsTabView
                 }
             }
             .padding()
@@ -60,5 +33,99 @@ struct RecommendationsCarouselView: View {
                 await viewModel.load()
             }
         }
+    }
+}
+
+// MARK: - Supporting Views
+extension RecommendationsCarouselView {
+    var loadingView: some View {
+        ProgressView("Loading...")
+    }
+
+    var emptyStateView: some View {
+        VStack(spacing: 4) {
+            Text("👋")
+                .font(.system(size: 20, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("No recommendations yet!")
+                .font(.system(size: 13, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("Make sure you've set up Apple Health in HealthMax iPhone App")
+                .font(.system(size: 12, weight: .light))
+                .multilineTextAlignment(.center)
+        }
+        .padding()
+    }
+
+    var recommendationsTabView: some View {
+        TabView {
+            summarySlide
+            if viewModel.didNotBurnEnoughCalories {
+                completionSlide
+            }
+            ForEach(viewModel.recommendationPresentationModels) { recommendation in
+                VStack(spacing: 4) {
+                    Text(recommendation.emoji)
+                        .font(.system(size: 20, weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Text(recommendation.title)
+                        .font(.system(size: 16, weight: .bold))
+                        .multilineTextAlignment(.center)
+                    Text(recommendation.description)
+                        .font(.system(size: 15, weight: .light))
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+            }
+            if viewModel.didNotBurnEnoughCalories {
+                encouragmentSlide
+            }
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+    }
+
+    var summarySlide: some View {
+        VStack(spacing: 4) {
+            Text("🔥")
+                .font(.system(size: 20, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("You've burned")
+                .font(.system(size: 14, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("\(viewModel.burnedCalories) calories today")
+                .font(.system(size: 16, weight: .light))
+                .multilineTextAlignment(.center)
+        }
+        .padding()
+    }
+    
+    var completionSlide: some View {
+        VStack(spacing: 4) {
+            Text("⚡️")
+                .font(.system(size: 20, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("Here are some ways\nyou can burn more calories today")
+                .font(.system(size: 14, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("➡️")
+                .font(.system(size: 16, weight: .light))
+                .multilineTextAlignment(.center)
+        }
+        .padding()
+    }
+    
+    var encouragmentSlide: some View {
+        VStack(spacing: 4) {
+            Text("⚡️")
+                .font(.system(size: 20, weight: .bold))
+                .multilineTextAlignment(.center)
+            Text("You can do it!")
+                .font(.system(size: 16, weight: .heavy))
+                .multilineTextAlignment(.center)
+            Text("The best time to start is now!")
+                .font(.system(size: 14, weight: .medium))
+                .multilineTextAlignment(.center)
+        }
+        .padding()
     }
 }
