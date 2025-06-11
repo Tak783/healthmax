@@ -14,6 +14,7 @@
 		8B7DB5822DE0AEB800664E7E /* CoreFoundational in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5812DE0AEB800664E7E /* CoreFoundational */; };
 		8B7DB5842DE0AEB800664E7E /* CorePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5832DE0AEB800664E7E /* CorePresentation */; };
 		8B7DB5862DE0AEB800664E7E /* QuizFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7DB5852DE0AEB800664E7E /* QuizFeature */; };
+		8B9B53902DF9ACAB0044BF27 /* HMaxLite Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8B9B536D2DF9ACA70044BF27 /* HMaxLite Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,12 +32,50 @@
 			remoteGlobalIDString = 8B6B5F052DDD1BB0003E4D95;
 			remoteInfo = HealthMax;
 		};
+		8B9B537D2DF9ACAA0044BF27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B6B5EFE2DDD1BB0003E4D95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B9B536C2DF9ACA70044BF27;
+			remoteInfo = "HMaxLite Watch App";
+		};
+		8B9B53872DF9ACAB0044BF27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B6B5EFE2DDD1BB0003E4D95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B9B536C2DF9ACA70044BF27;
+			remoteInfo = "HMaxLite Watch App";
+		};
+		8B9B538E2DF9ACAB0044BF27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B6B5EFE2DDD1BB0003E4D95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B9B536C2DF9ACA70044BF27;
+			remoteInfo = "HMaxLite Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8B9B535F2DF9AB2B0044BF27 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8B9B53902DF9ACAB0044BF27 /* HMaxLite Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8B6B5F062DDD1BB0003E4D95 /* HealthMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6B5F162DDD1BB3003E4D95 /* HealthMaxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthMaxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6B5F202DDD1BB3003E4D95 /* HealthMaxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthMaxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B9B536D2DF9ACA70044BF27 /* HMaxLite Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HMaxLite Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B9B537C2DF9ACAA0044BF27 /* HMaxLite Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HMaxLite Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B9B53862DF9ACAB0044BF27 /* HMaxLite Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HMaxLite Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,6 +92,21 @@
 		8B6B5F232DDD1BB3003E4D95 /* HealthMaxUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HealthMaxUITests;
+			sourceTree = "<group>";
+		};
+		8B9B536E2DF9ACA80044BF27 /* HMaxLite Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "HMaxLite Watch App";
+			sourceTree = "<group>";
+		};
+		8B9B537F2DF9ACAA0044BF27 /* HMaxLite Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "HMaxLite Watch AppTests";
+			sourceTree = "<group>";
+		};
+		8B9B53892DF9ACAB0044BF27 /* HMaxLite Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "HMaxLite Watch AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -86,6 +140,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B9B536A2DF9ACA70044BF27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B53792DF9ACAA0044BF27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B53832DF9ACAB0044BF27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,6 +170,9 @@
 				8B6B5F082DDD1BB0003E4D95 /* HealthMax */,
 				8B6B5F192DDD1BB3003E4D95 /* HealthMaxTests */,
 				8B6B5F232DDD1BB3003E4D95 /* HealthMaxUITests */,
+				8B9B536E2DF9ACA80044BF27 /* HMaxLite Watch App */,
+				8B9B537F2DF9ACAA0044BF27 /* HMaxLite Watch AppTests */,
+				8B9B53892DF9ACAB0044BF27 /* HMaxLite Watch AppUITests */,
 				8B7DB5802DE0AEB800664E7E /* Frameworks */,
 				8B6B5F072DDD1BB0003E4D95 /* Products */,
 			);
@@ -106,6 +184,9 @@
 				8B6B5F062DDD1BB0003E4D95 /* HealthMax.app */,
 				8B6B5F162DDD1BB3003E4D95 /* HealthMaxTests.xctest */,
 				8B6B5F202DDD1BB3003E4D95 /* HealthMaxUITests.xctest */,
+				8B9B536D2DF9ACA70044BF27 /* HMaxLite Watch App.app */,
+				8B9B537C2DF9ACAA0044BF27 /* HMaxLite Watch AppTests.xctest */,
+				8B9B53862DF9ACAB0044BF27 /* HMaxLite Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,10 +208,12 @@
 				8B6B5F022DDD1BB0003E4D95 /* Sources */,
 				8B6B5F032DDD1BB0003E4D95 /* Frameworks */,
 				8B6B5F042DDD1BB0003E4D95 /* Resources */,
+				8B9B535F2DF9AB2B0044BF27 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8B9B538F2DF9ACAB0044BF27 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8B6B5F082DDD1BB0003E4D95 /* HealthMax */,
@@ -195,6 +278,74 @@
 			productReference = 8B6B5F202DDD1BB3003E4D95 /* HealthMaxUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8B9B536C2DF9ACA70044BF27 /* HMaxLite Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B9B53912DF9ACAB0044BF27 /* Build configuration list for PBXNativeTarget "HMaxLite Watch App" */;
+			buildPhases = (
+				8B9B53692DF9ACA70044BF27 /* Sources */,
+				8B9B536A2DF9ACA70044BF27 /* Frameworks */,
+				8B9B536B2DF9ACA70044BF27 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8B9B536E2DF9ACA80044BF27 /* HMaxLite Watch App */,
+			);
+			name = "HMaxLite Watch App";
+			packageProductDependencies = (
+			);
+			productName = "HMaxLite Watch App";
+			productReference = 8B9B536D2DF9ACA70044BF27 /* HMaxLite Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8B9B537B2DF9ACAA0044BF27 /* HMaxLite Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B9B53942DF9ACAB0044BF27 /* Build configuration list for PBXNativeTarget "HMaxLite Watch AppTests" */;
+			buildPhases = (
+				8B9B53782DF9ACAA0044BF27 /* Sources */,
+				8B9B53792DF9ACAA0044BF27 /* Frameworks */,
+				8B9B537A2DF9ACAA0044BF27 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B9B537E2DF9ACAA0044BF27 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8B9B537F2DF9ACAA0044BF27 /* HMaxLite Watch AppTests */,
+			);
+			name = "HMaxLite Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "HMaxLite Watch AppTests";
+			productReference = 8B9B537C2DF9ACAA0044BF27 /* HMaxLite Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8B9B53852DF9ACAB0044BF27 /* HMaxLite Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B9B53972DF9ACAB0044BF27 /* Build configuration list for PBXNativeTarget "HMaxLite Watch AppUITests" */;
+			buildPhases = (
+				8B9B53822DF9ACAB0044BF27 /* Sources */,
+				8B9B53832DF9ACAB0044BF27 /* Frameworks */,
+				8B9B53842DF9ACAB0044BF27 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B9B53882DF9ACAB0044BF27 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8B9B53892DF9ACAB0044BF27 /* HMaxLite Watch AppUITests */,
+			);
+			name = "HMaxLite Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "HMaxLite Watch AppUITests";
+			productReference = 8B9B53862DF9ACAB0044BF27 /* HMaxLite Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -216,6 +367,17 @@
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 8B6B5F052DDD1BB0003E4D95;
 					};
+					8B9B536C2DF9ACA70044BF27 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					8B9B537B2DF9ACAA0044BF27 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 8B9B536C2DF9ACA70044BF27;
+					};
+					8B9B53852DF9ACAB0044BF27 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 8B9B536C2DF9ACA70044BF27;
+					};
 				};
 			};
 			buildConfigurationList = 8B6B5F012DDD1BB0003E4D95 /* Build configuration list for PBXProject "HealthMax" */;
@@ -235,6 +397,9 @@
 				8B6B5F052DDD1BB0003E4D95 /* HealthMax */,
 				8B6B5F152DDD1BB3003E4D95 /* HealthMaxTests */,
 				8B6B5F1F2DDD1BB3003E4D95 /* HealthMaxUITests */,
+				8B9B536C2DF9ACA70044BF27 /* HMaxLite Watch App */,
+				8B9B537B2DF9ACAA0044BF27 /* HMaxLite Watch AppTests */,
+				8B9B53852DF9ACAB0044BF27 /* HMaxLite Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -255,6 +420,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B6B5F1E2DDD1BB3003E4D95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B536B2DF9ACA70044BF27 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B537A2DF9ACAA0044BF27 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B53842DF9ACAB0044BF27 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,6 +471,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B9B53692DF9ACA70044BF27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B53782DF9ACAA0044BF27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B9B53822DF9ACAB0044BF27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -297,6 +504,21 @@
 			isa = PBXTargetDependency;
 			target = 8B6B5F052DDD1BB0003E4D95 /* HealthMax */;
 			targetProxy = 8B6B5F212DDD1BB3003E4D95 /* PBXContainerItemProxy */;
+		};
+		8B9B537E2DF9ACAA0044BF27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B9B536C2DF9ACA70044BF27 /* HMaxLite Watch App */;
+			targetProxy = 8B9B537D2DF9ACAA0044BF27 /* PBXContainerItemProxy */;
+		};
+		8B9B53882DF9ACAB0044BF27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B9B536C2DF9ACA70044BF27 /* HMaxLite Watch App */;
+			targetProxy = 8B9B53872DF9ACAB0044BF27 /* PBXContainerItemProxy */;
+		};
+		8B9B538F2DF9ACAB0044BF27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B9B536C2DF9ACA70044BF27 /* HMaxLite Watch App */;
+			targetProxy = 8B9B538E2DF9ACAB0044BF27 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -556,6 +778,144 @@
 			};
 			name = Release;
 		};
+		8B9B53922DF9ACAB0044BF27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HMaxLite Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HMaxLite;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = healthmax.apps.healthaxai;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = healthmax.apps.healthaxai.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		8B9B53932DF9ACAB0044BF27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HMaxLite Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HMaxLite;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = healthmax.apps.healthaxai;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = healthmax.apps.healthaxai.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		8B9B53952DF9ACAB0044BF27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77324YP468;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "healthmax.apps.healthaxaiwatch.HMaxLite-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HMaxLite Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HMaxLite Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		8B9B53962DF9ACAB0044BF27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77324YP468;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "healthmax.apps.healthaxaiwatch.HMaxLite-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HMaxLite Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HMaxLite Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		8B9B53982DF9ACAB0044BF27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77324YP468;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "healthmax.apps.healthaxaiwatch.HMaxLite-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "HMaxLite Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		8B9B53992DF9ACAB0044BF27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77324YP468;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "healthmax.apps.healthaxaiwatch.HMaxLite-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "HMaxLite Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -591,6 +951,33 @@
 			buildConfigurations = (
 				8B6B5F312DDD1BB3003E4D95 /* Debug */,
 				8B6B5F322DDD1BB3003E4D95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B9B53912DF9ACAB0044BF27 /* Build configuration list for PBXNativeTarget "HMaxLite Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B9B53922DF9ACAB0044BF27 /* Debug */,
+				8B9B53932DF9ACAB0044BF27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B9B53942DF9ACAB0044BF27 /* Build configuration list for PBXNativeTarget "HMaxLite Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B9B53952DF9ACAB0044BF27 /* Debug */,
+				8B9B53962DF9ACAB0044BF27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B9B53972DF9ACAB0044BF27 /* Build configuration list for PBXNativeTarget "HMaxLite Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B9B53982DF9ACAB0044BF27 /* Debug */,
+				8B9B53992DF9ACAB0044BF27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
