@@ -31,7 +31,6 @@ struct RecommendationsCarouselView: View {
                         Text("Make sure you've set up Apple Health in HealthMax iPhone App")
                             .font(.system(size: 12, weight: .light))
                             .multilineTextAlignment(.center)
-                        
                     }
                     .padding()
                 } else {
