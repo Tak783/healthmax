@@ -7,7 +7,7 @@ let package = Package(
     name: "CoreFoundational",
     platforms: [
         .iOS(.v17),
-        .watchOS(.v10)
+        .watchOS(.v11)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.

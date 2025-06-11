@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HealthKit
 import CoreFoundational
 import CoreHealthKit
 import CoreHealthMaxModels
@@ -15,15 +16,16 @@ protocol SimpleRecommendationsViewModellable {
     var recommendationPresentationModels: [SimpleRecommendationPresentationModel] { get }
     func load() async
 }
-
+ 
 @MainActor
 public final class SimpleRecommendationsViewModel: ObservableObject {
-    @Published public var isLoading = true
+    @Published public var isLoading = false
     @Published public var recommendationPresentationModels = [SimpleRecommendationPresentationModel]()
     @Published public private(set) var feedIsEmpty = false
     
     private var caloriesMetric: HealthMetric?
     private let healthService: HealthDataServiceable
+    private let healthStore = HKHealthStore()
     
     public init(
         healthService: HealthDataServiceable
@@ -32,27 +34,46 @@ public final class SimpleRecommendationsViewModel: ObservableObject {
     }
 }
 
+
 // MARK: - SimpleRecommendationsViewModellable
 extension SimpleRecommendationsViewModel: SimpleRecommendationsViewModellable {
     public func load() async {
         isLoading = true
-        defer {
-            isLoading = false
+
+        let authorized = await requestAuthorizationIfNeeded()
+        guard authorized else {
+            safePrint("⛔️ HealthKit authorization failed")
+            return
         }
-        
+
         let result = await healthService.fetchCalories(for: .now, unit: .kilocalorie())
         switch result {
         case .success(let returnedCalorieMetric):
             self.caloriesMetric = returnedCalorieMetric
             if let burnedCalories = returnedCalorieMetric.value.intValue {
-                let recomendations = Self.recommendationPresentationModels(fromBurnedCalories: burnedCalories)
-                recommendationPresentationModels = recomendations
-                feedIsEmpty = recommendationPresentationModels.isEmpty
+                let recommendations = Self.recommendationPresentationModels(fromBurnedCalories: burnedCalories)
+                recommendationPresentationModels = recommendations
+                feedIsEmpty = recommendations.isEmpty
             } else {
-                safePrint("⛔️ Failed to return inte value for burned calories metric")
+                safePrint("⛔️ Failed to return int value for burned calories metric")
             }
         case .failure(let error):
-            safePrint("⛔️ Failed to load recommendations: error not handled for now: \(error.localizedDescription)")
+            safePrint("⛔️ Failed to load recommendations: \(error.localizedDescription)")
+        }
+        isLoading = false
+    }
+
+    private func requestAuthorizationIfNeeded() async -> Bool {
+        let typesToRead: Set = [
+            HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!
+        ]
+
+        do {
+            try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
+            return true
+        } catch {
+            safePrint("⚠️ HealthKit requestAuthorization error: \(error.localizedDescription)")
+            return false
         }
     }
 }
