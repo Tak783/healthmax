@@ -120,7 +120,7 @@ extension SimpleRecommendationsViewModel {
             
         case 500..<650:
             return [
-                .init(emoji: "🔥", title: "One Last Push", description: "You’re nearly there—just a short walk left."),
+                .init(emoji: "🔥", title: "One Last Push", description: "You’re nearly there just a short walk left."),
                 .init(emoji: "🎯", title: "Stretch Goal", description: "Go beyond your burn goal for bonus health!"),
                 .init(emoji: "🤸", title: "Mobility Flow", description: "Try some dynamic stretches to finish strong."),
                 .init(emoji: "🚶‍♂️", title: "Lap Finish", description: "One final lap around the block seals the deal."),
@@ -129,7 +129,7 @@ extension SimpleRecommendationsViewModel {
             
         default:
             return [
-                .init(emoji: "✅", title: "Goal Crushed", description: "You hit your burn target—amazing job!"),
+                .init(emoji: "✅", title: "Goal Crushed", description: "You hit your burn target amazing job!"),
                 .init(emoji: "🌟", title: "Keep Glowing", description: "Cool down with some gentle yoga."),
                 .init(emoji: "🛁", title: "Recovery Time", description: "Enjoy a relaxing shower or bath."),
                 .init(emoji: "🍽", title: "Fuel Smart", description: "Refuel with something healthy and satisfying.")

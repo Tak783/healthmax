@@ -18,12 +18,14 @@ struct RecommendationsCarouselView: View {
                 .ignoresSafeArea()
 
             Group {
-                if viewModel.isLoading {
-                    loadingView
-                } else if viewModel.recommendationPresentationModels.isEmpty {
-                    emptyStateView
-                } else {
-                    recommendationsTabView
+                VStack {
+                    if viewModel.isLoading {
+                        loadingView
+                    } else if viewModel.recommendationPresentationModels.isEmpty {
+                        emptyStateView
+                    } else {
+                        recommendationsTabView
+                    }
                 }
             }
             .padding()
@@ -74,6 +76,7 @@ extension RecommendationsCarouselView {
                     Text(recommendation.description)
                         .font(.system(size: 15, weight: .light))
                         .multilineTextAlignment(.center)
+                    Spacer()
                 }
                 .padding()
             }
@@ -86,14 +89,14 @@ extension RecommendationsCarouselView {
 
     var summarySlide: some View {
         VStack(spacing: 4) {
-            Text("🔥")
+            Text(viewModel.didNotBurnEnoughCalories ? "🔥" : "🥳")
                 .font(.system(size: 20, weight: .bold))
                 .multilineTextAlignment(.center)
             Text("You've burned")
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: 16, weight: .heavy))
                 .multilineTextAlignment(.center)
             Text("\(viewModel.burnedCalories) calories today")
-                .font(.system(size: 16, weight: .light))
+                .font(.system(size: 16, weight: .heavy))
                 .multilineTextAlignment(.center)
         }
         .padding()
@@ -110,6 +113,7 @@ extension RecommendationsCarouselView {
             Text("➡️")
                 .font(.system(size: 16, weight: .light))
                 .multilineTextAlignment(.center)
+            Spacer()
         }
         .padding()
     }
@@ -125,6 +129,7 @@ extension RecommendationsCarouselView {
             Text("The best time to start is now!")
                 .font(.system(size: 14, weight: .medium))
                 .multilineTextAlignment(.center)
+            Spacer()
         }
         .padding()
     }
