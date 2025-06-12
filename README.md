@@ -1,7 +1,8 @@
 # HealthMax.AI – README
 
 * Simple health metrics dashboard app to display data from user input and Apple Health
-* In the future, will connect to OpenAI/Claude/Gemini to give the user tips on how to maximise their health
+* Connects to OpenAI to give the user tips on how to maximise their health
+* Has an Apple Watch Companion app  "Max Calorie Burner"
 
 ## 🚀 Highlights
 
@@ -13,7 +14,8 @@
 * SwiftUI Coordinator and Router for App Navigation  
 * Onboarding flow designed and implemented with strategies to maximise Funnel Conversion, Data Collection & User retention  
 * Protocol-oriented approach to building, services, view models and test specs to maximise reusability, flexibility and testability
-* New: V0.2 has upgrades, please see at the bottom of the README
+* New in V0.2.0: MaxPlan View: Healthmax now has a backend that returns AI-generated insights from Static and dynamic (HealthKit) data using OpenAI
+* ⭐️ New in V0.2.1: Apple Watch companion app "Max Calorie Burner" helps users maximise their calorie burn with tips based on their calories burned for the day, sourced from HealthKit
 
 <p float="left">
 <img src="https://github.com/user-attachments/assets/b12f72ab-d058-4188-8f98-1cc25577ca4a" width="150" align="left">
@@ -22,13 +24,25 @@
 <img src="https://github.com/user-attachments/assets/cde1f064-6d1e-407b-a4af-888e859066de" width="150" align="left">
 </p>
 <br clear="all" />
+<br/>
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/39441723-55ec-4082-ab23-a592037a8282" width="100" align="left">
+    <img src="https://github.com/user-attachments/assets/a625c6fc-b9e2-4a4a-9a87-f932ffe862ec" width="100" align="left">
+    <img src="https://github.com/user-attachments/assets/9898f420-5ef3-4b58-9227-b6194bf09805" width="100" align="left">
+    <img src="https://github.com/user-attachments/assets/2103daef-df28-4339-bcae-3bc8298d6d84" width="100" align="left">
+    <img src="https://github.com/user-attachments/assets/92fb220c-d50f-4a4e-9a68-df8b9d1dabf3" width="100" align="left">
+    <img src="https://github.com/user-attachments/assets/620e623d-d820-4afe-8b1f-ad61fa8d40e0" width="100" align="left">
+<img src="https://github.com/user-attachments/assets/818c97dd-d4e3-42d8-8d65-9d5fd7a374d6" width="100" align="left">
+</p>
+<br clear="all" />
 
 ## 📱 For the Best User Experience
 1. Add Codesigning using your Apple Developer account in the XCode Project Settings
 2. Run Xcode and install it on the device
 3. 🚨 For full experience - Accept notifications in totality (close the app and wait 30 seconds after onboarding)
-3. 🚨 For full experience - Accept Apple Health Permissions in totality
-3. Delete and reinstall to experience again  
+4. 🚨 For full experience - Accept Apple Health Permissions in totality
+5. Delete and reinstall to experience again
+6. Install the Apple Watch app via the Apple Watch App on iOS
 
 ## 🛠 How It Was Built
 
@@ -101,8 +115,21 @@
 > Annotated Figma board showing rationale behind key design choices.
 <img src="https://github.com/user-attachments/assets/f6b0868f-b26c-487e-9c76-6e2dea57d8a5" width="500" alt="Figma With Commentary">
 
+### **Figure 5: Final iOS App**
+> Screenshot of iOS app.
+<img src="https://github.com/user-attachments/assets/16260dcf-703d-4ec1-95ad-d22bc3151270" width="500" alt="Figma With Commentary">
+
+### **Figure 6: Final Apple Watch App**
+> Screenshot of Apple Watch. The first image shows the "pre-max calorie burn state," and the second shows the "post-max calorie burn state".
+<p float="left">
+<img src="https://github.com/user-attachments/assets/def360a1-5b9e-4e3e-bd29-f2730cbf5d9e" width="500" align="left">
+<img src="https://github.com/user-attachments/assets/30de9238-83f6-487d-bcfc-06666b83af44" width="290" align="left">
+</p>
+<br clear="all" />
+
+
 ## 🛠 Acceptance Criteria
-**AC1: User can enter static data in onboarding quiz**
+**AC1: User can enter static data in the onboarding quiz**
 * Given I am on the home screen
 * When  I tap “Get Started”
 * Then I am navigated to a quiz 
@@ -215,7 +242,8 @@ Contains modules containing feature business logic
 
 ### `Core Presentation Layer` (explained)
 Holds supporting extensions and components for presentation layer components and apps.
-* `CorePresentation` Holds extensions to SwiftUI, the Design System and Reusable components to support presentation layer components and apps. This too can be split into smaller packages
+* `CorePresentation` Holds the Design System and Reusable components to support presentation layer components and apps. 
+* `CoreUIKit` Holds extensions to UIKit
 
 ### `Feature UI Layer` (explained)
 Consumes Feature Layer packages into presentable view components to be consumed by apps
@@ -235,9 +263,9 @@ Consumes Feature Layer packages into presentable view components to be consumed 
 6. Move generic supporting views into a shared components package (same with `DesignSystem`)
 7. Use a new quiz service instead of saving data manually 
 8. Add missing UI states — e.g., when Apple Health permission is skipped
-9. Other suggestions as doumented earlier in README
-10. Perioding Background refresh (as discussed earlier) when app is in the forergound 
-11. Accessibity (even with colour scheme) & voice over
+9. Other suggestions as documented earlier in README
+10. Periodic Background refresh (as discussed earlier) when app is in the forergound 
+11. Accessibility (even with colour scheme) & voice over
 12. Adhere to this `https://codershigh.github.io/guidelines/ios/human-interface-guidelines/technologies/healthkit/index.html` i.e. refering to HealthKit or using apples Icons
 13. Add an upsell screen for blood type as its an odd thing to ask 
 
@@ -246,17 +274,21 @@ If the app was to go beyond the scope of the team and make it to production thes
 1. Use Swift Data + Cryptokit and Keychain instead of User Defaults for Security reasons disucssed earlier
 2. Biometric unlock for security reasons
 3. Add jailbreak check to block users from using the app if its jailkbroken 
-4. Ask for biomteric enrolment again if a user takes a screenshot, only then can it be saved
-
-Thank you for your consideration :) 
+4. Ask for biometric enrolment again if a user takes a screenshot, only then can it be saved
 
 ------
 
-## ⭐️ v0.2 Completed Upgrades 
+## ⭐️ v0.20 Completed Upgrades 
 1. MaxPlan View: Healthmax now returns custom AI generated insights from Static and dynamic (HealthKit) data
+
+## ⭐️ v0.21 Completed Upgrades 
+1. New Apple Watch companion app "Max Calorie Burner" helps users maximise their calorie burn with tips based on their calories burned for the day sourced from HealthKit
 
 Notes
 * This was a quick integration E2E
 * Integration uses Firebase and OpenAI to power the service that returns personalised insights
 * Can be improved E2E from architecture, re-usability and testing
 * Best experienced using real data from Apple Health, to try, just run the app on device
+
+---
+Thank you for your consideration :) 
