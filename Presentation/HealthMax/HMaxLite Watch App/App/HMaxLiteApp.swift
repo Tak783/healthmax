@@ -13,9 +13,13 @@ import UserBiometricsFeature
 struct HMaxLite_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            let service = HealthKitHealthDataService()
-            let viewModel = SimpleRecommendationsViewModel(healthService: service)
-            RecommendationsCarouselView(viewModel: viewModel)
+            recommendationsView
         }
+    }
+    
+    private var recommendationsView: some View {
+        let service = HealthKitHealthDataService()
+        let viewModel = SimpleRecommendationsViewModel(healthService: service)
+        return RecommendationsCarouselView(viewModel: viewModel)
     }
 }

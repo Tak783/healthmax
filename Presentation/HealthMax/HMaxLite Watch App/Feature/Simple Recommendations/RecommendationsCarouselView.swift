@@ -45,7 +45,7 @@ extension RecommendationsCarouselView {
     }
 
     var emptyStateView: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: DesignSystem.Layout.extraSmall) {
             Text("👋")
                 .font(.system(size: 20, weight: .bold))
                 .multilineTextAlignment(.center)
@@ -66,7 +66,7 @@ extension RecommendationsCarouselView {
                 completionSlide
             }
             ForEach(viewModel.recommendationPresentationModels) { recommendation in
-                VStack(spacing: 4) {
+                VStack(spacing: DesignSystem.Layout.extraSmall) {
                     Text(recommendation.emoji)
                         .font(.system(size: 20, weight: .bold))
                         .multilineTextAlignment(.center)
@@ -88,7 +88,7 @@ extension RecommendationsCarouselView {
     }
 
     var summarySlide: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: DesignSystem.Layout.extraSmall) {
             Text(viewModel.didNotBurnEnoughCalories ? "🔥" : "🥳")
                 .font(.system(size: 20, weight: .bold))
                 .multilineTextAlignment(.center)
@@ -103,7 +103,7 @@ extension RecommendationsCarouselView {
     }
     
     var completionSlide: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: DesignSystem.Layout.extraSmall) {
             Text("⚡️")
                 .font(.system(size: 20, weight: .bold))
                 .multilineTextAlignment(.center)
@@ -119,7 +119,7 @@ extension RecommendationsCarouselView {
     }
     
     var encouragmentSlide: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: DesignSystem.Layout.extraSmall) {
             Text("⚡️")
                 .font(.system(size: 20, weight: .bold))
                 .multilineTextAlignment(.center)
