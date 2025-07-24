@@ -18,7 +18,7 @@ struct HealthMaxApp: App {
     @Environment(\.scenePhase) private var scenePhase
     
     init() {
-        FirebaseApp.configure()
+        // FirebaseApp.configure()
         Task {
             let authManager = AuthManager()
             await authManager.signInAnonymously()
